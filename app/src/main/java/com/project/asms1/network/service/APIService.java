@@ -1,6 +1,7 @@
 package com.project.asms1.network.service;
 
 import com.project.asms1.model.Product;
+import com.project.asms1.model.Token;
 import com.project.asms1.model.User;
 
 import java.util.List;
@@ -25,5 +26,5 @@ public interface APIService {
     Call<User> Login(@Body User user);
 
     @POST("Users/loadinguser")
-    Call<String> Loading(@Body String tokens);
+    Call<Token> Loading(@Body Token tokens);
 }

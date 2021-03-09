@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ASMS1">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".presentation.HomePageActivity" />
         <activity android:name=".presentation.LoginActivity" />
         <activity android:name=".presentation.GridViewActivity" />

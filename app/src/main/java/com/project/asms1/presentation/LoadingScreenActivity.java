@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
+import com.project.asms1.model.Token;
 import com.project.asms1.model.User;
 import com.project.asms1.network.NetworkProvider;
 import com.project.asms1.network.service.APIService;
@@ -52,18 +53,20 @@ public class LoadingScreenActivity extends AppCompatActivity {
 
                 if (tokens != null) {
                     NetworkProvider nw = NetworkProvider.self();
-                    nw.getService(APIService.class).Loading(tokens).enqueue(new Callback<String>() {
+                    nw.getService(APIService.class).Loading(new Token(tokens)).enqueue(new Callback<Token>() {
                         @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
+                        public void onResponse(Call<Token> call, Response<Token> response) {
                             if (response.isSuccessful()) {
-                                String result = response.body();
-                                if (result.equals(MyConfig.SUCCESS)) {
-                                    btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.black),
+                                Token result = response.body();
+                                System.out.println(tokens);
+                                if (result.getResult().equals(MyConfig.SUCCESS)) {
+                                    btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.purple),
                                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
                                     Intent intent = new Intent(LoadingScreenActivity.this,HomePageActivity.class);
                                     startActivity(intent);
 
                                 }else {
+                                    System.out.println("Here1");
                                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.black),
                                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_pregnant_woman_white_48dp));
                                     Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
@@ -73,16 +76,18 @@ public class LoadingScreenActivity extends AppCompatActivity {
 
 
                             }else {
+                                System.out.println("Fail");
 
                             }
                         }
 
                         @Override
-                        public void onFailure(Call<String> call, Throwable t) {
+                        public void onFailure(Call<Token> call, Throwable t) {
                             Log.e(TAG, t.getMessage());
                         }
                     });
                 }else {
+                    System.out.println("Here2");
                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.black),
                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_pregnant_woman_white_48dp));
                     Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Gray shadow. -->
-    <item android:left="3dp" android:top="15dp">
-        <shape>
-            <solid android:color="@color/lightttttttorange" />
-            <corners android:radius="50dp" />
-        </shape>
-    </item>
+<!--    <item android:left="3dp" android:top="15dp">-->
+<!--        <shape>-->
+<!--            <solid android:color="@color/lightttttttorange" />-->
+<!--            <corners android:radius="50dp" />-->
+<!--        </shape>-->
+<!--    </item>-->
     <!-- White foreground. -->
-    <item android:bottom="10dp" android:right="8dp">
+    <item android:bottom="0dp" android:right="0dp">
         <shape
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <solid android:color="@color/darkorange" />
+            <solid android:color="@color/blue" />
             <corners android:radius="50dp" />
         </shape>
     </item>
