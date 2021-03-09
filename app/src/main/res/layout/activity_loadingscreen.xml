@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.LoadingScreenActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+        android:id="@+id/buttonTest2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shadow_button_layer_list"
+        android:text="Punch"
+        android:textColor="@android:color/white"
+        android:theme="@style/BluePrimaryButton"
+        app:finalCornerAngle="50dp"
+        app:initialCornerAngle="0dp"
+        app:spinning_bar_color="#FFFFFFFF"
+        app:spinning_bar_padding="5dp"
+        app:spinning_bar_width="5dp"
+        android:layout_gravity="center"/>
+</LinearLayout>
