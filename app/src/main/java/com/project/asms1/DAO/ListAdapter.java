@@ -53,9 +53,9 @@ public class ListAdapter extends BaseAdapter {
         TextView txt_list_item_Date = convertView.findViewById(R.id.txt_item_date);
         TextView txt_list_item_Status = convertView.findViewById(R.id.txt_item_status);
         OrderDTO dto = orderDTOList.get(position);
-//        txt_list_item_Id.setText(dto.getOrderID());
-//        txt_list_item_Date.setText(dto.getOrderDate()+" ");
-//        txt_list_item_Status.setText(dto.getStatus());
+        txt_list_item_Id.setText(dto.getID());
+        txt_list_item_Date.setText(dto.getOrderDate()+" ");
+        txt_list_item_Status.setText(dto.getStatus());
         return convertView;
     }
 }
