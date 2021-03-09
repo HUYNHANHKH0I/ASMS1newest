@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CustomGridAdapter  extends BaseAdapter {
 
-    //TODO abc
+
 
     private List<Product> listData;
     private LayoutInflater layoutInflater;
