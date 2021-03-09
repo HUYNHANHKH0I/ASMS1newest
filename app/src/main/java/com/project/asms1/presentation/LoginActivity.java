@@ -1,5 +1,6 @@
 package com.project.asms1.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -104,6 +105,11 @@ public class LoginActivity extends AppCompatActivity {
           }
 
 
+    }
+
+    public void hihihaha(View view) {
+        Intent intent = new Intent(LoginActivity.this,SellerHomeActivity.class);
+        startActivity(intent);
     }
 }
 

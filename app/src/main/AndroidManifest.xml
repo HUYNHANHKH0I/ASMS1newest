@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name=".presentation.SellerHomeActivity"
+            android:label="@string/title_activity_seller_home"></activity>
         <activity android:name=".presentation.HomePageActivity" />
         <activity android:name=".presentation.LoginActivity" />
         <activity android:name=".presentation.GridViewActivity" />
