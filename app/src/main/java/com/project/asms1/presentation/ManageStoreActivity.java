@@ -1,43 +1,64 @@
 package com.project.asms1.presentation;
 
-import android.opengl.EGLExt;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.asms1.R;
-import com.project.asms1.adapter.AccountAdapter;
+import com.project.asms1.adapter.CategoryAdapter;
+import com.project.asms1.adapter.ProductAdapter;
+
+import org.lucasr.twowayview.TwoWayView;
 
 import java.util.ArrayList;
 
 public class ManageStoreActivity extends AppCompatActivity {
     ArrayList categoryList;
+    ArrayList productList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_store);
 
-        GridView list = findViewById(R.id.listItem);
-
+        TwoWayView categoryView = (TwoWayView) findViewById(R.id.listCategory);
         categoryList = new ArrayList();
-        categoryList.add(1);
-        categoryList.add(2);
-        categoryList.add(3);
-        categoryList.add(4);
-        categoryList.add(5);
-        categoryList.add(6);
-        categoryList.add(7);
-        categoryList.add(8);
+        categoryList.add("aBCDASDAS");
+        categoryList.add("b");
+        categoryList.add("c");
+        categoryList.add("d");
+        categoryList.add("e");
+        categoryList.add("f");
+        categoryList.add("g");
+        categoryList.add("h");
+        CategoryAdapter adapter = new CategoryAdapter(this,categoryList);
+        categoryView.setAdapter(adapter);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,categoryList);
-        list.setAdapter(adapter);
+        ListView productView = findViewById(R.id.listProduct);
+
+        productList = new ArrayList();
+        productList.add("a");
+        productList.add("b");
+        productList.add("c");
+
+        ProductAdapter productAdapter = new ProductAdapter(productList);
+        productView.setAdapter(productAdapter);
+        productView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(ManageStoreActivity.this, productView.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 
     public void clickToGoBack(View view) {
+        finish();
     }
 }

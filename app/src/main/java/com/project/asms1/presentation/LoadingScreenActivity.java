@@ -62,7 +62,8 @@ public class LoadingScreenActivity extends AppCompatActivity {
                                 if (result.getResult().equals(MyConfig.SUCCESS)) {
                                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.purple),
                                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
-                                    Intent intent = new Intent(LoadingScreenActivity.this,HomePageActivity.class);
+//                                    Intent intent = new Intent(LoadingScreenActivity.this,HomePageActivity.class);
+                                    Intent intent = new Intent(LoadingScreenActivity.this,SellerHomeActivity.class);
                                     startActivity(intent);
 
                                 }else {
@@ -90,6 +91,8 @@ public class LoadingScreenActivity extends AppCompatActivity {
                     System.out.println("Here2");
                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.black),
                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_pregnant_woman_white_48dp));
+//                    Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
+
                     Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
                     startActivity(intent);
                 }

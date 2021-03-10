@@ -1,5 +1,6 @@
 package com.project.asms1.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -78,6 +79,10 @@ public class LoginActivity extends AppCompatActivity {
                               try {
                                   SecurityLogic.getPreferenceInstance(LoginActivity.this);
                                   SecurityLogic.storeTokens(user1.getToken());
+
+                                  Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
+                                  startActivity(intent);
+
                               } catch (GeneralSecurityException e) {
                                   e.printStackTrace();
                               } catch (IOException e) {

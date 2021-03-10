@@ -58,4 +58,5 @@ dependencies {
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.9'
+    implementation 'org.lucasr.twowayview:twowayview:0.1.4'
 }
