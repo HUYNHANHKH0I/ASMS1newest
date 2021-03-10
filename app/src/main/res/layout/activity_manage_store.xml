@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".presentation.ManageStoreActivity"
     android:orientation="vertical"
-    android:id="@+id/categoryListLayout">
+    android:id="@+id/categoryListLayout"
+    android:scrollbars="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back"
+        android:text="@string/back_button"
         android:clickable="true"
         android:focusable="true"
         android:layout_gravity="left"
@@ -24,11 +25,24 @@
         android:textSize="20dp"
         android:textStyle="bold"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search for product"
-        android:id="@+id/edtSearchProduct"/>
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="🔍 Search for product"
+            android:id="@+id/edtSearchProduct"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"/>
+    </LinearLayout>
+
+
+
+
 <!--    <FrameLayout-->
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content">-->
@@ -50,12 +64,10 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_gravity="center_vertical"
-        android:orientation="horizontal" />
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listProduct"/>
+
 
 
 <!--    <HorizontalScrollView-->
@@ -64,7 +76,28 @@
 <!--        -->
 <!--    </HorizontalScrollView>-->
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listProduct"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:text="Create Category"
+            android:layout_marginLeft="20dp"
+            android:onClick="clickToCreateCategory"/>
 
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="40dp"
+            android:text="Create Product"
+            android:onClick="clickToCreateProduct"/>
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ASMS1</string>
+    <string name="back_button"> ◄ Back</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.project.asms1.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,7 +52,9 @@ public class ManageStoreActivity extends AppCompatActivity {
         productView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ManageStoreActivity.this, productView.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ManageStoreActivity.this,  ProductDetailActivity.class);
+                intent.putExtra("product",productView.getItemIdAtPosition(position));
+                startActivity(intent);
             }
         });
 
@@ -60,5 +63,11 @@ public class ManageStoreActivity extends AppCompatActivity {
 
     public void clickToGoBack(View view) {
         finish();
+    }
+
+    public void clickToCreateCategory(View view) {
+    }
+
+    public void clickToCreateProduct(View view) {
     }
 }

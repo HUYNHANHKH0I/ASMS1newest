@@ -3,6 +3,7 @@ package com.project.asms1.Utils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -21,7 +22,10 @@ public class PopupMessage {
         return popupWindow;
     }
 
-    public void showPopupWindow(final View view, String message) {
+    //set needAcceptButton if only close button is needed
+
+
+    public void showPopupWindow(final View view, String message,boolean needAcceptButton) {
         LayoutInflater inflater = (LayoutInflater)view.getContext()
                 .getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
         popupView = inflater.inflate(R.layout.popup_message,null);
@@ -35,6 +39,14 @@ public class PopupMessage {
         popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
         TextView text = popupView.findViewById(R.id.txtMessage);
         text.setText(message);
+
+        if (!needAcceptButton) {
+            ((Button) popupView.findViewById(R.id.btnAcceptPopup)).setEnabled(false);
+
+        }
+
+        //set function for close button on activities
+
 //        ((Button)popupView.findViewById(R.id.btnClosePopup)).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

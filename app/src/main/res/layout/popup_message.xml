@@ -20,13 +20,26 @@
                 android:id="@+id/txtMessage"
                 android:textAlignment="center"
                 android:layout_gravity="center"/>
-            <Button
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Close"
-                android:id="@+id/btnClosePopup"/>
+                android:orientation="horizontal">
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:text="Accept"
+                    android:id="@+id/btnAcceptPopup"
+                    android:layout_marginRight="20dp"/>
 
+                <Button
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:text="Close"
+                    android:id="@+id/btnClosePopup"/>
+
+            </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
