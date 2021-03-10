@@ -13,10 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".presentation.LoadingScreenActivity"></activity>
         <activity android:name=".presentation.HomePageActivity" />
         <activity android:name=".presentation.LoginActivity" />
         <activity android:name=".presentation.GridViewActivity" />
-        <activity android:name=".presentation.LoadingScreenActivity">
+        <activity android:name=".presentation.LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
