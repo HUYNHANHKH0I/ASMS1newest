@@ -1,5 +1,6 @@
 package com.project.asms1.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
@@ -50,60 +51,61 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void clickToLogin() {
-          String username = edtEmail.getText().toString();
-          String password = edtPassword.getText().toString();
+        String username = edtEmail.getText().toString();
+        String password = edtPassword.getText().toString();
 
-          txtMessage.setVisibility(View.VISIBLE);
-          if (SecurityLogic.isValidPassword(password) && SecurityLogic.isValidUserName(username)) {
-             String cryptedPassword = SecurityLogic.getMD5(password);
-             User user = new User(cryptedPassword, username);
-
-
-              NetworkProvider nw = NetworkProvider.self();
-              nw.getService(APIService.class).Login(user).enqueue(new Callback<User>() {
-                  @Override
-                  public void onResponse(Call<User> call, Response<User> response) {
-                      if(response.isSuccessful()) {
-                          User user1 = response.body();
-                          if(user1 == null) {
-                              System.out.println("ko co du lieu");
-                              Toast.makeText(LoginActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
-                              txtMessage.setText("Not Exist");
-                              txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
-                          }else {
-                              System.out.println("Co du lieu");
-                              Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                              txtMessage.setText("Login Success");
-                              txtMessage.setTextColor(getResources().getColor(R.color.colorPrimary));
-                              try {
-                                  SecurityLogic.getPreferenceInstance(LoginActivity.this);
-                                  SecurityLogic.storeTokens(user1.getToken());
-                              } catch (GeneralSecurityException e) {
-                                  e.printStackTrace();
-                              } catch (IOException e) {
-                                  e.printStackTrace();
-                              }
-//                              Intent intent = new Intent(MainActivity.this, GridViewActivity.class);
-//                              startActivity(intent);
-                          }
-                      } else {
-                          System.out.println(response.errorBody());
-                      }
-                  }
-
-                  @Override
-                  public void onFailure(Call<User> call, Throwable t) {
-                      Log.e(TAG, t.getMessage());
-                  }
-              });
+        txtMessage.setVisibility(View.VISIBLE);
+        if (SecurityLogic.isValidPassword(password) && SecurityLogic.isValidUserName(username)) {
+            String cryptedPassword = SecurityLogic.getMD5(password);
+            User user = new User(cryptedPassword, username);
 
 
-          }else {
-              txtMessage.setText("Email or Password invalid");
-              txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
-          }
+            NetworkProvider nw = NetworkProvider.self();
+            nw.getService(APIService.class).Login(user).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if(response.isSuccessful()) {
+                        User user1 = response.body();
+                        if(user1 == null) {
+                            System.out.println("ko co du lieu");
+                            Toast.makeText(LoginActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
+                            txtMessage.setText("Not Exist");
+                            txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
+                        }else {
+                            System.out.println("Co du lieu");
+                            Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                            txtMessage.setText("Login Success");
+                            txtMessage.setTextColor(getResources().getColor(R.color.colorPrimary));
+                            try {
+                                SecurityLogic.getPreferenceInstance(LoginActivity.this);
+                                SecurityLogic.storeTokens(user1.getToken());
+
+                                Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                                startActivity(intent);
+
+                            } catch (GeneralSecurityException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } else {
+                        System.out.println(response.errorBody());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.e(TAG, t.getMessage());
+                }
+            });
+
+
+        }else {
+            txtMessage.setText("Email or Password invalid");
+            txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
+        }
 
 
     }
 }
-
