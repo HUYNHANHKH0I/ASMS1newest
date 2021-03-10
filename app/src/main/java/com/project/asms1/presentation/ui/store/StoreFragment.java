@@ -1,4 +1,4 @@
-package com.project.asms1.presentation.ui.home;
+package com.project.asms1.presentation.ui.store;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.project.asms1.R;
 
-public class HomeFragment extends Fragment {
+;
 
-    private HomeViewModel homeViewModel;
+public class StoreFragment extends Fragment {
+
+    private StoreViewModel storeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        storeViewModel =
+                new ViewModelProvider(this).get(StoreViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_store, container, false);
+        //final TextView textView = root.findViewById(R.id.te);
+        storeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
 
