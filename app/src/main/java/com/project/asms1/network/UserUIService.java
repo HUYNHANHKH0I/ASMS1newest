@@ -74,6 +74,7 @@ public class UserUIService {
             e.printStackTrace();
         }
         String tokens = SecurityLogic.getTokens();
+        System.out.println(tokens);
 
         if (tokens != null) {
             NetworkProvider nw = NetworkProvider.self();

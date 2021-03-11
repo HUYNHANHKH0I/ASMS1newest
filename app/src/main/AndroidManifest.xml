@@ -16,7 +16,6 @@
         <activity android:name=".presentation.LoadingScreenActivity"></activity>
         <activity android:name=".presentation.HomePageActivity" />
         <activity android:name=".presentation.LoginActivity" />
-        <activity android:name=".presentation.UserInforActivity" />
         <activity android:name=".presentation.GridViewActivity" />
         <activity android:name=".presentation.LogoActivity">
             <intent-filter>

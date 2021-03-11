@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
+import com.project.asms1.config.MyConfig;
 import com.project.asms1.model.User;
 import com.project.asms1.network.NetworkProvider;
 import com.project.asms1.network.service.APIService;
@@ -79,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                             try {
                                 SecurityLogic.getPreferenceInstance(LoginActivity.this);
                                 SecurityLogic.storeTokens(user1.getToken());
+                                SecurityLogic.saveObjectToSharedPreference(LoginActivity.this, MyConfig.userStore, MyConfig.userStoreKey, user1);
 
                                 Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                 startActivity(intent);

@@ -12,7 +12,7 @@
         <shape
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <solid android:color="@color/blue" />
+            <solid android:color="@color/redlight" />
             <corners android:radius="100dp" />
         </shape>
     </item>
