@@ -38,15 +38,4 @@ public class SellerHomeActivity extends AppCompatActivity {
 
 
     }
-
-    public void clickToGoToStore(View view) {
-        Intent intent = new Intent(SellerHomeActivity.this, ManageStoreActivity.class);
-        startActivity(intent);
-
-    }
-
-    public void clickToLogout(View view) {
-
-    }
-
 }

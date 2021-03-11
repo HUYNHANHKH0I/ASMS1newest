@@ -50,20 +50,21 @@
         android:layout_gravity="start"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_gravity="center">
         <Button
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:text="Edit"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginRight="20dp"/>
 
         <Button
             android:layout_width="160dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="40dp"
             android:text="Delete" />
     </LinearLayout>
+
 
 </LinearLayout>

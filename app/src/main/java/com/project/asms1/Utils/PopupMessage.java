@@ -42,6 +42,7 @@ public class PopupMessage {
 
         if (!needAcceptButton) {
             ((Button) popupView.findViewById(R.id.btnAcceptPopup)).setVisibility(View.GONE);
+            ((Button) popupView.findViewById(R.id.btnClosePopup)).setGravity(Gravity.CENTER);
 
         } else {
             ((Button) popupView.findViewById(R.id.btnClosePopup)).setText("Cancel");

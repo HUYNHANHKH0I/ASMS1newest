@@ -1,15 +1,19 @@
 package com.project.asms1.presentation;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.asms1.R;
 import com.project.asms1.adapter.AccountAdapter;
+import com.project.asms1.network.UserUIService;
 
 import java.util.ArrayList;
 
@@ -36,6 +40,8 @@ public class ManageAccountActivity extends AppCompatActivity {
                 Toast.makeText(ManageAccountActivity.this, accountListView.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
     }
 
