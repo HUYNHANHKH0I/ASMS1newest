@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                               } catch (IOException e) {
                                   e.printStackTrace();
                               }
-                              Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
-                              startActivity(intent);
+//                              Intent intent = new Intent(MainActivity.this, GridViewActivity.class);
+//                              startActivity(intent);
                           }
                       } else {
                           System.out.println(response.errorBody());
@@ -110,7 +110,5 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-
-
 }
 

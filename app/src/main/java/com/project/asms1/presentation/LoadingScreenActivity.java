@@ -3,7 +3,6 @@ package com.project.asms1.presentation;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -63,14 +62,10 @@ public class LoadingScreenActivity extends AppCompatActivity {
                                 if (result.getResult().equals(MyConfig.SUCCESS)) {
                                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.purple),
                                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Intent intent = new Intent(LoadingScreenActivity.this,HomePageActivity.class);
-                                            startActivity(intent);
-                                        }
-                                    }, 1000);
+//                                    Intent intent = new Intent(LoadingScreenActivity.this,HomePageActivity.class);
+                                    Intent intent = new Intent(LoadingScreenActivity.this,SellerHomeActivity.class);
+                                    startActivity(intent);
+
                                 }else {
                                     System.out.println("Here1");
                                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.black),
@@ -96,6 +91,8 @@ public class LoadingScreenActivity extends AppCompatActivity {
                     System.out.println("Here2");
                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.black),
                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_pregnant_woman_white_48dp));
+//                    Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
+
                     Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
                     startActivity(intent);
                 }
