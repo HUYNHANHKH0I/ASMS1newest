@@ -65,9 +65,13 @@ public class ManageStoreActivity extends AppCompatActivity {
         finish();
     }
 
-    public void clickToCreateCategory(View view) {
+    public void clickToGoToCreateCategory(View view) {
+        Intent intent = new Intent(ManageStoreActivity.this,  CreateCategoryActivity.class);
+        startActivity(intent);
     }
 
-    public void clickToCreateProduct(View view) {
+    public void clickToGoToCreateProduct(View view) {
+//        Intent intent = new Intent(ManageStoreActivity.this,  CreateProductActivity.class);
+//        startActivity(intent);
     }
 }

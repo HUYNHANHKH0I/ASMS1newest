@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".presentation.CreateCategoryActivity"></activity>
+        <activity android:name=".presentation.CreateProductActivity"></activity>
+        <activity android:name=".presentation.CreateCategoryActivity" />
         <activity android:name=".presentation.ProductDetailActivity" />
         <activity android:name=".presentation.HomePageActivity" />
         <activity android:name=".presentation.LoginActivity" />

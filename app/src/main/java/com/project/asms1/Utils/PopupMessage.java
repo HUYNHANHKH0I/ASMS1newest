@@ -41,8 +41,10 @@ public class PopupMessage {
         text.setText(message);
 
         if (!needAcceptButton) {
-            ((Button) popupView.findViewById(R.id.btnAcceptPopup)).setEnabled(false);
+            ((Button) popupView.findViewById(R.id.btnAcceptPopup)).setVisibility(View.GONE);
 
+        } else {
+            ((Button) popupView.findViewById(R.id.btnClosePopup)).setText("Cancel");
         }
 
         //set function for close button on activities

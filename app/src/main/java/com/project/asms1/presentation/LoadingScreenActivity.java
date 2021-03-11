@@ -63,7 +63,7 @@ public class LoadingScreenActivity extends AppCompatActivity {
                                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.purple),
                                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_done_white_48dp));
 //                                    Intent intent = new Intent(LoadingScreenActivity.this,HomePageActivity.class);
-                                    Intent intent = new Intent(LoadingScreenActivity.this,AdminHomeActivity.class);
+                                    Intent intent = new Intent(LoadingScreenActivity.this,SellerHomeActivity.class);
                                     startActivity(intent);
 
                                 }else {

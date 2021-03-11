@@ -89,15 +89,13 @@
             android:layout_height="50dp"
             android:text="Create Category"
             android:layout_marginLeft="20dp"
-            android:onClick="clickToCreateCategory"/>
+            android:onClick="clickToGoToCreateCategory"/>
 
         <Button
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:layout_marginLeft="40dp"
             android:text="Create Product"
-            android:onClick="clickToCreateProduct"/>
+            android:onClick="clickToGoToCreateProduct"/>
     </LinearLayout>
-
-
 </LinearLayout>

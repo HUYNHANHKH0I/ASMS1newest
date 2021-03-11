@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.CreateCategoryActivity"
+    tools:context=".presentation.CreateProductActivity"
     android:orientation="vertical">
     <TextView
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create a new Category"
+        android:text="Create a new Product"
         android:textStyle="bold"
         android:textSize="20dp"
         android:gravity="center"/>
@@ -26,11 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Category Name"
-        android:id="@+id/edtCategoryName"/>
+        android:id="@+id/edtProductName"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Finish"
         android:layout_gravity="center"
-        android:onClick="clickToCreateCategory"/>
+        android:onClick="clickToCreateProduct"/>
 </LinearLayout>
