@@ -26,6 +26,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    sourceSets {
+        main {
+            res {
+                srcDirs 'src\\main\\res', 'src\\main\\res\\2'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -55,6 +62,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.wear:wear:1.0.0'
     testImplementation 'junit:junit:4.+'
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -67,5 +75,10 @@ dependencies {
     //Add new dependencies here
 
     implementation 'org.lucasr.twowayview:twowayview:0.1.4'
+
+
+    //Phần Này của Ân Implement
+    implementation 'androidx.navigation:navigation-fragment:2.3.3'
+    implementation 'androidx.navigation:navigation-ui:2.3.3'
 
 }
