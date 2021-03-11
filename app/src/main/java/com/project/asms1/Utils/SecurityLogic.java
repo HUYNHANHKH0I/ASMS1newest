@@ -71,4 +71,8 @@ public class SecurityLogic {
         return sharedPreferences.getString(MyConfig.key,null);
 
     }
+
+    public static void deleteTokens() {
+        sharedPreferences.edit().remove(MyConfig.key).apply();
+    }
 }

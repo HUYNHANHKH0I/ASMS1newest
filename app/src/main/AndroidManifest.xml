@@ -18,6 +18,7 @@
         <activity android:name=".presentation.ProductDetailActivity" />
         <activity android:name=".presentation.HomePageActivity" />
         <activity android:name=".presentation.LoginActivity" />
+        <activity android:name=".presentation.UserInforActivity" />
         <activity android:name=".presentation.GridViewActivity" />
         <activity android:name=".presentation.ManageAccountActivity" />
         <activity android:name=".presentation.CreateAccountActivity" />

@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".presentation.HomePageActivity">
+    tools:context=".presentation.UserInforActivity">
 
     <Button
-        android:id="@+id/btnUser"
+        android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User"
+        android:text="Đăng Xuất!"
         android:textSize="20dp"
         android:textStyle="bold"
         android:gravity="center"
