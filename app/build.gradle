@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.project.asms1"
-        minSdkVersion 30
+        minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -54,8 +54,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.3'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.wear:wear:1.0.0'
+
     testImplementation 'junit:junit:4.+'
     implementation "androidx.constraintlayout:constraintlayout:2.0.4"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
@@ -64,5 +63,5 @@ dependencies {
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.9'
-    compileOnly 'com.google.android.wearable:wearable:2.6.0'
+
 }
