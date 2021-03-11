@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                                 SecurityLogic.storeTokens(user1.getToken());
                                 SecurityLogic.saveObjectToSharedPreference(LoginActivity.this, MyConfig.userStore, MyConfig.userStoreKey, user1);
 
-                                Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
                                 startActivity(intent);
 
                             } catch (GeneralSecurityException e) {

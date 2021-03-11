@@ -65,4 +65,9 @@ dependencies {
     implementation "androidx.security:security-crypto:1.0.0-alpha02"
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.9'
+
+    //Phần Này của Ân Implement
+    implementation 'androidx.navigation:navigation-fragment:2.3.3'
+    implementation 'androidx.navigation:navigation-ui:2.3.3'
+
 }
