@@ -4,14 +4,18 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_white_24dp"
-        android:title="Home" />
+        android:title="@string/title_home" />
+
+
     <item
-        android:id="@+id/navigation_cart"
+        android:id="@+id/navigation_store"
         android:icon="@drawable/ic_shopping_cart_white_24dp"
-        android:title="@string/title_cart" />
+        android:title="@string/title_store" />
+
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_person_white_24dp"
-        android:title="@string/user_info"/>
+        android:title="@string/title_profile" />
+
 
 </menu>

@@ -1,17 +1,11 @@
 package com.project.asms1.network;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -21,10 +15,8 @@ import com.project.asms1.config.MyConfig;
 import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.Token;
 import com.project.asms1.network.service.APIService;
-import com.project.asms1.presentation.HomePageActivity;
-import com.project.asms1.presentation.LoadingScreenActivity;
 import com.project.asms1.presentation.LoginActivity;
-import com.project.asms1.presentation.UserSettingActivity;
+import com.project.asms1.presentation.SellerHomeActivity;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -102,7 +94,7 @@ public class UserUIService {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(context,HomePageActivity.class);
+                                    Intent intent = new Intent(context, SellerHomeActivity.class);
                                     context.startActivity(intent);
                                 }
                             }, 1000);

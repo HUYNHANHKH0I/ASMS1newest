@@ -68,4 +68,13 @@ dependencies {
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.9'
     compileOnly 'com.google.android.wearable:wearable:2.6.0'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+
+    //an
+    implementation 'androidx.navigation:navigation-fragment:2.3.3'
+    implementation 'androidx.navigation:navigation-ui:2.3.3'
+
+    //nhan
+    implementation 'org.lucasr.twowayview:twowayview:0.1.4'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
 }
