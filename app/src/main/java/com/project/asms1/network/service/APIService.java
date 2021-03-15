@@ -31,4 +31,7 @@ public interface APIService {
 
     @GET("Users/deletetoken")
     Call<String> DeleteToken(@Query("token") String token);
+
+    @POST("Users/updateuser")
+    Call<Token> Update(@Body User user);
 }

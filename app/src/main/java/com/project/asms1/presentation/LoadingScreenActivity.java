@@ -34,8 +34,11 @@ public class LoadingScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loadingscreen);
+        initData();
+    }
 
-        CircularProgressButton btn = (CircularProgressButton) findViewById(R.id.buttonTest2);
+    private void initData() {
+        CircularProgressButton btn = (CircularProgressButton) findViewById(R.id.btnLoading);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,11 +103,5 @@ public class LoadingScreenActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
-
     }
 }

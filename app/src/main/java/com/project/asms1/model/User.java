@@ -4,18 +4,20 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public final class User {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private String id;
     @SerializedName("username")
     @Expose
     private String username;
     @SerializedName("password")
     @Expose
     private String password;
-    @SerializedName("role")
+    @SerializedName("idrole")
     @Expose
     private int role;
     @SerializedName("email")
@@ -27,6 +29,23 @@ public final class User {
     @SerializedName("token")
     @Expose
     private String token;
+    @SerializedName("productslist")
+    @Expose
+    private List<Product> productslist;
+    @SerializedName("sumofpages")
+    @Expose
+    private int numberOfPage;
+    @SerializedName("productperpage")
+    @Expose
+    private int productperpage;
+
+    public List<Product> getProductslist() {
+        return productslist;
+    }
+
+    public int getNumberOfPage() {
+        return numberOfPage;
+    }
 
     public int getRole() {
         return role;
@@ -52,11 +71,11 @@ public final class User {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -89,8 +108,9 @@ public final class User {
         return new Gson().toJson(this);
     }
 
-    public User(String password, String username) {
+    public User(String password, String username,int productperpage ) {
         this.password = password;
         this.username = username;
+        this.productperpage = productperpage;
     }
 }

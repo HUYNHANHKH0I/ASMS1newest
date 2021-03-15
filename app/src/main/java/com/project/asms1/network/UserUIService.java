@@ -1,20 +1,30 @@
 package com.project.asms1.network;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
 import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
+import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.Token;
 import com.project.asms1.network.service.APIService;
+import com.project.asms1.presentation.HomePageActivity;
+import com.project.asms1.presentation.LoadingScreenActivity;
 import com.project.asms1.presentation.LoginActivity;
-import com.project.asms1.presentation.SellerHomeActivity;
+import com.project.asms1.presentation.UserSettingActivity;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -76,7 +86,7 @@ public class UserUIService {
 
         if (tokens != null) {
             NetworkProvider nw = NetworkProvider.self();
-            nw.getService(APIService.class).Loading(new Token(tokens)).enqueue(new Callback<Token>() {
+            nw.getService(APIService.class).Loading(new Token(tokens,MyConfig.productperpage)).enqueue(new Callback<Token>() {
                 @Override
                 public void onResponse(Call<Token> call, Response<Token> response) {
                     if (response.isSuccessful()) {
@@ -85,11 +95,14 @@ public class UserUIService {
                         if (result.getResult().equals(MyConfig.SUCCESS)) {
                             btn.doneLoadingAnimation(ContextCompat.getColor(context,R.color.purple),
                                     BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_done_white_48dp));
+                            UserDAO.currentUser = result.getUser();
+                            UserDAO.listOfProduct = result.getListProducts();
+                            UserDAO.numberOfPage = result.getNumberOfPage();
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(context, SellerHomeActivity.class);
+                                    Intent intent = new Intent(context,HomePageActivity.class);
                                     context.startActivity(intent);
                                 }
                             }, 1000);
@@ -122,5 +135,32 @@ public class UserUIService {
                 }
             }, 1000);
         }
+    }
+
+    public static void updateUser(Activity context) {
+        NetworkProvider nw = NetworkProvider.self();
+        if (UserDAO.currentUser == null) {
+            System.out.println("vc current null r");
+        }
+        System.out.println(UserDAO.currentUser);
+        nw.getService(APIService.class).Update(UserDAO.currentUser).enqueue(new Callback<Token>() {
+            @Override
+            public void onResponse(Call<Token> call, Response<Token> response) {
+                if (response.isSuccessful()) {
+                    Token result = response.body();
+                    if (result.getResult().equals(MyConfig.SUCCESS)) {
+                        System.out.println(MyConfig.SUCCESS);
+                    }else {
+                        System.out.println("Here5");
+                    }
+                }else {
+                    System.out.println("Fail9");
+                }
+            }
+            @Override
+            public void onFailure(Call<Token> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
     }
 }
