@@ -82,9 +82,6 @@ public class StoreFragment extends Fragment {
         productList.add("f");
         productList.add("g");
         productList.add("h");
-        productList.add("blahblah");
-        productList.add("whatever");
-        productList.add("something");
 
         setAdapter();
 

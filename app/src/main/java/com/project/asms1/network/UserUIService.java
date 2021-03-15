@@ -21,9 +21,9 @@ import com.project.asms1.config.MyConfig;
 import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.Token;
 import com.project.asms1.network.service.APIService;
-import com.project.asms1.presentation.HomePageActivity;
 import com.project.asms1.presentation.LoadingScreenActivity;
 import com.project.asms1.presentation.LoginActivity;
+import com.project.asms1.presentation.SellerHomeActivity;
 import com.project.asms1.presentation.UserSettingActivity;
 
 import java.io.IOException;
@@ -102,7 +102,7 @@ public class UserUIService {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(context,HomePageActivity.class);
+                                    Intent intent = new Intent(context, SellerHomeActivity.class);
                                     context.startActivity(intent);
                                 }
                             }, 1000);

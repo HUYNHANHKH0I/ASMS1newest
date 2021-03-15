@@ -22,7 +22,7 @@ public class PopupMessage {
         return popupWindow;
     }
 
-    //set needAcceptButton if only close button is needed
+    //set needAcceptButton false if only close button is needed
 
 
     public void showPopupWindow(final View view, String message,boolean needAcceptButton) {
