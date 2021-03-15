@@ -1,11 +1,15 @@
 package com.project.asms1.network;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -145,8 +149,7 @@ public class UserUIService {
                 if (response.isSuccessful()) {
                     Token result = response.body();
                     if (result.getResult().equals(MyConfig.SUCCESS)) {
-                        Toast.makeText(context, "Update Success", Toast.LENGTH_SHORT).show();
-                        context.onBackPressed();
+                        System.out.println(MyConfig.SUCCESS);
                     }else {
                         System.out.println("Here5");
                     }

@@ -35,20 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        edtEmail = findViewById(R.id.edtEmail);
-        edtPassword = findViewById(R.id.edtPassWord);
-        txtMessage = findViewById(R.id.txtMessage);
-        btnShow = findViewById(R.id.btnLogin);
-
-
-
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickToLogin();
-            }
-        });
+        initData();
 
     }
 
@@ -110,7 +97,18 @@ public class LoginActivity extends AppCompatActivity {
             txtMessage.setText("Email or Password invalid");
             txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
         }
+    }
 
-
+    private void initData() {
+        edtEmail = findViewById(R.id.edtEmail);
+        edtPassword = findViewById(R.id.edtPassWord);
+        txtMessage = findViewById(R.id.txtMessage);
+        btnShow = findViewById(R.id.btnLogin);
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickToLogin();
+            }
+        });
     }
 }

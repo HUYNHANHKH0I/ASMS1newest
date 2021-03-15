@@ -12,12 +12,12 @@
         android:layout_height="match_parent"
         android:src="@drawable/logo2"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/buttonTest2"
+        app:layout_constraintBottom_toTopOf="@+id/btnLoading"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-        android:id="@+id/buttonTest2"
+        android:id="@+id/btnLoading"
         android:layout_width="218dp"
         android:layout_height="68dp"
         android:layout_marginStart="100dp"

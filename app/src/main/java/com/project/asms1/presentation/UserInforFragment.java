@@ -74,7 +74,6 @@ public class UserInforFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View contentView = inflater.inflate(R.layout.fragment_user_infor, container, false);
         btnLogout = contentView.findViewById(R.id.btnLogout);
         btnSetting = contentView.findViewById(R.id.btnSetting);
@@ -98,11 +97,11 @@ public class UserInforFragment extends Fragment {
             System.out.println("null roi");
         }else {
             System.out.println(user.getName());
+            txtusername.setText(user.getUsername());
+            txtuserroll.setText(user.getRole() == 1 ? "ADMIN" : "STAFF");
+            txtuserfullname.setText(user.getName());
+            txtuseremail.setText(user.getEmail());
         }
-        txtusername.setText(user.getUsername());
-        txtuserroll.setText(user.getRole() == 1 ? "ADMIN" : "STAFF");
-        txtuserfullname.setText(user.getName());
-        txtuseremail.setText(user.getEmail());
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
