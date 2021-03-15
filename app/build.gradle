@@ -74,10 +74,11 @@ dependencies {
     //Add new dependencies here
 
     implementation 'org.lucasr.twowayview:twowayview:0.1.4'
-
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
 
     //Phần Này của Ân Implement
     implementation 'androidx.navigation:navigation-fragment:2.3.3'
     implementation 'androidx.navigation:navigation-ui:2.3.3'
+
 
 }

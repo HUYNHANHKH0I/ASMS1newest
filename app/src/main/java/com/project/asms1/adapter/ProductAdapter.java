@@ -2,6 +2,9 @@ package com.project.asms1.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +14,20 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.project.asms1.R;
 import com.project.asms1.presentation.ProductDetailActivity;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
+
+import retrofit2.http.Url;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context context;
     private List<Object> productList;
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, price;
@@ -49,8 +58,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final Object product = this.productList.get(position);
         holder.name.setText(product.toString());
-        holder.price.setText("position");
-        holder.thumbnail.setImageResource(R.drawable.ic_shopping_cart_white_24dp);
+        holder.price.setText(String.valueOf(position));
+
+        String urlString = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe8R6RFlAxVEl7bVdXHe60_7ThYoCSsyiZYA&usqp=CAU";
+
+        Glide.with(context).load(urlString).into(holder.thumbnail);
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,10 +73,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 context.startActivity(intent);
             }
         });
-
-//        Glide.with(context)
-//                .load(productList.getImage())
-//                .into(holder.thumbnail);
     }
 
     @Override

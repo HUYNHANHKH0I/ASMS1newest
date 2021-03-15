@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".presentation.CreateProductActivity"></activity>
+        <activity android:name=".presentation.AccountDetail"></activity>
+        <activity android:name=".presentation.CreateProductActivity" />
         <activity android:name=".presentation.CreateCategoryActivity" />
         <activity android:name=".presentation.ProductDetailActivity" />
         <activity android:name=".presentation.LoginActivity" />
@@ -23,24 +24,26 @@
         <activity android:name=".presentation.AdminHomeActivity" />
         <activity android:name=".presentation.SellerHomeActivity" />
         <activity android:name=".presentation.LoadingScreenActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <action android:name="android.intent.action.VIEW" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <action android:name="android.intent.action.VIEW" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-
         <activity
             android:name=".presentation.OrderListActivity"
             android:label="@string/title_activity_order_list">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
-
         <activity android:name=".presentation.LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

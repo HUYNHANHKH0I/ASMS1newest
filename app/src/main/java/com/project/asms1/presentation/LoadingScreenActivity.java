@@ -70,7 +70,7 @@ public class LoadingScreenActivity extends AppCompatActivity {
                                     System.out.println("Here1");
                                     btn.doneLoadingAnimation(ContextCompat.getColor(LoadingScreenActivity.this,R.color.black),
                                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_pregnant_woman_white_48dp));
-                                    Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
+                                    Intent intent = new Intent(LoadingScreenActivity.this,SellerHomeActivity.class);
                                     startActivity(intent);
                                 }
 
@@ -93,7 +93,7 @@ public class LoadingScreenActivity extends AppCompatActivity {
                             BitmapFactory.decodeResource(getResources(), R.drawable.ic_pregnant_woman_white_48dp));
 //                    Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
 
-                    Intent intent = new Intent(LoadingScreenActivity.this,LoginActivity.class);
+                    Intent intent = new Intent(LoadingScreenActivity.this,SellerHomeActivity.class);
                     startActivity(intent);
                 }
 

@@ -40,8 +40,6 @@ public class LoginActivity extends AppCompatActivity {
         txtMessage = findViewById(R.id.txtMessage);
         btnShow = findViewById(R.id.btnLogin);
 
-
-
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

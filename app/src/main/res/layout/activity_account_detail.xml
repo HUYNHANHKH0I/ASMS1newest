@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.ManageAccountActivity"
+    tools:context=".presentation.AccountDetail"
     android:orientation="vertical">
 
     <TextView
@@ -16,27 +16,29 @@
         android:layout_gravity="left"
         android:onClick="clickToGoBack"/>
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="🔍 Search for account"
-            android:id="@+id/edtSearchAccount"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:onClick="clickToSearchAccount"/>
+        android:text="Username"
+        android:id="@+id/txtUsername"
+        android:layout_marginTop="20dp"/>
 
-    </LinearLayout>
-
-
-    <ListView
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listAccount"/>
+        android:text="Password"
+        android:id="@+id/txtPassword"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eamil"
+        android:id="@+id/txtEmail"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mobile Phone"
+        android:id="@+id/txtPhone"/>
 
 </LinearLayout>

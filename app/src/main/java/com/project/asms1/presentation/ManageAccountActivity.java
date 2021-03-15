@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class ManageAccountActivity extends AppCompatActivity {
     ArrayList accountList;
+    AccountAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +32,16 @@ public class ManageAccountActivity extends AppCompatActivity {
         accountList.add("3");
         accountList.add("4");
         accountList.add("5");
-        AccountAdapter adapter = new AccountAdapter(accountList);
+        adapter = new AccountAdapter(accountList);
         ListView accountListView = (ListView)findViewById(R.id.listAccount);
         accountListView.setAdapter(adapter);
         accountListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(ManageAccountActivity.this, accountListView.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ManageAccountActivity.this,AccountDetail.class);
+                intent.putExtra("account",accountListView.getItemAtPosition(position).toString());
+                startActivity(intent);
             }
         });
 
@@ -47,5 +51,9 @@ public class ManageAccountActivity extends AppCompatActivity {
 
     public void clickToGoBack(View view) {
         finish();
+    }
+
+    public void clickToSearchAccount(View view) {
+
     }
 }

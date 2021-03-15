@@ -43,7 +43,6 @@ public class AccountAdapter extends BaseAdapter {
 
         ((TextView)convertView.findViewById(R.id.txtId)).setText(acc.toString());
 
-
         return convertView;
     }
 }
