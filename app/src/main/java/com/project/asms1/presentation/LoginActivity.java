@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
+import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.User;
 import com.project.asms1.network.NetworkProvider;
 import com.project.asms1.network.service.APIService;
@@ -58,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         txtMessage.setVisibility(View.VISIBLE);
         if (SecurityLogic.isValidPassword(password) && SecurityLogic.isValidUserName(username)) {
             String cryptedPassword = SecurityLogic.getMD5(password);
-            User user = new User(cryptedPassword, username);
+            User user = new User(cryptedPassword, username,MyConfig.productperpage);
 
 
             NetworkProvider nw = NetworkProvider.self();
@@ -80,7 +81,9 @@ public class LoginActivity extends AppCompatActivity {
                             try {
                                 SecurityLogic.getPreferenceInstance(LoginActivity.this);
                                 SecurityLogic.storeTokens(user1.getToken());
-                                SecurityLogic.saveObjectToSharedPreference(LoginActivity.this, MyConfig.userStore, MyConfig.userStoreKey, user1);
+                                UserDAO.currentUser = user1;
+                                UserDAO.listOfProduct = user1.getProductslist();
+                                UserDAO.numberOfPage = user1.getNumberOfPage();
 
                                 Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
                                 startActivity(intent);

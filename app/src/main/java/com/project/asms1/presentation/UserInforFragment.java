@@ -5,14 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.project.asms1.R;
+import com.project.asms1.daos.UserDAO;
+import com.project.asms1.model.User;
 import com.project.asms1.network.UserUIService;
 
 /**
@@ -26,7 +31,10 @@ public class UserInforFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static User user = UserDAO.currentUser;
     private Button btnLogout;
+    private ImageButton btnSetting;
+    private TextView txtusername,txtuserfullname,txtuserroll,txtuseremail;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -69,12 +77,37 @@ public class UserInforFragment extends Fragment {
         // Inflate the layout for this fragment
         View contentView = inflater.inflate(R.layout.fragment_user_infor, container, false);
         btnLogout = contentView.findViewById(R.id.btnLogout);
+        btnSetting = contentView.findViewById(R.id.btnSetting);
+        txtusername = contentView.findViewById(R.id.txtusername);
+        txtuserroll = contentView.findViewById(R.id.txtuserrole);
+        txtuserfullname = contentView.findViewById(R.id.txtuserfullname);
+        txtuseremail = contentView.findViewById(R.id.txtuseremail);
+        initData();
+        return contentView;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        txtuserfullname.setText(user.getName());
+        txtuseremail.setText(user.getEmail());
+    }
+
+    public void initData() {
+        if (user == null) {
+            System.out.println("null roi");
+        }else {
+            System.out.println(user.getName());
+        }
+        txtusername.setText(user.getUsername());
+        txtuserroll.setText(user.getRole() == 1 ? "ADMIN" : "STAFF");
+        txtuserfullname.setText(user.getName());
+        txtuseremail.setText(user.getEmail());
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(getContext()).setIcon(android.R.drawable.ic_dialog_alert)
-                        .setTitle("Closing Activity").setMessage("Are you sure you want to đăng xuất!")
+                        .setTitle("Đăng xuất").setMessage("Are you sure you want to đăng xuất!")
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -86,6 +119,14 @@ public class UserInforFragment extends Fragment {
                         }).setNegativeButton("No", null).show();
             }
         });
-        return contentView;
+
+        btnSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),UserSettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

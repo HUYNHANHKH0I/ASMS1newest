@@ -10,4 +10,5 @@ public class MyConfig {
     public static String userStoreKey = "user_key";
     public static String SUCCESS = "DONE";
     public static String Fail = "FAIL";
+    public static int productperpage = 4;
 }

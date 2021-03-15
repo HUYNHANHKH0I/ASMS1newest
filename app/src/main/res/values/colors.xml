@@ -6,6 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="lightblack">#D0CFCE</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
@@ -14,6 +15,6 @@
     <color name="blue">#8AC0DA</color>
     <color name="purple">#F55478</color>
     <color name="da">#FFF0ED</color>
-    <color name="redlight">#F75C40</color>
+    <color name="redlight">#FE620F</color>
 
 </resources>
