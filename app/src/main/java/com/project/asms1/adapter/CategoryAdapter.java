@@ -86,7 +86,6 @@ public class CategoryAdapter implements ListAdapter {
         if(convertView == null){
             convertView = inflater.inflate(R.layout.category_list_adapter, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.layout = (LinearLayout) convertView.findViewById(R.id.categoryListLayout);
             viewHolder.textItem = (TextView) convertView.findViewById(R.id.txtCategoryName);
             convertView.setTag(viewHolder);
         }
