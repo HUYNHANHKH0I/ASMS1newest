@@ -1,21 +1,17 @@
-package com.project.asms1.adapter;
+package com.project.asms1.daos.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.asms1.R;
 import com.project.asms1.presentation.ui.store.StoreFragment;
-
-import java.util.ArrayList;
 
 public class PageAdapter implements ListAdapter {
     private int pageNumber;

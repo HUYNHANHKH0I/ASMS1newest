@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,12 +18,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.asms1.R;
-import com.project.asms1.adapter.CategoryAdapter;
-import com.project.asms1.adapter.PageAdapter;
-import com.project.asms1.adapter.ProductAdapter;
+import com.project.asms1.daos.adapter.CategoryAdapter;
+import com.project.asms1.daos.adapter.PageAdapter;
+import com.project.asms1.daos.adapter.ProductAdapter;
 import com.project.asms1.presentation.CreateCategoryActivity;
 import com.project.asms1.presentation.CreateProductActivity;
-import com.project.asms1.presentation.ProductDetailActivity;
 
 ;import org.lucasr.twowayview.TwoWayView;
 

@@ -5,30 +5,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.AdminHomeActivity"
+    android:background="@color/biege"
     android:orientation="vertical">
     <TextView
+        android:id="@+id/txtWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_marginRight="15dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Logout"
+        android:text="@string/logout_string"
         android:clickable="true"
         android:layout_gravity="right"
-        android:onClick="clickToLogout"/>
+        android:textSize="20dp"
+        android:onClick="clickToLogout"
+        android:textColor="@color/black"
+        android:layout_marginRight="15dp"/>
 
-    <Button
-        android:layout_width="match_parent"
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_btn_createaccount"
+        android:layout_gravity="center"
+        app:civ_border_color="#FFFFFF"
+        app:civ_border_width="2dp"
+        android:onClick="clickToCreateAccount"/>
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create Account"
-        android:onClick="clickToCreateAccount"/>
-    <Button
-        android:layout_width="match_parent"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="370dp"
+        android:layout_marginVertical="50dp"
+        android:layout_gravity="center"
+        android:layout_height="6dp"
+        android:background="@color/black" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_btn_manageaccount"
+        android:layout_gravity="center"
+        app:civ_border_color="#FFFFFF"
+        app:civ_border_width="2dp"
+        android:onClick="clickToManageAccount"/>
+
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Manage Account"
-        android:onClick="clickToManageAccount"/>
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

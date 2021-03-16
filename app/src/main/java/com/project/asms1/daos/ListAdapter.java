@@ -1,4 +1,4 @@
-package com.project.asms1.DAO;
+package com.project.asms1.daos;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import com.project.asms1.model.OrderDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class ListAdapter extends BaseAdapter {
     List<OrderDTO> orderDTOList = new ArrayList<>();
@@ -24,9 +23,7 @@ public class ListAdapter extends BaseAdapter {
         return orderDTOList;
     }
 
-    public ListAdapter(List<OrderDTO> orderDTOList) {
-        this.orderDTOList = orderDTOList;
-    }
+
 
     @Override
     public int getCount() {
@@ -46,8 +43,8 @@ public class ListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(convertView.getContext());
-            inflater.inflate(R.layout.item, parent, false);
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            convertView = inflater.inflate(R.layout.item, parent, false);
         }
         TextView txt_list_item_Id = convertView.findViewById(R.id.txt_item_ID);
         TextView txt_list_item_Date = convertView.findViewById(R.id.txt_item_date);
@@ -55,7 +52,7 @@ public class ListAdapter extends BaseAdapter {
         OrderDTO dto = orderDTOList.get(position);
         txt_list_item_Id.setText(dto.getID());
         txt_list_item_Date.setText(dto.getOrderDate()+" ");
-        txt_list_item_Status.setText(dto.getStatus());
+        txt_list_item_Status.setText(dto.getStatus()+"");
         return convertView;
     }
 }

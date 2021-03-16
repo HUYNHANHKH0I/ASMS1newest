@@ -21,7 +21,7 @@
         <activity android:name=".presentation.CreateAccountActivity" />
         <activity android:name=".presentation.AdminHomeActivity" />
         <activity android:name=".presentation.SellerHomeActivity" />
-        <activity android:name=".presentation.AccountDetail"/>
+        <activity android:name=".presentation.AccountDetailActivity"/>
         <activity android:name=".presentation.CreateProductActivity" />
         <activity android:name=".presentation.CreateCategoryActivity" />
         <activity android:name=".presentation.ProductDetailActivity" />

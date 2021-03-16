@@ -1,10 +1,7 @@
-package com.project.asms1.adapter;
+package com.project.asms1.daos.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +15,7 @@ import com.bumptech.glide.Glide;
 import com.project.asms1.R;
 import com.project.asms1.presentation.ProductDetailActivity;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
-
-import retrofit2.http.Url;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context context;
