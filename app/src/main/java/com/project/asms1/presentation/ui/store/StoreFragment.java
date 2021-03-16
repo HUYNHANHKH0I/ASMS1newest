@@ -3,8 +3,10 @@ package com.project.asms1.presentation.ui.store;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +31,7 @@ import com.project.asms1.daos.StoreDAO;
 import com.project.asms1.model.Category;
 import com.project.asms1.model.Product;
 import com.project.asms1.model.Store;
+import com.project.asms1.network.UserUIService;
 import com.project.asms1.presentation.CreateCategoryActivity;
 import com.project.asms1.presentation.CreateProductActivity;
 import com.project.asms1.presentation.ProductDetailActivity;
@@ -37,6 +40,8 @@ import com.project.asms1.presentation.ProductDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class StoreFragment extends Fragment {
     List<Category> categoryList;
@@ -61,6 +66,15 @@ public class StoreFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
 
+            }
+        });
+
+        root.findViewById(R.id.touchherestore).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
+                return true;
             }
         });
 
@@ -91,16 +105,8 @@ public class StoreFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String searchValue = ((EditText) (root.findViewById(R.id.edtSearchProduct))).getText().toString();
-                ArrayList searchList = new ArrayList();
-                for (int i = 0; i < productList.size() ; i++) {
-                    Object product = productList.get(i);
-                    if (product.toString().contains(searchValue)) {
-                        searchList.add(product);
-                    }
-                }
-                productList.clear();
-                productList.addAll(searchList);
-                productAdapter.notifyDataSetChanged();
+                ProductDAO.currentCategory = "SEARCH-" + searchValue;
+                UserUIService.searchProduct(searchValue,StoreFragment.this);
             }
         });
 

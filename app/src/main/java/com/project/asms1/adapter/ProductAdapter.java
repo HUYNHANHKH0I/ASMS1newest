@@ -58,7 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         String urlString = product.getUrl();
 
-        Glide.with(context).load(urlString).into(holder.thumbnail);
+        Glide.with(context).load(urlString).error(R.drawable.ic_baseline_image_24).into(holder.thumbnail);
 
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override

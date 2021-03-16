@@ -10,9 +10,8 @@
         android:id="@+id/gifImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/logo3"
+        android:src="@drawable/blackandredlogo"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/buttonTest2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
