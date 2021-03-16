@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.asms1.R;
-import com.project.asms1.daos.adapter.AccountAdapter;
+import com.project.asms1.adapter.AccountAdapter;
 
 import java.util.ArrayList;
 

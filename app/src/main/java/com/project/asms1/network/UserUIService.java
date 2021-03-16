@@ -1,31 +1,27 @@
 package com.project.asms1.network;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
 import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
+import com.project.asms1.daos.ProductDAO;
 import com.project.asms1.daos.UserDAO;
+import com.project.asms1.model.Product;
+import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
 import com.project.asms1.network.service.APIService;
 import com.project.asms1.presentation.AdminHomeActivity;
-import com.project.asms1.presentation.LoadingScreenActivity;
 import com.project.asms1.presentation.LoginActivity;
 import com.project.asms1.presentation.SellerHomeActivity;
-import com.project.asms1.presentation.UserSettingActivity;
+import com.project.asms1.presentation.ui.store.StoreFragment;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -97,8 +93,9 @@ public class UserUIService {
                             btn.doneLoadingAnimation(ContextCompat.getColor(context,R.color.purple),
                                     BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_done_white_48dp));
                             UserDAO.currentUser = result.getUser();
-                            UserDAO.listOfProduct = result.getListProducts();
-                            UserDAO.numberOfPage = result.getNumberOfPage();
+                            ProductDAO.listOfProduct = result.getListProducts();
+                            ProductDAO.numberOfPage = result.getNumberOfPage();
+                            ProductDAO.listOfCategory = result.getCategoryslist();
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
                                 @Override
@@ -163,5 +160,52 @@ public class UserUIService {
                 Log.e(TAG, t.getMessage());
             }
         });
+    }
+
+    public static void changePage(int position, String currentCategory, StoreFragment storeFragment) {
+        NetworkProvider nw = NetworkProvider.self();
+        System.out.println(ProductDAO.currentCategory + "-" + position);
+        nw.getService(APIService.class).changePage(position,MyConfig.productperpage,currentCategory).enqueue(new Callback<Store>() {
+            @Override
+            public void onResponse(Call<Store> call, Response<Store> response) {
+                if (response.isSuccessful()) {
+                    Store result = response.body();
+                    ProductDAO.listOfProduct = result.getListProducts();
+                    storeFragment.changePage();
+                }else {
+                    System.out.println("Fail change Page");
+                }
+            }
+            @Override
+            public void onFailure(Call<Store> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+
+
+    }
+
+    public static void changeCategory(int position, String currentCategory, StoreFragment storeFragment) {
+        NetworkProvider nw = NetworkProvider.self();
+        System.out.println(ProductDAO.currentCategory + "-" + position);
+        nw.getService(APIService.class).changePage(position,MyConfig.productperpage,currentCategory).enqueue(new Callback<Store>() {
+            @Override
+            public void onResponse(Call<Store> call, Response<Store> response) {
+                if (response.isSuccessful()) {
+                    Store result = response.body();
+                    ProductDAO.listOfProduct = result.getListProducts();
+                    ProductDAO.numberOfPage = result.getSumofpages();
+                    storeFragment.changListOfPage();
+                }else {
+                    System.out.println("Fail change Page");
+                }
+            }
+            @Override
+            public void onFailure(Call<Store> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+
+
     }
 }

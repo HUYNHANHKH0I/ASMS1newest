@@ -24,6 +24,13 @@ public class Token {
     @SerializedName("sumofpages")
     @Expose
     private int numberOfPage;
+    @SerializedName("categoryslist")
+    @Expose
+    private List<Category> categoryslist;
+
+    public List<Category> getCategoryslist() {
+        return categoryslist;
+    }
 
     public User getUser() {
         return user;

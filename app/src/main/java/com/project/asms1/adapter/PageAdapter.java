@@ -1,38 +1,31 @@
-package com.project.asms1.daos.adapter;
+package com.project.asms1.adapter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.project.asms1.R;
-import com.project.asms1.Utils.ItemClickListener;
+import com.project.asms1.daos.ProductDAO;
+import com.project.asms1.daos.StoreDAO;
+import com.project.asms1.network.UserUIService;
+import com.project.asms1.presentation.ui.store.StoreFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by reale on 2/22/2017.
- */
-
-
-public class CategoryAdapter implements ListAdapter {
-    private ArrayList<String> listData;
+public class PageAdapter implements ListAdapter {
+    private int pageNumber;
     LayoutInflater inflater;
     Context context;
+    StoreFragment storeFragment;
 
-    public CategoryAdapter(Context context, ArrayList<String> listData){
-        this.listData = listData;
+    public PageAdapter(Context context, int pageNumber, StoreFragment storeFragment){
+        this.pageNumber = pageNumber;
         this.context = context;
+        this.storeFragment = storeFragment;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -58,15 +51,12 @@ public class CategoryAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        if(listData != null && !listData.isEmpty()){
-            return listData.size();
-        }
-        return 0;
+        return pageNumber;
     }
 
     @Override
     public Object getItem(int position) {
-        return listData.get(position);
+        return position;
     }
 
     @Override
@@ -81,22 +71,21 @@ public class CategoryAdapter implements ListAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.category_list_adapter, parent, false);
+            convertView = inflater.inflate(R.layout.page_adapter, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.textItem = (TextView) convertView.findViewById(R.id.txtCategoryName);
+            viewHolder.textItem = (TextView) convertView.findViewById(R.id.txtPageNum);
             convertView.setTag(viewHolder);
         }
 
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        holder.textItem.setText(listData.get(position));
+        holder.textItem.setText(String.valueOf(position + 1));
 
         holder.textItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(parent.getContext(), listData.get(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(parent.getContext(), "Page " + (position + 1), Toast.LENGTH_SHORT).show();
+                UserUIService.changePage(position + 1, ProductDAO.currentCategory,storeFragment);
             }
         });
         return convertView;
@@ -109,7 +98,7 @@ public class CategoryAdapter implements ListAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return listData.size();
+        return pageNumber;
     }
 
     @Override
@@ -118,8 +107,6 @@ public class CategoryAdapter implements ListAdapter {
     }
 
     private class ViewHolder {
-        public LinearLayout layout;
         public TextView textItem;
     }
 }
-

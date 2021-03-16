@@ -1,6 +1,5 @@
-package com.project.asms1.daos.adapter;
+package com.project.asms1.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

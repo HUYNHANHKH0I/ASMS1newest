@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
+import com.project.asms1.daos.ProductDAO;
 import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.User;
 import com.project.asms1.network.NetworkProvider;
@@ -69,8 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                                 SecurityLogic.getPreferenceInstance(LoginActivity.this);
                                 SecurityLogic.storeTokens(user1.getToken());
                                 UserDAO.currentUser = user1;
-                                UserDAO.listOfProduct = user1.getProductslist();
-                                UserDAO.numberOfPage = user1.getNumberOfPage();
+                                ProductDAO.listOfProduct = user1.getProductslist();
+                                ProductDAO.numberOfPage = user1.getNumberOfPage();
+                                ProductDAO.listOfCategory = user1.getCategorylist();
 
                                 Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
                                 startActivity(intent);

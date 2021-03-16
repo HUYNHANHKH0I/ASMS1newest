@@ -1,26 +1,40 @@
-package com.project.asms1.daos.adapter;
+package com.project.asms1.adapter;
 
 import android.content.Context;
 import android.database.DataSetObserver;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.asms1.R;
+import com.project.asms1.daos.ProductDAO;
+import com.project.asms1.model.Category;
+import com.project.asms1.model.Product;
+import com.project.asms1.network.UserUIService;
 import com.project.asms1.presentation.ui.store.StoreFragment;
 
-public class PageAdapter implements ListAdapter {
-    private int pageNumber;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by reale on 2/22/2017.
+ */
+
+
+public class CategoryAdapter implements ListAdapter {
+    private List<Category> listData;
     LayoutInflater inflater;
     Context context;
+    StoreFragment storeFragment;
 
-    public PageAdapter(Context context, int pageNumber){
-        this.pageNumber = pageNumber;
+    public CategoryAdapter(Context context, List<Category> listData, StoreFragment storeFragment){
+        this.listData = listData;
         this.context = context;
+        this.storeFragment = storeFragment;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -46,12 +60,15 @@ public class PageAdapter implements ListAdapter {
 
     @Override
     public int getCount() {
-        return pageNumber;
+        if(listData != null && !listData.isEmpty()){
+            return listData.size();
+        }
+        return 0;
     }
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return listData.get(position);
     }
 
     @Override
@@ -66,25 +83,24 @@ public class PageAdapter implements ListAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
+
         if(convertView == null){
-            convertView = inflater.inflate(R.layout.page_adapter, parent, false);
-            PageAdapter.ViewHolder viewHolder = new PageAdapter.ViewHolder();
-            viewHolder.textItem = (TextView) convertView.findViewById(R.id.txtPageNum);
+            convertView = inflater.inflate(R.layout.category_list_adapter, parent, false);
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.textItem = (TextView) convertView.findViewById(R.id.txtCategoryName);
             convertView.setTag(viewHolder);
         }
 
-        PageAdapter.ViewHolder holder = (PageAdapter.ViewHolder) convertView.getTag();
-        holder.textItem.setText(String.valueOf(position + 1));
+        ViewHolder holder = (ViewHolder) convertView.getTag();
+        holder.textItem.setText(listData.get(position).getName());
 
         holder.textItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(parent.getContext(), "Page " + (position + 1), Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putInt("page",position + 1);
-                StoreFragment storeFragment = new StoreFragment();
-                storeFragment.setArguments(bundle);
-                storeFragment.checkPage();
+                ProductDAO.currentCategory = listData.get(position).getId();
+                Toast.makeText(parent.getContext(), ProductDAO.currentCategory, Toast.LENGTH_SHORT).show();
+                UserUIService.changeCategory(1, listData.get(position).getId(),storeFragment);
             }
         });
         return convertView;
@@ -97,7 +113,7 @@ public class PageAdapter implements ListAdapter {
 
     @Override
     public int getViewTypeCount() {
-        return pageNumber;
+        return listData.size();
     }
 
     @Override
@@ -106,6 +122,8 @@ public class PageAdapter implements ListAdapter {
     }
 
     private class ViewHolder {
+        public LinearLayout layout;
         public TextView textItem;
     }
 }
+

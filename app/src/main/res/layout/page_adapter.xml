@@ -10,5 +10,6 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="Page"
-        android:id="@+id/txtPageNum"/>
+        android:id="@+id/txtPageNum"
+        android:textColor="@color/black"/>
 </LinearLayout>

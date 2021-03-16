@@ -14,13 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
+            android:name=".presentation.SellerHomeActivity"
+            android:label="@string/title_activity_seller_home"/>
+        <activity
             android:name=".presentation.UserSettingActivity"
             android:label="@string/title_activity_user_setting" />
         <activity android:name=".presentation.LoginActivity" />
         <activity android:name=".presentation.ManageAccountActivity" />
         <activity android:name=".presentation.CreateAccountActivity" />
         <activity android:name=".presentation.AdminHomeActivity" />
-        <activity android:name=".presentation.SellerHomeActivity" />
         <activity android:name=".presentation.AccountDetailActivity"/>
         <activity android:name=".presentation.CreateProductActivity" />
         <activity android:name=".presentation.CreateCategoryActivity" />

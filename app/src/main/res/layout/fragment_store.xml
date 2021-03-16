@@ -1,83 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.ui.store.StoreFragment"
-    android:orientation="vertical"
-    android:background="@color/black">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Store Name"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
-
+    android:background="@color/da">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <EditText
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:hint="🔍 Search for product"
-            android:id="@+id/edtSearchProduct"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:id="@+id/btnSearchProduct"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <org.lucasr.twowayview.TwoWayView
-            android:id="@+id/listCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal"
-            android:scrollbars="horizontal"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_product"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:scrollbars="vertical" />
+            android:text="Store Name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"/>
 
-        <org.lucasr.twowayview.TwoWayView
-            android:id="@+id/listPage"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:background="@color/redlight"
+                android:layout_marginLeft="5dp"
+                android:layout_width="290dp"
+                android:layout_height="wrap_content"
+                android:hint="🔍 Search for product"
+                android:textColorHint="@color/black"
+                android:id="@+id/edtSearchProduct"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search"
+                android:layout_marginLeft="5dp"
+                android:textColor="@color/black"
+                android:id="@+id/btnSearchProduct"
+                android:background="@color/redlight"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/listCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_product"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"/>
+
+            <org.lucasr.twowayview.TwoWayView
+                android:id="@+id/listPage"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="right"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:scrollbars="horizontal"/>
+            android:layout_gravity="center">
+            <Button
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:text="Create Category"
+                android:layout_marginRight="20dp"
+                android:id="@+id/btnGoToCreateCategory"/>
+
+            <Button
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:text="Create Product"
+                android:id="@+id/btnGoToCreateProduct"/>
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:text="Create Category"
-            android:layout_marginRight="20dp"
-            android:id="@+id/btnGoToCreateCategory"/>
 
-        <Button
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:text="Create Product"
-            android:id="@+id/btnGoToCreateProduct"/>
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>
