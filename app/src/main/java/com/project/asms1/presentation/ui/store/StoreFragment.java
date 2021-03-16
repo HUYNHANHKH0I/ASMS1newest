@@ -23,6 +23,12 @@ import com.project.asms1.R;
 import com.project.asms1.adapter.CategoryAdapter;
 import com.project.asms1.adapter.PageAdapter;
 import com.project.asms1.adapter.ProductAdapter;
+import com.project.asms1.config.MyConfig;
+import com.project.asms1.daos.ProductDAO;
+import com.project.asms1.daos.StoreDAO;
+import com.project.asms1.model.Category;
+import com.project.asms1.model.Product;
+import com.project.asms1.model.Store;
 import com.project.asms1.presentation.CreateCategoryActivity;
 import com.project.asms1.presentation.CreateProductActivity;
 import com.project.asms1.presentation.ProductDetailActivity;
@@ -33,12 +39,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoreFragment extends Fragment {
-    ArrayList categoryList;
-    ArrayList productList;
-    private final int TOTAL_ITEM_PER_PAGE = 6;
+    List<Category> categoryList;
+    List<Product> productList;
+    private int numberOfPage;
     private int curentPage = 1;
-    private int totalPage = 5;
     private ProductAdapter productAdapter;
+    private PageAdapter pageAdapter;
+    private View root;
 
     RecyclerView productView;
 
@@ -48,7 +55,7 @@ public class StoreFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         storeViewModel =
                 new ViewModelProvider(this).get(StoreViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_store, container, false);
+        root = inflater.inflate(R.layout.fragment_store, container, false);
 
         storeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -58,34 +65,12 @@ public class StoreFragment extends Fragment {
         });
 
         TwoWayView categoryView = (TwoWayView) root.findViewById(R.id.listCategory);
-        categoryList = new ArrayList();
-        categoryList.add("aBCDASDAS");
-        categoryList.add("b");
-        categoryList.add("c");
-        categoryList.add("d");
-        categoryList.add("e");
-        categoryList.add("f");
-        categoryList.add("g");
-        categoryList.add("h");
-        CategoryAdapter adapter = new CategoryAdapter(getContext(),categoryList);
+        categoryList = ProductDAO.listOfCategory;
+        CategoryAdapter adapter = new CategoryAdapter(getContext(),categoryList,this);
         categoryView.setAdapter(adapter);
 
         productView = root.findViewById(R.id.list_product);
-
-        productList = new ArrayList();
-        productList.add("weapon");
-        productList.add("a");
-        productList.add("b");
-        productList.add("c");
-        productList.add("d");
-        productList.add("e");
-        productList.add("f");
-        productList.add("g");
-        productList.add("h");
-        productList.add("blahblah");
-        productList.add("whatever");
-        productList.add("something");
-
+        productList = ProductDAO.listOfProduct;
         setAdapter();
 
         ((Button)root.findViewById(R.id.btnGoToCreateCategory)).setOnClickListener(new View.OnClickListener() {
@@ -119,31 +104,31 @@ public class StoreFragment extends Fragment {
             }
         });
 
-
-        PageAdapter pageAdapter = new PageAdapter(getContext(), totalPage);
+        ProductDAO.currentCategory = "ALL";
+        numberOfPage = ProductDAO.numberOfPage;
+        pageAdapter = new PageAdapter(getContext(), numberOfPage,this);
         TwoWayView t = (TwoWayView) root.findViewById(R.id.listPage);
         ((TwoWayView)root.findViewById(R.id.listPage)).setAdapter(pageAdapter);
         return root;
     }
-    public void calculatePage(List list) {
-        if (list.size() > TOTAL_ITEM_PER_PAGE) {
-            totalPage = (int) Math.ceil((double) list.size() / TOTAL_ITEM_PER_PAGE);
-        }
-    }
 
     public void setAdapter() {
         productAdapter = new ProductAdapter(getContext(),productList);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 3);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), MyConfig.spantCount);
         productView.setLayoutManager(mLayoutManager);
         productView.setItemAnimator(new DefaultItemAnimator());
         productView.setAdapter(productAdapter);
-        productView.setNestedScrollingEnabled(false);
     }
-    public void checkPage() {
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            int page = getArguments().getInt("page");
-            System.out.println(page);
-        }
+    public void changePage() {
+        productList.clear();
+        productList.addAll(ProductDAO.listOfProduct);
+        productAdapter.notifyDataSetChanged();
+    }
+
+    public void changListOfPage() {
+        pageAdapter = new PageAdapter(getContext(), ProductDAO.numberOfPage,this);
+        TwoWayView t = (TwoWayView) root.findViewById(R.id.listPage);
+        ((TwoWayView)root.findViewById(R.id.listPage)).setAdapter(pageAdapter);
+        changePage();
     }
 }

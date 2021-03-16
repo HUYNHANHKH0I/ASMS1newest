@@ -11,4 +11,5 @@ public class MyConfig {
     public static String SUCCESS = "DONE";
     public static String Fail = "FAIL";
     public static int productperpage = 4;
+    public static int spantCount = 2;
 }

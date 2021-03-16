@@ -32,12 +32,19 @@ public final class User {
     @SerializedName("productslist")
     @Expose
     private List<Product> productslist;
+    @SerializedName("categorylist")
+    @Expose
+    private List<Category> categorylist;
     @SerializedName("sumofpages")
     @Expose
     private int numberOfPage;
     @SerializedName("productperpage")
     @Expose
     private int productperpage;
+
+    public List<Category> getCategorylist() {
+        return categorylist;
+    }
 
     public List<Product> getProductslist() {
         return productslist;

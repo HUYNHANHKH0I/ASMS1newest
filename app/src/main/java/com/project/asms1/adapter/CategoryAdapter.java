@@ -11,8 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.asms1.R;
+import com.project.asms1.daos.ProductDAO;
+import com.project.asms1.model.Category;
+import com.project.asms1.model.Product;
+import com.project.asms1.network.UserUIService;
+import com.project.asms1.presentation.ui.store.StoreFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by reale on 2/22/2017.
@@ -20,13 +26,15 @@ import java.util.ArrayList;
 
 
 public class CategoryAdapter implements ListAdapter {
-    private ArrayList<String> listData;
+    private List<Category> listData;
     LayoutInflater inflater;
     Context context;
+    StoreFragment storeFragment;
 
-    public CategoryAdapter(Context context, ArrayList<String> listData){
+    public CategoryAdapter(Context context, List<Category> listData, StoreFragment storeFragment){
         this.listData = listData;
         this.context = context;
+        this.storeFragment = storeFragment;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -85,12 +93,14 @@ public class CategoryAdapter implements ListAdapter {
         }
 
         ViewHolder holder = (ViewHolder) convertView.getTag();
-        holder.textItem.setText(listData.get(position));
+        holder.textItem.setText(listData.get(position).getName());
 
         holder.textItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(parent.getContext(), listData.get(position), Toast.LENGTH_SHORT).show();
+                ProductDAO.currentCategory = listData.get(position).getId();
+                Toast.makeText(parent.getContext(), ProductDAO.currentCategory, Toast.LENGTH_SHORT).show();
+                UserUIService.changeCategory(1, listData.get(position).getId(),storeFragment);
             }
         });
         return convertView;

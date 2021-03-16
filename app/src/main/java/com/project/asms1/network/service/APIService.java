@@ -1,6 +1,7 @@
 package com.project.asms1.network.service;
 
 import com.project.asms1.model.Product;
+import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
 import com.project.asms1.model.User;
 
@@ -34,4 +35,9 @@ public interface APIService {
 
     @POST("Users/updateuser")
     Call<Token> Update(@Body User user);
+
+    @GET("Products/page")
+    Call<Store> changePage(@Query("currentPage") int currentPage,
+                           @Query("productPerPage") int productPerPage,
+                           @Query("category") String currentCategory);
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.asms1.R;
+import com.project.asms1.model.Product;
 
 public class ProductDetailActivity extends AppCompatActivity {
 
@@ -22,12 +23,12 @@ public class ProductDetailActivity extends AppCompatActivity {
         TextView viewQuantity = (TextView) findViewById(R.id.txtQuantity);
 
         Intent intent = getIntent();
-        Object product = intent.getSerializableExtra("product");
+        Object product =  intent.getSerializableExtra("product");
 
         viewName.setText(product.toString());
-        viewPrice.setText(product.toString());
-        viewCategory.setText(product.toString());
-        viewQuantity.setText(product.toString());
+//        viewPrice.setText(String.valueOf(product.getPrice()));
+//        viewCategory.setText(product.getCategoryID());
+//        viewQuantity.setText(product.getQuantity());
 
     }
 

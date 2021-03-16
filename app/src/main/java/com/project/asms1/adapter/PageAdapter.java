@@ -11,16 +11,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.asms1.R;
+import com.project.asms1.daos.ProductDAO;
+import com.project.asms1.daos.StoreDAO;
+import com.project.asms1.network.UserUIService;
 import com.project.asms1.presentation.ui.store.StoreFragment;
 
 public class PageAdapter implements ListAdapter {
     private int pageNumber;
     LayoutInflater inflater;
     Context context;
+    StoreFragment storeFragment;
 
-    public PageAdapter(Context context, int pageNumber){
+    public PageAdapter(Context context, int pageNumber, StoreFragment storeFragment){
         this.pageNumber = pageNumber;
         this.context = context;
+        this.storeFragment = storeFragment;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -80,11 +85,7 @@ public class PageAdapter implements ListAdapter {
             @Override
             public void onClick(View v) {
                 Toast.makeText(parent.getContext(), "Page " + (position + 1), Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putInt("page",position + 1);
-                StoreFragment storeFragment = new StoreFragment();
-                storeFragment.setArguments(bundle);
-                storeFragment.checkPage();
+                UserUIService.changePage(position + 1, ProductDAO.currentCategory,storeFragment);
             }
         });
         return convertView;
