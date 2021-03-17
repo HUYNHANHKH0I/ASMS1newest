@@ -31,16 +31,16 @@ public class AdminHomeActivity extends AppCompatActivity {
 
     public void clickToLogout(View view) {
         new AlertDialog.Builder(AdminHomeActivity.this).setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle("Đăng xuất").setMessage("Are you sure you want to đăng xuất!")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        UserUIService.deleteToken(AdminHomeActivity.this);
-                        Intent intent = new Intent(AdminHomeActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        AdminHomeActivity.this.finish();
-                    }
-                }).setNegativeButton("No", null).show();
+                .setTitle("LOGOUT").setMessage("Are you sure you want to LOGOUT?")
+                    .setPositiveButton("No", null).setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                UserUIService.deleteToken(AdminHomeActivity.this);
+                Intent intent = new Intent(AdminHomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+                AdminHomeActivity.this.finish();
+            }
+        }).show();
     }
 
     public void clickToManageAccount(View view) {
