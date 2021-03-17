@@ -26,34 +26,39 @@
         android:layout_gravity="center"/>
 
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:id="@+id/txtUsername"
+        android:id="@+id/edtUsername"
         android:textSize="20dp"
         android:layout_marginTop="20dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:id="@+id/txtPassword"
+        android:id="@+id/edtPassword"
         android:textSize="20dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eamil"
-        android:id="@+id/txtEmail"
+        android:text="Email"
+        android:id="@+id/edtEmail"
         android:textSize="20dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mobile Phone"
-        android:id="@+id/txtPhone"
+        android:text="Name"
+        android:id="@+id/edtName"
         android:textSize="20dp"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin"
+        android:id="@+id/chkIsAdmin"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,13 +69,14 @@
             android:layout_height="50dp"
             android:text="Edit Account"
             android:layout_marginRight="20dp"
+            android:id="@+id/btnEditAccount"
             android:onClick="clickToEditAccount"/>
         <Button
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:text="Deactivate"
             android:id="@+id/btnChangeStatus"
-            android:onClick="ClickToChangeAccountStatus"/>
+            android:onClick="clickToChangeAccountStatus"/>
     </LinearLayout>
 
 </LinearLayout>

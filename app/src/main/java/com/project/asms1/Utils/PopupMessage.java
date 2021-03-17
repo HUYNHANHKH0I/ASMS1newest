@@ -50,11 +50,19 @@ public class PopupMessage {
 
         //set function for close button on activities
 
-//        ((Button)popupView.findViewById(R.id.btnClosePopup)).setOnClickListener(new View.OnClickListener() {
+        ((Button)popupView.findViewById(R.id.btnClosePopup)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.dismiss();
+            }
+        });
+    }
+    //use below code if need to change close popup function
+
+//            ((Button)popup.getPopupView().findViewById(R.id.btnClosePopup)).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                popupWindow.dismiss();
+//                popup.getPopupWindow().dismiss();
 //            }
 //        });
-    }
 }

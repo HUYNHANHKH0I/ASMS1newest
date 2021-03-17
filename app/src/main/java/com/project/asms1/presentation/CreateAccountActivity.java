@@ -46,16 +46,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         if (!error.isEmpty()) {
             final PopupMessage popup = new PopupMessage();
             popup.showPopupWindow(view,error,false);
-
-            ((Button)popup.getPopupView().findViewById(R.id.btnClosePopup)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popup.getPopupWindow().dismiss();
-            }
-        });
-
-
-//            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         } else {
             //TODO : insert create account code here
         }
