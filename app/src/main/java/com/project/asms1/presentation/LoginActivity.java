@@ -3,6 +3,8 @@ package com.project.asms1.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -70,13 +72,28 @@ public class LoginActivity extends AppCompatActivity {
                                 SecurityLogic.getPreferenceInstance(LoginActivity.this);
                                 SecurityLogic.storeTokens(user1.getToken());
                                 UserDAO.currentUser = user1;
-                                ProductDAO.listOfProduct = user1.getProductslist();
-                                ProductDAO.numberOfPage = user1.getNumberOfPage();
-                                ProductDAO.listOfCategory = user1.getCategorylist();
-
-                                Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
-                                startActivity(intent);
-
+                                if (UserDAO.currentUser.getRole() == 1) {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                            LoginActivity.this.startActivity(intent);
+                                        }
+                                    }, 1000);
+                                }else {
+                                    ProductDAO.listOfProduct = user1.getProductslist();
+                                    ProductDAO.numberOfPage = user1.getNumberOfPage();
+                                    ProductDAO.listOfCategory = user1.getCategorylist();
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
+                                            LoginActivity.this.startActivity(intent);
+                                        }
+                                    }, 1000);
+                                }
                             } catch (GeneralSecurityException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {

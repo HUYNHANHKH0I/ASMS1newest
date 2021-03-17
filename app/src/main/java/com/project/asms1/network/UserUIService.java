@@ -94,17 +94,28 @@ public class UserUIService {
                             btn.doneLoadingAnimation(ContextCompat.getColor(context,R.color.purple),
                                     BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_done_white_48dp));
                             UserDAO.currentUser = result.getUser();
-                            ProductDAO.listOfProduct = result.getListProducts();
-                            ProductDAO.numberOfPage = result.getNumberOfPage();
-                            ProductDAO.listOfCategory = result.getCategoryslist();
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Intent intent = new Intent(context, AdminHomeActivity.class);
-                                    context.startActivity(intent);
-                                }
-                            }, 1000);
+                            if (UserDAO.currentUser.getRole() == 1) {
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(context, AdminHomeActivity.class);
+                                        context.startActivity(intent);
+                                    }
+                                }, 1000);
+                            }else {
+                                ProductDAO.listOfProduct = result.getListProducts();
+                                ProductDAO.numberOfPage = result.getNumberOfPage();
+                                ProductDAO.listOfCategory = result.getCategoryslist();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent intent = new Intent(context, SellerHomeActivity.class);
+                                        context.startActivity(intent);
+                                    }
+                                }, 1000);
+                            }
                         }else {
                             System.out.println("Here3");
                             btn.doneLoadingAnimation(ContextCompat.getColor(context,R.color.black),
