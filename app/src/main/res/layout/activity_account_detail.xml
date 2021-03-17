@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.AccountDetail"
+    tools:context=".presentation.AccountDetailActivity"
     android:orientation="vertical">
 
     <TextView
@@ -14,31 +14,69 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_gravity="left"
+        android:textSize="20dp"
         android:onClick="clickToGoBack"/>
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:text="Account Details"
+        android:layout_gravity="center"/>
+
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:id="@+id/txtAccountUsername"
+        android:id="@+id/edtUsernameAccountDetail"
+        android:textSize="20dp"
         android:layout_marginTop="20dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:id="@+id/txtAccountPassword"/>
+        android:id="@+id/edtPasswordAccountDetail"
+        android:textSize="20dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Eamil"
-        android:id="@+id/txtAccountEmail"/>
+        android:text="Email"
+        android:id="@+id/edtEmailAccountDetail"
+        android:textSize="20dp"/>
 
-    <TextView
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mobile Phone"
-        android:id="@+id/txtAccountPhone"/>
+        android:text="Name"
+        android:id="@+id/edtNameAccountDetail"
+        android:textSize="20dp"/>
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin"
+        android:id="@+id/chkIsAdminAccountDetail"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:text="Edit Account"
+            android:layout_marginRight="20dp"
+            android:id="@+id/btnEditAccountAccountDetail"
+            android:onClick="clickToEditAccount"/>
+        <Button
+            android:layout_width="160dp"
+            android:layout_height="50dp"
+            android:text="Deactivate"
+            android:id="@+id/btnChangeStatusAccountDetail"
+            android:onClick="clickToChangeAccountStatus"/>
+    </LinearLayout>
 
 </LinearLayout>

@@ -40,7 +40,7 @@ public class AccountAdapter extends BaseAdapter {
         }
         Object acc = accountList.get(position);
 
-        ((TextView)convertView.findViewById(R.id.txtAccountId)).setText(acc.toString());
+        ((TextView)convertView.findViewById(R.id.txtAccountIdManageAccountAdapter)).setText(acc.toString());
 
         return convertView;
     }

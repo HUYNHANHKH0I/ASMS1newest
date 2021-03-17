@@ -11,6 +11,7 @@ import com.project.asms1.R;
 import com.project.asms1.Utils.PopupMessage;
 
 public class CreateAccountActivity extends AppCompatActivity {
+    String username,password,confirm,email,name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +20,11 @@ public class CreateAccountActivity extends AppCompatActivity {
     }
 
     public void clickToCreateAccount(View view) {
-        String username = ((EditText)findViewById(R.id.edtUsername)).getText().toString();
-        String password = ((EditText)findViewById(R.id.edtPassWord)).getText().toString();
-        String confirm = ((EditText)findViewById(R.id.edtConfirmPassword)).getText().toString();
-        String email = ((EditText)findViewById(R.id.edtEmail)).getText().toString();
-        String phone = ((EditText)findViewById(R.id.edtMobileNumber)).getText().toString();
+        username = ((EditText)findViewById(R.id.edtUsernameCreateAccount)).getText().toString();
+        password = ((EditText)findViewById(R.id.edtPassWordCreateAccount)).getText().toString();
+        confirm = ((EditText)findViewById(R.id.edtConfirmPasswordCreateAccount)).getText().toString();
+        email = ((EditText)findViewById(R.id.edtEmailCreateAccount)).getText().toString();
+        name = ((EditText)findViewById(R.id.edtNameCreateAccount)).getText().toString();
 
         String error = "";
         if (username.length() < 6) {
@@ -38,7 +39,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         if (email.length() < 1) {
             error += "Email is invalid.\n";
         }
-        if (phone.length() < 10) {
+        if (name.length() < 10) {
             error += "Invalid phone number\n";
         }
         if (!error.isEmpty()) {

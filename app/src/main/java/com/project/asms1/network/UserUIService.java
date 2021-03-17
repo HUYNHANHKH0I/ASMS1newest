@@ -19,6 +19,7 @@ import com.project.asms1.model.Product;
 import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
 import com.project.asms1.network.service.APIService;
+import com.project.asms1.presentation.AdminHomeActivity;
 import com.project.asms1.presentation.LoginActivity;
 import com.project.asms1.presentation.SellerHomeActivity;
 import com.project.asms1.presentation.ui.store.StoreFragment;
@@ -100,7 +101,7 @@ public class UserUIService {
                             handler.postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Intent intent = new Intent(context, SellerHomeActivity.class);
+                                    Intent intent = new Intent(context, AdminHomeActivity.class);
                                     context.startActivity(intent);
                                 }
                             }, 1000);

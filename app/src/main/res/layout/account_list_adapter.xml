@@ -7,5 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID"
-        android:id="@+id/txtAccountId"/>
+        android:id="@+id/txtAccountIdManageAccountAdapter"
+        android:textSize="20dp"
+        android:layout_marginVertical="10dp"/>
 </LinearLayout>
