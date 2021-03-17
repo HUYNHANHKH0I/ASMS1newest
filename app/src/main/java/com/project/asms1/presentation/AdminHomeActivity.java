@@ -15,13 +15,13 @@ import com.project.asms1.model.User;
 import com.project.asms1.network.UserUIService;
 
 public class AdminHomeActivity extends AppCompatActivity {
-    private static User user = UserDAO.currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-        ((TextView)findViewById(R.id.txtWelcome)).setText("Welcome, " + user.getName());
+        System.out.println(UserDAO.currentUser.getUsername());
+        ((TextView)findViewById(R.id.txtWelcome)).setText("Welcome, " + UserDAO.currentUser.getName());
     }
 
     public void clickToCreateAccount(View view) {
