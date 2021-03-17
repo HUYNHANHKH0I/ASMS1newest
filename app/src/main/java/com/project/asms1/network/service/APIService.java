@@ -40,4 +40,8 @@ public interface APIService {
     Call<Store> changePage(@Query("currentPage") int currentPage,
                            @Query("productPerPage") int productPerPage,
                            @Query("category") String currentCategory);
+
+    @GET("Products/searchproduct")
+    Call<Store> searchProduct(@Query("productPerPage") int productPerPage,
+                           @Query("name") String name);
 }

@@ -12,7 +12,7 @@ import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.User;
 
 public class AdminHomeActivity extends AppCompatActivity {
-    private static User user = UserDAO.currentUser;
+    private User user = UserDAO.currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

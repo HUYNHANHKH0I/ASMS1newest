@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -198,6 +199,34 @@ public class UserUIService {
                     storeFragment.changListOfPage();
                 }else {
                     System.out.println("Fail change Page");
+                }
+            }
+            @Override
+            public void onFailure(Call<Store> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+
+
+    }
+
+    public static void searchProduct(String searchString, StoreFragment storeFragment) {
+        NetworkProvider nw = NetworkProvider.self();
+        System.out.println(ProductDAO.currentCategory);
+        nw.getService(APIService.class).searchProduct(MyConfig.productperpage,searchString).enqueue(new Callback<Store>() {
+            @Override
+            public void onResponse(Call<Store> call, Response<Store> response) {
+                if (response.isSuccessful()) {
+                    Store result = response.body();
+                    if (result.getResult().equals(MyConfig.Fail)) {
+                        Toast.makeText(storeFragment.getContext(),"NO ITEMS IS MATCH WITH YOUR SEARCH!",Toast.LENGTH_SHORT).show();
+                    }else {
+                        ProductDAO.listOfProduct = result.getListProducts();
+                        ProductDAO.numberOfPage = result.getSumofpages();
+                        storeFragment.changListOfPage();
+                    }
+                }else {
+                    System.out.println("Fail search product");
                 }
             }
             @Override

@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.project.asms1.R;
-import com.project.asms1.presentation.ui.home.HomeFragment;
+//import com.project.asms1.presentation.ui.home.HomeFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -36,6 +36,7 @@ public class SellerHomeActivity extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
+//TODO HELLO!!!!
     }
+
 }

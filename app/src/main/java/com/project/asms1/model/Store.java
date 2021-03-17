@@ -12,6 +12,9 @@ public class Store {
     @SerializedName("sumofpages")
     @Expose
     private int sumofpages;
+    @SerializedName("result")
+    @Expose
+    private String result;
 
     public int getSumofpages() {
         return sumofpages;
@@ -19,6 +22,10 @@ public class Store {
 
     public List<Product> getListProducts() {
         return listProducts;
+    }
+
+    public String getResult() {
+        return result;
     }
 
     public Store() {

@@ -115,7 +115,10 @@ public final class User {
         return new Gson().toJson(this);
     }
 
-    public User(String password, String username,int productperpage ) {
+    public User() {
+    }
+
+    public User(String password, String username, int productperpage ) {
         this.password = password;
         this.username = username;
         this.productperpage = productperpage;

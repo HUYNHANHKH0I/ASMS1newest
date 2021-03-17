@@ -69,7 +69,7 @@
             android:layout_height="640dp"
             android:layout_gravity="bottom"
             android:scrollbars="vertical"
-            android:background="@color/da"
+            android:background="@color/biege"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"

@@ -74,7 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                                 ProductDAO.numberOfPage = user1.getNumberOfPage();
                                 ProductDAO.listOfCategory = user1.getCategorylist();
 
-                                Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
                                 startActivity(intent);
 
                             } catch (GeneralSecurityException e) {

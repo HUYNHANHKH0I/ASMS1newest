@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Username"
-        android:id="@+id/edtUsername"
+        android:id="@+id/edtUsernameAccountDetail"
         android:textSize="20dp"
         android:layout_marginTop="20dp"/>
 
@@ -38,27 +38,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Password"
-        android:id="@+id/edtPassword"
+        android:id="@+id/edtPasswordAccountDetail"
         android:textSize="20dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Email"
-        android:id="@+id/edtEmail"
+        android:id="@+id/edtEmailAccountDetail"
         android:textSize="20dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:id="@+id/edtName"
+        android:id="@+id/edtNameAccountDetail"
         android:textSize="20dp"/>
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Admin"
-        android:id="@+id/chkIsAdmin"/>
+        android:id="@+id/chkIsAdminAccountDetail"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -69,13 +69,13 @@
             android:layout_height="50dp"
             android:text="Edit Account"
             android:layout_marginRight="20dp"
-            android:id="@+id/btnEditAccount"
+            android:id="@+id/btnEditAccountAccountDetail"
             android:onClick="clickToEditAccount"/>
         <Button
             android:layout_width="160dp"
             android:layout_height="50dp"
             android:text="Deactivate"
-            android:id="@+id/btnChangeStatus"
+            android:id="@+id/btnChangeStatusAccountDetail"
             android:onClick="clickToChangeAccountStatus"/>
     </LinearLayout>
 

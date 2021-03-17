@@ -26,17 +26,17 @@ public class AccountDetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Object account = intent.getSerializableExtra("account");
-        edtUsername = (EditText)findViewById(R.id.edtUsername);
+        edtUsername = (EditText)findViewById(R.id.edtUsernameAccountDetail);
         edtUsername.setText("username");
-        edtPassword = (EditText)findViewById(R.id.edtPassword);
+        edtPassword = (EditText)findViewById(R.id.edtPasswordAccountDetail);
         edtPassword.setText("password");
-        edtEmail = (EditText)findViewById(R.id.edtEmail);
+        edtEmail = (EditText)findViewById(R.id.edtEmailAccountDetail);
         edtEmail.setText("email");
-        edtName = (EditText)findViewById(R.id.edtName);
+        edtName = (EditText)findViewById(R.id.edtNameAccountDetail);
         edtName.setText("name");
-        btnChangeStatus =  (Button) findViewById(R.id.btnChangeStatus);
-        chkIsAdmin = (CheckBox) findViewById(R.id.chkIsAdmin);
-        btnEditAccount = (Button) findViewById(R.id.btnEditAccount);
+        btnChangeStatus =  (Button) findViewById(R.id.btnChangeStatusAccountDetail);
+        chkIsAdmin = (CheckBox) findViewById(R.id.chkIsAdminAccountDetail);
+        btnEditAccount = (Button) findViewById(R.id.btnEditAccountAccountDetail);
         status = true;
         setStatus();
     }
