@@ -247,6 +247,7 @@
 
             </RelativeLayout>
 
+
             <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
                 android:id="@+id/btnLogout"
                 android:layout_width="150dp"

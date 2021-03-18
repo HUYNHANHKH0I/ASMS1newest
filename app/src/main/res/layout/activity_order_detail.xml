@@ -167,12 +167,20 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="43dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/roboto_thin"
             android:text="Address"
             android:textColor="@color/white"
             android:id="@+id/txt_order_detail_customer_address"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="Email"
+            android:textColor="@color/white"
+            android:id="@+id/txt_order_detail_customer_email"/>
     </LinearLayout>
 </LinearLayout>
 </androidx.core.widget.NestedScrollView>

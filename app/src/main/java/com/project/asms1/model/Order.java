@@ -1,60 +1,68 @@
 package com.project.asms1.model;
 
+import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.List;
 
 public class Order implements Serializable {
-    private String ID, CustomerID,PostID;
+    @SerializedName("id")
+    @Expose
+    private String ID;
+    @SerializedName("postID")
+    @Expose
+    private String PostID;
+    @SerializedName("orderdetaillist")
+    @Expose
+    private List<OrderDetail> orderdetaillist;
+    @SerializedName("customerinfo")
+    @Expose
+    private Customer customerinfo;
+    @SerializedName("status")
+    @Expose
     private int Status;
-    private LocalDateTime OrderDate;
+    @SerializedName("totalPrice")
+    @Expose
+    private float totalPrice;
+    @SerializedName("orderDate")
+    @Expose
+    private Date OrderDate;
 
-    public Order(String ID, String customerID, String postID, int status, LocalDateTime orderDate) {
-        this.ID = ID;
-        CustomerID = customerID;
-        PostID = postID;
-        Status = status;
-        OrderDate = orderDate;
+
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
     public String getID() {
         return ID;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public String getCustomerID() {
-        return CustomerID;
-    }
-
-    public void setCustomerID(String customerID) {
-        CustomerID = customerID;
-    }
-
     public String getPostID() {
         return PostID;
     }
 
-    public void setPostID(String postID) {
-        PostID = postID;
+    public List<OrderDetail> getOrderdetaillist() {
+        return orderdetaillist;
+    }
+
+    public Customer getCustomerinfo() {
+        return customerinfo;
     }
 
     public int getStatus() {
         return Status;
     }
 
-    public void setStatus(int status) {
-        Status = status;
-    }
-
-    public LocalDateTime getOrderDate() {
+    public Date getOrderDate() {
         return OrderDate;
     }
 
-    public void setOrderDate(LocalDateTime orderDate) {
-        OrderDate = orderDate;
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

@@ -44,9 +44,8 @@
         <activity android:name=".presentation.ProductDetailActivity" />
         <activity android:name=".presentation.ManageAccountActivity" />
         <activity android:name=".presentation.CreateAccountActivity" />
-        <activity android:name=".presentation.AdminHomeActivity" >
-
-        </activity>
+        <activity android:name=".presentation.AdminHomeActivity" />
+        <activity android:name=".presentation.OrderDetailActivity"/>
         <activity android:name=".presentation.LogoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

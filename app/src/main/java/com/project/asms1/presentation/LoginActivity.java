@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         txtMessage.setVisibility(View.VISIBLE);
         if (SecurityLogic.isValidPassword(password) && SecurityLogic.isValidUserName(username)) {
             String cryptedPassword = SecurityLogic.getMD5(password);
-            User user = new User(cryptedPassword, username, MyConfig.productperpage);
+            User user = new User(cryptedPassword, username,MyConfig.productperpage);
 
 
             NetworkProvider nw = NetworkProvider.self();

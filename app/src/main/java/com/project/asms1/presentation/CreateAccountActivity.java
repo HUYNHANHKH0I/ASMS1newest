@@ -39,8 +39,8 @@ public class CreateAccountActivity extends AppCompatActivity {
         if (email.length() < 1) {
             error += "Email is invalid.\n";
         }
-        if (name.isEmpty()) {
-            error += "Name cannot be empty.\n";
+        if (name.length() < 10) {
+            error += "Invalid phone number\n";
         }
         if (!error.isEmpty()) {
             final PopupMessage popup = new PopupMessage();
@@ -52,6 +52,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                 popup.getPopupWindow().dismiss();
             }
         });
+
+
+//            Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         } else {
             //TODO : insert create account code here
         }
@@ -60,5 +63,4 @@ public class CreateAccountActivity extends AppCompatActivity {
     public void clickToGoBack(View view) {
         finish();
     }
-
 }

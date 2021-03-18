@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
-public final class User {
+public class User {
 
     @SerializedName("id")
     @Expose
@@ -41,6 +43,20 @@ public final class User {
     @SerializedName("productperpage")
     @Expose
     private int productperpage;
+    @SerializedName("create")
+    @Expose
+    private Date create;
+    @SerializedName("update")
+    @Expose
+    private Date update;
+
+    public Date getCreate() {
+        return create;
+    }
+
+    public Date getUpdate() {
+        return update;
+    }
 
     public List<Category> getCategorylist() {
         return categorylist;
@@ -118,7 +134,7 @@ public final class User {
     public User() {
     }
 
-    public User(String password, String username, int productperpage ) {
+    public User(String password, String username,int productperpage ) {
         this.password = password;
         this.username = username;
         this.productperpage = productperpage;

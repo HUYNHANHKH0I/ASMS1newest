@@ -6,20 +6,16 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.asms1.R;
 import com.project.asms1.model.Order;
-import com.project.asms1.model.OrderDTO;
 import com.project.asms1.model.User;
 import com.project.asms1.presentation.AccountDetailActivity;
 import com.project.asms1.presentation.OrderDetailActivity;
-import com.project.asms1.presentation.OrderListActivity;
 
 import java.util.ArrayList;
 import java.util.List;

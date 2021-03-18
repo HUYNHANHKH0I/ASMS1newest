@@ -1,5 +1,6 @@
 package com.project.asms1.network.service;
 
+import com.project.asms1.model.Order;
 import com.project.asms1.model.Product;
 import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
@@ -44,4 +45,7 @@ public interface APIService {
     @GET("Products/searchproduct")
     Call<Store> searchProduct(@Query("productPerPage") int productPerPage,
                            @Query("name") String name);
+
+    @GET("Orders/getorder")
+    Call<List<Order>> getOrder(@Query("currentPage") int currentPage,@Query("productPerPage") int productPerPage,@Query("name") String name);
 }

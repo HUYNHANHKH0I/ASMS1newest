@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Name"
-        android:id="@+id/txtNameProduct"
+        android:id="@+id/txtProductDetailNameProduct"
         android:textAlignment="textStart"
         android:layout_gravity="start"/>
 
@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Category"
-        android:id="@+id/txtCategory"
+        android:id="@+id/txtProductDetailCategory"
         android:textAlignment="textStart"
         android:layout_gravity="start"/>
 
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Quantity"
-        android:id="@+id/txtQuantity"
+        android:id="@+id/txtProductDetailQuantity"
         android:textAlignment="textStart"
         android:layout_gravity="start"/>
 
@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Price"
-        android:id="@+id/txtPrice"
+        android:id="@+id/txtProductDetailPrice"
         android:textAlignment="textStart"
         android:layout_gravity="start"/>
 

@@ -17,18 +17,18 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        TextView viewName = (TextView) findViewById(R.id.txtNameProduct);
-        TextView viewPrice = (TextView) findViewById(R.id.txtPrice);
-        TextView viewCategory = (TextView) findViewById(R.id.txtCategory);
-        TextView viewQuantity = (TextView) findViewById(R.id.txtQuantity);
+        TextView viewName = (TextView) findViewById(R.id.txtProductDetailNameProduct);
+        TextView viewPrice = (TextView) findViewById(R.id.txtProductDetailPrice);
+        TextView viewCategory = (TextView) findViewById(R.id.txtProductDetailCategory);
+        TextView viewQuantity = (TextView) findViewById(R.id.txtProductDetailQuantity);
 
         Intent intent = getIntent();
-        Object product =  intent.getSerializableExtra("product");
+        Product product = (Product) intent.getSerializableExtra("product");
 
-        viewName.setText(product.toString());
-//        viewPrice.setText(String.valueOf(product.getPrice()));
-//        viewCategory.setText(product.getCategoryID());
-//        viewQuantity.setText(product.getQuantity());
+        viewName.setText(product.getName());
+        viewPrice.setText(String.valueOf(product.getPrice()));
+        viewCategory.setText(product.getCategoryID());
+        viewQuantity.setText(String.valueOf(product.getQuantity()));
 
     }
 

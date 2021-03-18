@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.ManageAccountActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/biege">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,40 +16,41 @@
         android:focusable="true"
         android:layout_gravity="left"
         android:textSize="20dp"
-        android:onClick="clickToGoBack"/>
-
+        android:onClick="clickToGoBack"
+        android:textColor="@color/black"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <EditText
-            android:layout_width="300dp"
+            android:background="@color/redlight"
+            android:layout_marginLeft="5dp"
+            android:layout_width="290dp"
             android:layout_height="wrap_content"
             android:hint="🔍 Search for account"
+            android:textColorHint="@color/black"
             android:id="@+id/edtSearchAccountManageAccount"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Search"
-            android:onClick="clickToSearchAccount"/>
-
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:onClick="clickToSearchAccount"
+            android:background="@color/redlight"/>
     </LinearLayout>
-
-
-<!--    <ListView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/listAccountManageAccount"/>-->
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="No item found"
         android:textSize="20dp"
-        android:id="@+id/txtEmptyMessageManageAccount"/>
+        android:id="@+id/txtEmptyMessageManageAccount"
+        android:textColor="@color/black"/>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listAccountManageAccount"
             android:layout_width="match_parent"
@@ -61,6 +63,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
-</FrameLayout>
+    </FrameLayout>
 
 </LinearLayout>
