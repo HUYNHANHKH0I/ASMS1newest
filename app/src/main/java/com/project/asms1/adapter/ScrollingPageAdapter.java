@@ -6,16 +6,20 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.asms1.R;
+import com.project.asms1.model.Order;
+import com.project.asms1.model.OrderDTO;
 import com.project.asms1.model.User;
 import com.project.asms1.presentation.AccountDetailActivity;
+import com.project.asms1.presentation.OrderDetailActivity;
+import com.project.asms1.presentation.OrderListActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,18 +28,22 @@ import java.util.List;
  * Created by Suleiman on 19/10/16.
  */
 
-public class AccountAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int ITEM = 0;
-    private static final int LOADING = 1;
+    private int mode;
+
+    private static final int LOADING = 0;
+    private static final int ACCOUNT = 1;
+    private static final int ORDER = 2;
 
     private List<Object> list;
     private Context context;
 
     private boolean isLoadingAdded = false;
 
-    public AccountAdapter(Context context) {
+    public ScrollingPageAdapter(Context context, int mode) {
         this.context = context;
+        this.mode = mode;
         list = new ArrayList<>();
     }
 
@@ -53,40 +61,60 @@ public class AccountAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         switch (viewType) {
-            case ITEM:
-                viewHolder = getViewHolder(parent, inflater);
+            case ACCOUNT:
+                View v1 = inflater.inflate(R.layout.account_list_adapter, parent, false);
+                viewHolder = new AccountViewHolder(v1);
+//                viewHolder = getViewHolder(parent, inflater);
+                break;
+            case ORDER:
+                View v2 = inflater.inflate(R.layout.item_order_list, parent, false);
+                viewHolder = new OrderViewHolder(v2);
                 break;
             case LOADING:
-                View v2 = inflater.inflate(R.layout.item_progress, parent, false);
-                viewHolder = new LoadingViewHolder(v2);
+                View v3 = inflater.inflate(R.layout.item_progress, parent, false);
+                viewHolder = new LoadingViewHolder(v3);
                 break;
         }
         return viewHolder;
     }
 
-    @NonNull
-    private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
-        RecyclerView.ViewHolder viewHolder;
-        View v1 = inflater.inflate(R.layout.account_list_adapter, parent, false);
-        viewHolder = new ViewHolder(v1);
-        return viewHolder;
-    }
+//    @NonNull
+//    private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
+//        RecyclerView.ViewHolder viewHolder;
+//        View v1 = inflater.inflate(R.layout.account_list_adapter, parent, false);
+//        viewHolder = new ViewHolder(v1);
+//        return viewHolder;
+//    }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        User user = (User) list.get(position);
-
         switch (getItemViewType(position)) {
-            case ITEM:
-                ViewHolder viewHolder = (ViewHolder) holder;
+            case ACCOUNT:
+                User user = (User) list.get(position);
+                AccountViewHolder accountViewHolder = (AccountViewHolder) holder;
 
-                viewHolder.textView.setText(user.getName());
-                viewHolder.layout.setOnClickListener(new View.OnClickListener() {
+                accountViewHolder.textView.setText(user.getName());
+                accountViewHolder.layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, AccountDetailActivity.class);
                         intent.putExtra("user", user.getId());
+                        context.startActivity(intent);
+                    }
+                });
+                break;
+            case ORDER:
+                Order order = (Order) list.get(position);
+                OrderViewHolder orderViewHolder = (OrderViewHolder) holder;
+                orderViewHolder.textViewItemId.setText(order.getID());
+                orderViewHolder.textViewItemDate.setText(order.getOrderDate()+" ");
+                orderViewHolder.textViewItemStatus.setText(order.getStatus()+"");
+                orderViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, OrderDetailActivity.class);
+                        intent.putExtra("clicked_order", order);
                         context.startActivity(intent);
                     }
                 });
@@ -105,7 +133,11 @@ public class AccountAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        return (position == list.size() - 1 && isLoadingAdded) ? LOADING : ITEM;
+        if (position == list.size() - 1 && isLoadingAdded) {
+            return LOADING;
+        } else if (mode == ACCOUNT) return ACCOUNT;
+        else if (mode == ORDER) return ORDER;
+        else return -1;
     }
 
     /*
@@ -147,7 +179,7 @@ public class AccountAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void addLoadingFooter() {
         isLoadingAdded = true;
         // Change this to the class needed
-        add(new User());
+        add(new Object());
     }
 
     public void removeLoadingFooter() {
@@ -175,14 +207,31 @@ public class AccountAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     /**
      * Main list's content ViewHolder
      */
-    protected class ViewHolder extends RecyclerView.ViewHolder {
+    protected class AccountViewHolder extends RecyclerView.ViewHolder {
         private TextView textView;
         private LinearLayout layout;
 
-        public ViewHolder(View itemView) {
+        public AccountViewHolder(View itemView) {
             super(itemView);
             layout = (LinearLayout) itemView.findViewById(R.id.accountLayoutManageAccountAdapter);
             textView = (TextView) itemView.findViewById(R.id.txtAccountUsernameManageAccountAdapter);
+        }
+    }
+
+    protected class OrderViewHolder extends RecyclerView.ViewHolder {
+        private TextView textViewItemId;
+        private TextView textViewItemDate;
+        private TextView textViewItemStatus;
+        private LinearLayout linearLayout;
+
+        public OrderViewHolder(View itemView) {
+            super(itemView);
+            textViewItemId = (TextView) itemView.findViewById(R.id.txt_item_ID);
+            textViewItemDate = (TextView) itemView.findViewById(R.id.txt_item_date);
+            textViewItemStatus = (TextView) itemView.findViewById(R.id.txt_item_status);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.layout_item_order_list);
+
+
         }
     }
 

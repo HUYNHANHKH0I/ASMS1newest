@@ -3,6 +3,8 @@ package com.project.asms1.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         txtMessage.setVisibility(View.VISIBLE);
         if (SecurityLogic.isValidPassword(password) && SecurityLogic.isValidUserName(username)) {
             String cryptedPassword = SecurityLogic.getMD5(password);
-            User user = new User(cryptedPassword, username,MyConfig.productperpage);
+            User user = new User(cryptedPassword, username, MyConfig.productperpage);
 
 
             NetworkProvider nw = NetworkProvider.self();
@@ -57,12 +59,10 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         User user1 = response.body();
                         if(user1 == null) {
-                            System.out.println("ko co du lieu");
                             Toast.makeText(LoginActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
                             txtMessage.setText("Not Exist");
                             txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
                         }else {
-                            System.out.println("Co du lieu");
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             txtMessage.setText("Login Success");
                             txtMessage.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -70,13 +70,28 @@ public class LoginActivity extends AppCompatActivity {
                                 SecurityLogic.getPreferenceInstance(LoginActivity.this);
                                 SecurityLogic.storeTokens(user1.getToken());
                                 UserDAO.currentUser = user1;
-                                ProductDAO.listOfProduct = user1.getProductslist();
-                                ProductDAO.numberOfPage = user1.getNumberOfPage();
-                                ProductDAO.listOfCategory = user1.getCategorylist();
-
-                                Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
-                                startActivity(intent);
-
+                                if (UserDAO.currentUser.getRole() == 1) {
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                            LoginActivity.this.startActivity(intent);
+                                        }
+                                    }, 1000);
+                                }else {
+                                    ProductDAO.listOfProduct = user1.getProductslist();
+                                    ProductDAO.numberOfPage = user1.getNumberOfPage();
+                                    ProductDAO.listOfCategory = user1.getCategorylist();
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
+                                            LoginActivity.this.startActivity(intent);
+                                        }
+                                    }, 1000);
+                                }
                             } catch (GeneralSecurityException e) {
                                 e.printStackTrace();
                             } catch (IOException e) {

@@ -48,7 +48,7 @@ public class UserSettingActivity extends AppCompatActivity {
     public void initData(){
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Thiết lập cá nhân");
+        getSupportActionBar().setTitle("Manage Account");
         toolbar.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24);
         btnSave = findViewById(R.id.btnSaveUserInfor);
         txtupdateemail = findViewById(R.id.updateemail);

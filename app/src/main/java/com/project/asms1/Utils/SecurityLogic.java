@@ -9,14 +9,12 @@ import androidx.security.crypto.MasterKeys;
 
 import com.google.gson.Gson;
 import com.project.asms1.config.MyConfig;
-import com.project.asms1.model.User;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class SecurityLogic {
 

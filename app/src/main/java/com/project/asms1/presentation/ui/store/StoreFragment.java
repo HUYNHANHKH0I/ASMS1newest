@@ -7,10 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,18 +25,14 @@ import com.project.asms1.adapter.PageAdapter;
 import com.project.asms1.adapter.ProductAdapter;
 import com.project.asms1.config.MyConfig;
 import com.project.asms1.daos.ProductDAO;
-import com.project.asms1.daos.StoreDAO;
 import com.project.asms1.model.Category;
 import com.project.asms1.model.Product;
-import com.project.asms1.model.Store;
 import com.project.asms1.network.UserUIService;
 import com.project.asms1.presentation.CreateCategoryActivity;
 import com.project.asms1.presentation.CreateProductActivity;
-import com.project.asms1.presentation.ProductDetailActivity;
 
 ;import org.lucasr.twowayview.TwoWayView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;

@@ -15,10 +15,22 @@
         tools:layout_editor_absoluteX="31dp"
         tools:layout_editor_absoluteY="16dp" />
 
-    <ListView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/orderListView"/>
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listOrderOrderList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
+        <ProgressBar
+            android:id="@+id/main_progress_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 
 
 </LinearLayout>

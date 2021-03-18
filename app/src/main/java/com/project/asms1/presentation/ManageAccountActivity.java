@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,20 +13,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.asms1.R;
 import com.project.asms1.Utils.PagingScrollListener;
-import com.project.asms1.adapter.AccountAdapter;
+import com.project.asms1.adapter.ScrollingPageAdapter;
 import com.project.asms1.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManageAccountActivity extends AppCompatActivity {
-    ArrayList accountDB;
-    List accountList;
-    LinearLayoutManager linearLayoutManager;
-    RecyclerView accountRecyclerView;
-    AccountAdapter adapter;
-
-    ProgressBar progressBar;
+    private ArrayList accountDB;
+    private List accountList;
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView accountRecyclerView;
+    private ScrollingPageAdapter adapter;
+    private ProgressBar progressBar;
+    private EditText edtSearchAccount;
+    private TextView txtEmptyMessage;
+    private String searchValue;
 
     // Index from which pagination should start (1 is 1st page in our case)
     private static final int PAGE_START = 1;
@@ -36,17 +39,14 @@ public class ManageAccountActivity extends AppCompatActivity {
     // If current page is the last page (Pagination will stop after this page load)
     private boolean isLastPage = false;
 
-    // total no. of pages to load. Initial load is page 1, after which 2 more pages will load.
-    private int totalPages = 3;
+    // total no. of pages to load. Initial load is page 1.
+    private int totalPages;
 
     // indicates the current page which Pagination is fetching.
     private int currentPage = PAGE_START;
 
-    private final int ROW_PER_PAGE = 10;
+    private final int ROW_PER_PAGE = 5;
     private int startIndex = 0;
-
-    private EditText edtSearchAccount;
-    private String searchValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +57,9 @@ public class ManageAccountActivity extends AppCompatActivity {
         accountList = new ArrayList();
 
         accountRecyclerView = (RecyclerView) findViewById(R.id.listAccountManageAccount);
-        progressBar = (ProgressBar) findViewById(R.id.main_progress);
+        progressBar = (ProgressBar) findViewById(R.id.main_progress_account);
         edtSearchAccount = (EditText) findViewById(R.id.edtSearchAccountManageAccount);
+        txtEmptyMessage = (TextView) findViewById(R.id.txtEmptyMessageManageAccount);
         searchValue = "";
         setAdapter();
         new Handler().postDelayed(new Runnable() {
@@ -70,9 +71,9 @@ public class ManageAccountActivity extends AppCompatActivity {
     }
 
     private void loadFirstPage() {
-        //TODO : insert load data for 1st page here
         progressBar.setVisibility(View.GONE);
         accountList.clear();
+        //TODO : insert load data : User(id,name) for 1st page and total num of pages according to currentPage(always 1), searchValue and ROW_PER_PAGE here
         searchValue = edtSearchAccount.getText().toString();
         currentPage = 1;
         int count = 0;
@@ -86,26 +87,30 @@ public class ManageAccountActivity extends AppCompatActivity {
             }
         }
         totalPages = (int) Math.ceil( (double) count / ROW_PER_PAGE);
+        //TODO : change code above
 //        System.out.println(totalPages);
 //        System.out.println(currentPage);
-        adapter.addAll(accountList);
+        if(accountList.isEmpty()) {
+            txtEmptyMessage.setVisibility(View.VISIBLE);
+        } else {
+            adapter.addAll(accountList);
+            txtEmptyMessage.setVisibility(View.GONE);
+        }
 
         if (currentPage < totalPages) adapter.addLoadingFooter();
-        else {
-            isLastPage = true;
-            adapter.removeLoadingFooter();
-        }
+        else { isLastPage = true;  }
     }
 
     private void loadNextPage() {
-        //TODO : insert load data for next page here
         accountList.clear();
+        //TODO : insert load data User(id,name) for next page according to currentPage, searchValue and ROW_PER_PAGE here
         for (int i = startIndex; i < accountDB.size() && accountList.size() < ROW_PER_PAGE; i++) {
             if (accountDB.get(i).toString().contains(searchValue)) {
                 accountList.add(accountDB.get(i));
             }
             startIndex = i + 1;
         }
+        //TODO : change code above
 
         adapter.removeLoadingFooter();
         adapter.addAll(accountList);
@@ -114,7 +119,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         isLoading = false;
     }
     public void setAdapter() {
-        adapter = new AccountAdapter(this);
+        adapter = new ScrollingPageAdapter(this, 1);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         accountRecyclerView.setLayoutManager(linearLayoutManager);
         accountRecyclerView.setAdapter(adapter);
@@ -125,7 +130,14 @@ public class ManageAccountActivity extends AppCompatActivity {
                 isLoading = true;
                 //Increment page index to load the next one
                 currentPage++;
-                loadNextPage();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadNextPage();
+                    }
+                }, 1000);
+
+
             }
 
             @Override
@@ -178,6 +190,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         User user5 = new User();
         user5.setId("5");
         user5.setName("a5");
+        accountDB.add(user5);
         User user6 = new User();
         user6.setId("6");
         user6.setName("a6");
