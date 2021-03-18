@@ -16,6 +16,9 @@
     <color name="blue">#8AC0DA</color>
     <color name="purple">#F55478</color>
     <color name="da">#FFF0ED</color>
-    <color name="redlight">#ff6f00</color>
+    <color name="redlight">#a98274</color>
+    <color name="lightgray">#d9dad9</color>
+    <color name="darkchoco">#5f4339</color>
+
 
 </resources>

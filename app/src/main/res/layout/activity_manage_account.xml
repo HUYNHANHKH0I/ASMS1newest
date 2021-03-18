@@ -35,9 +35,32 @@
     </LinearLayout>
 
 
-    <ListView
+    <!--    <ListView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:id="@+id/listAccountManageAccount"/>-->
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listAccountManageAccount"/>
+        android:text="No item found"
+        android:textSize="20dp"
+        android:id="@+id/txtEmptyMessageManageAccount"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listAccountManageAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"/>
+        <ProgressBar
+            android:id="@+id/main_progress_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+    </FrameLayout>
 
 </LinearLayout>

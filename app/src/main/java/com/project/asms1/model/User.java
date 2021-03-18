@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.sql.Date;
 import java.util.List;
 
-public final class User {
+public class User {
 
     @SerializedName("id")
     @Expose
@@ -128,6 +128,9 @@ public final class User {
     @Override
     public String toString() {
         return new Gson().toJson(this);
+    }
+
+    public User() {
     }
 
     public User(String password, String username,int productperpage ) {
