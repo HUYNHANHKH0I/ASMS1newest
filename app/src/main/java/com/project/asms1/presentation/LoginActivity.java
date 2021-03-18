@@ -59,12 +59,10 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         User user1 = response.body();
                         if(user1 == null) {
-                            System.out.println("ko co du lieu");
                             Toast.makeText(LoginActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
                             txtMessage.setText("Not Exist");
                             txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
                         }else {
-                            System.out.println("Co du lieu");
                             Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                             txtMessage.setText("Login Success");
                             txtMessage.setTextColor(getResources().getColor(R.color.colorPrimary));

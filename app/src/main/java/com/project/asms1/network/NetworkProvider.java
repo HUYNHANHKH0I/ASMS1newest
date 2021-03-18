@@ -1,5 +1,7 @@
 package com.project.asms1.network;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.project.asms1.config.MyConfig;
 
 import retrofit2.Retrofit;
@@ -13,9 +15,12 @@ public final class NetworkProvider {
     public String user;
 
     private NetworkProvider() {
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .create();
         retrofit = new Retrofit.Builder()
                 .baseUrl(MyConfig.baseHost)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
 
