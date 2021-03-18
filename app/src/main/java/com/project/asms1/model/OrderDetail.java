@@ -1,55 +1,43 @@
 package com.project.asms1.model;
 
-public class OrderDetail {
-    private String ID, OrderID, ProductID;
+import com.google.gson.Gson;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class OrderDetail implements Serializable {
+    @SerializedName("productname")
+    @Expose
+    private String productname;
+    @SerializedName("imgurl")
+    @Expose
+    private String imgurl;
+    @SerializedName("quantity")
+    @Expose
     private int Quantity;
+    @SerializedName("totalprice")
+    @Expose
     private float Price;
 
-    public OrderDetail(String ID, String orderID, String productID, int quantity, float price) {
-        this.ID = ID;
-        OrderID = orderID;
-        ProductID = productID;
-        Quantity = quantity;
-        Price = price;
+    public String getProductname() {
+        return productname;
     }
 
-    public String getID() {
-        return ID;
-    }
-
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public String getOrderID() {
-        return OrderID;
-    }
-
-    public void setOrderID(String orderID) {
-        OrderID = orderID;
-    }
-
-    public String getProductID() {
-        return ProductID;
-    }
-
-    public void setProductID(String productID) {
-        ProductID = productID;
+    public String getImgurl() {
+        return imgurl;
     }
 
     public int getQuantity() {
         return Quantity;
     }
 
-    public void setQuantity(int quantity) {
-        Quantity = quantity;
-    }
-
     public float getPrice() {
         return Price;
     }
 
-    public void setPrice(float price) {
-        Price = price;
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
     }
 }

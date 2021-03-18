@@ -17,7 +17,7 @@ import java.util.List;
 
 public class OrderDetailActivity extends AppCompatActivity {
     TextView txt_orderid, txt_orderdate, txt_totalprice, txt_cusname, txt_cusphone,
-            txt_cusadd;
+            txt_cusadd,txt_cusemail;
     ListView listView;
     ListOrderDetailAdapter adapter;
 
@@ -25,38 +25,33 @@ public class OrderDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
+        initData();
+    }
+
+    private void initData() {
         txt_orderid = findViewById(R.id.txt_order_detail_ID);
         txt_orderdate = findViewById(R.id.txt_order_detail_OrderDate);
         txt_totalprice = findViewById(R.id.txt_order_detail_total_price);
         txt_cusname = findViewById(R.id.txt_order_detail_customer_name);
         txt_cusphone = findViewById(R.id.txt_order_detail_customer_phone);
         txt_cusadd = findViewById(R.id.txt_order_detail_customer_address);
+        txt_cusemail= findViewById(R.id.txt_order_detail_customer_email);
         listView = findViewById(R.id.order_detail_product_list);
 
         Intent intent = getIntent();
         Order order = (Order) intent.getSerializableExtra("clicked_order");
-        List<OrderDetail> orderDetailList = new ArrayList<>();
 
-        //TODO: gọi hàm lấy tất cả orderDetail có id = order nhét vô orderDetailList
-
-        OrderDetail a = new OrderDetail("1","2","3",4,5000);
-        OrderDetail b = new OrderDetail("1","2","3",3,6000);
-        OrderDetail c = new OrderDetail("1","2","3",1,10000);
-        OrderDetail e = new OrderDetail("1","2","3",1,10000);
-        OrderDetail f = new OrderDetail("1","2","3",1,10000);
-        OrderDetail g = new OrderDetail("1","2","3",1,10000);
-        OrderDetail h = new OrderDetail("1","2","3",1,10000);
-        orderDetailList.add(a);
-        orderDetailList.add(b);
-        orderDetailList.add(c);
-        orderDetailList.add(e);
-        orderDetailList.add(f);
-        orderDetailList.add(g);
-        orderDetailList.add(h);
+        txt_orderid.setText(order.getID());
+        txt_orderdate.setText(order.getOrderDate().toString());
+        txt_totalprice.setText(String.valueOf(order.getTotalPrice()));
+        txt_cusname.setText(order.getCustomerinfo().getName());
+        txt_cusphone.setText(order.getCustomerinfo().getPhoneNumber());
+        txt_cusadd.setText(order.getCustomerinfo().getAddress());
+        txt_cusemail.setText(order.getCustomerinfo().getEmail());
 
 
         adapter = new ListOrderDetailAdapter();
-        adapter.setOrderDetailProductList(orderDetailList);
+        adapter.setOrderDetailProductList(order.getOrderdetaillist());
         listView.setAdapter(adapter);
     }
 }

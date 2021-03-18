@@ -13,19 +13,23 @@ import androidx.core.content.ContextCompat;
 import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
+import com.project.asms1.daos.OrderDAO;
 import com.project.asms1.daos.ProductDAO;
 import com.project.asms1.daos.UserDAO;
+import com.project.asms1.model.Order;
 import com.project.asms1.model.Product;
 import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
 import com.project.asms1.network.service.APIService;
 import com.project.asms1.presentation.AdminHomeActivity;
 import com.project.asms1.presentation.LoginActivity;
+import com.project.asms1.presentation.OrderListActivity;
 import com.project.asms1.presentation.SellerHomeActivity;
 import com.project.asms1.presentation.ui.store.StoreFragment;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.List;
 
 import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import retrofit2.Call;
@@ -242,6 +246,37 @@ public class UserUIService {
             }
             @Override
             public void onFailure(Call<Store> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+
+
+    }
+
+    public static void getOrder(int currentPage,int orderperpage,String searchString, OrderListActivity current) {
+        NetworkProvider nw = NetworkProvider.self();
+        System.out.println(ProductDAO.currentCategory);
+        nw.getService(APIService.class).getOrder(currentPage,orderperpage,searchString).enqueue(new Callback<List<Order>>() {
+            @Override
+            public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
+                if (response.isSuccessful()) {
+                    List<Order> result = response.body();
+//                    if (result.getResult().equals(MyConfig.Fail)) {
+//                        Toast.makeText(storeFragment.getContext(),"NO ITEMS IS MATCH WITH YOUR SEARCH!",Toast.LENGTH_SHORT).show();
+//                    }else {
+                        OrderDAO.listOfOrder = result;
+                        if(currentPage == 1) {
+                            current.loadFirstPage();
+                        }else {
+                            current.loadNextPage();
+                        }
+//                    }
+                }else {
+                    System.out.println("Fail get order");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Order>> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
             }
         });

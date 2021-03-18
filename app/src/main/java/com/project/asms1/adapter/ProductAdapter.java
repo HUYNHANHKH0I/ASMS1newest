@@ -65,7 +65,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             public void onClick(View v) {
                 Toast.makeText(context, product.getName(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(context, ProductDetailActivity.class);
-                intent.putExtra("product", product.getName());
+                intent.putExtra("product", product);
                 context.startActivity(intent);
             }
         });

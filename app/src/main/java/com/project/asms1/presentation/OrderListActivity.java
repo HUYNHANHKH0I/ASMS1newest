@@ -18,8 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.project.asms1.R;
 import com.project.asms1.Utils.PagingScrollListener;
 import com.project.asms1.adapter.ScrollingPageAdapter;
+import com.project.asms1.config.MyConfig;
+import com.project.asms1.daos.OrderDAO;
 import com.project.asms1.model.Order;
+import com.project.asms1.network.UserUIService;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -89,56 +93,59 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
                 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
                 .withLocale(Locale.US);
 
-        String startDate = "2019-02-18T05:30:38.9933333"; // Input String
-        LocalDateTime dateTime = LocalDateTime.parse(startDate);
-        Order a = new Order("1","2","3",4, dateTime );
-        orderDB.add(a);
+//        String startDate = "2019-02-18T05:30:38.9933333"; // Input String
+//        Date dateTime = LocalDateTime.parse(startDate);
+//        Order a = new Order("1","2","3",4, dateTime );
+//        orderDB.add(a);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                loadFirstPage();
-            }
-        }, 1000);
+        currentPage = 1;
+        UserUIService.getOrder(currentPage, MyConfig.orderperpage,"1",OrderListActivity.this);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                loadFirstPage();
+//            }
+//        }, 1000);
     }
 
-    private void loadFirstPage() {
+    public void loadFirstPage() {
         progressBar.setVisibility(View.GONE);
         orderDTOList.clear();
-        //TODO : insert load data : User(id,name) for 1st page and total num of pages according to currentPage(always 1), searchValue and ROW_PER_PAGE here
-        currentPage = 1;
-        int count = 0;
-        for (int i = 0; i < orderDB.size(); i++) {
-            orderDTOList.add(orderDB.get(i));
-            startIndex = i + 1;
-        }
-        totalPages = (int) Math.ceil( (double) count / ROW_PER_PAGE);
-        //TODO : Change code above
-//        System.out.println(totalPages);
-//        System.out.println(currentPage);
+        orderDTOList.addAll(OrderDAO.listOfOrder);
+
+//        //TODO : insert load data : User(id,name) for 1st page and total num of pages according to currentPage(always 1), searchValue and ROW_PER_PAGE here
+//        int count = 0;
+//        for (int i = 0; i < orderDB.size(); i++) {
+//            orderDTOList.add(orderDB.get(i));
+//            startIndex = i + 1;
+//        }
+//        totalPages = (int) Math.ceil( (double) count / ROW_PER_PAGE);
+//        //TODO : Change code above
+////        System.out.println(totalPages);
+////        System.out.println(currentPage);
         adapter.addAll(orderDTOList);
 
 
-        if (currentPage < totalPages) adapter.addLoadingFooter();
+        if (orderDTOList.size() != 0) adapter.addLoadingFooter();
         else { isLastPage = true;  }
     }
 
-    private void loadNextPage() {
+    public void loadNextPage() {
         orderDTOList.clear();
-        //TODO : insert load data User(id,name) for next page according to currentPage, searchValue and ROW_PER_PAGE here
-        for (int i = startIndex; i < orderDB.size() && orderDTOList.size() < ROW_PER_PAGE; i++) {
-            orderDTOList.add(orderDB.get(i));
-            startIndex = i + 1;
-        }
-        //TODO : Change code above
+//        //TODO : insert load data User(id,name) for next page according to currentPage, searchValue and ROW_PER_PAGE here
+//        for (int i = startIndex; i < orderDB.size() && orderDTOList.size() < ROW_PER_PAGE; i++) {
+//            orderDTOList.add(orderDB.get(i));
+//            startIndex = i + 1;
+//        }
+        orderDTOList.addAll(OrderDAO.listOfOrder);
 
         adapter.removeLoadingFooter();
         adapter.addAll(orderDTOList);
-        if (currentPage != totalPages) adapter.addLoadingFooter();
+        if (orderDTOList.size() != 0) adapter.addLoadingFooter();
         else isLastPage = true;
         isLoading = false;
     }
-    public void setAdapter() {
+    private void setAdapter() {
         adapter = new ScrollingPageAdapter(this, 2);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         orderRecyclerView.setLayoutManager(linearLayoutManager);
@@ -153,7 +160,7 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        loadNextPage();
+                        UserUIService.getOrder(currentPage, MyConfig.orderperpage,"1",OrderListActivity.this);
                     }
                 }, 1000);
 
