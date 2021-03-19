@@ -95,7 +95,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, AccountDetailActivity.class);
-                        intent.putExtra("user", user.getId());
+                        intent.putExtra("user", user);
                         context.startActivity(intent);
                     }
                 });

@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import com.project.asms1.R;
 import com.project.asms1.Utils.PopupMessage;
+import com.project.asms1.model.User;
 
 public class AccountDetailActivity extends AppCompatActivity {
     private boolean status;
@@ -25,15 +26,15 @@ public class AccountDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_account_detail);
 
         Intent intent = getIntent();
-        Object account = intent.getSerializableExtra("account");
+        User account = (User) intent.getSerializableExtra("user");
         edtUsername = (EditText)findViewById(R.id.edtUsernameAccountDetail);
-        edtUsername.setText("username");
+        edtUsername.setText(account.getUsername());
         edtPassword = (EditText)findViewById(R.id.edtPasswordAccountDetail);
         edtPassword.setText("password");
         edtEmail = (EditText)findViewById(R.id.edtEmailAccountDetail);
-        edtEmail.setText("email");
+        edtEmail.setText(account.getEmail());
         edtName = (EditText)findViewById(R.id.edtNameAccountDetail);
-        edtName.setText("name");
+        edtName.setText(account.getName());
         btnChangeStatus =  (Button) findViewById(R.id.btnChangeStatusAccountDetail);
         chkIsAdmin = (CheckBox) findViewById(R.id.chkIsAdminAccountDetail);
         btnEditAccount = (Button) findViewById(R.id.btnEditAccountAccountDetail);

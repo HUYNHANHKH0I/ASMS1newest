@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
 
     @SerializedName("id")
     @Expose
@@ -129,9 +129,6 @@ public class User {
     @Override
     public String toString() {
         return new Gson().toJson(this);
-    }
-
-    public User() {
     }
 
     public User(String password, String username,int productperpage ) {

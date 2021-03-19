@@ -162,6 +162,7 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String date = (month + 1) + "/" + dayOfMonth + "/" + year;
         adapter.clear();
+        adapter.notifyDataSetChanged();
         isLastPage = false;
         progressBar.setVisibility(View.VISIBLE);
         btnChooseDate.setText(date);

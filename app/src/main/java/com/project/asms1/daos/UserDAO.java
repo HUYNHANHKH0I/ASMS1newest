@@ -7,4 +7,5 @@ import java.util.List;
 
 public class UserDAO {
     public static User currentUser;
+    public static List<User> listofuser;
 }

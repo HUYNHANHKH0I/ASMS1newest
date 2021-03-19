@@ -50,4 +50,9 @@ public interface APIService {
     Call<List<Order>> getOrder(@Query("currentPage") int currentPage
             ,@Query("productPerPage") int productPerPage
             ,@Query("date") String date);
+
+    @GET("Users/getaccount")
+    Call<List<User>> getAccount(@Query("currentPage") int currentPage
+            ,@Query("accountPerPage") int accountPerPage
+            ,@Query("username") String username);
 }
