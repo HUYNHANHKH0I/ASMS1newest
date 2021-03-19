@@ -113,14 +113,14 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
         orderDTOList.clear();
         orderDTOList.addAll(OrderDAO.listOfOrder);
 
-//        //TODO : insert load data : User(id,name) for 1st page and total num of pages according to currentPage(always 1), searchValue and ROW_PER_PAGE here
+//
 //        int count = 0;
 //        for (int i = 0; i < orderDB.size(); i++) {
 //            orderDTOList.add(orderDB.get(i));
 //            startIndex = i + 1;
 //        }
 //        totalPages = (int) Math.ceil( (double) count / ROW_PER_PAGE);
-//        //TODO : Change code above
+//
 ////        System.out.println(totalPages);
 ////        System.out.println(currentPage);
         adapter.addAll(orderDTOList);
@@ -132,7 +132,6 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
 
     public void loadNextPage() {
         orderDTOList.clear();
-//        //TODO : insert load data User(id,name) for next page according to currentPage, searchValue and ROW_PER_PAGE here
 //        for (int i = startIndex; i < orderDB.size() && orderDTOList.size() < ROW_PER_PAGE; i++) {
 //            orderDTOList.add(orderDB.get(i));
 //            startIndex = i + 1;

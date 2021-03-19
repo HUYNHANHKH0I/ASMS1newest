@@ -31,6 +31,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int LOADING = 0;
     private static final int ACCOUNT = 1;
     private static final int ORDER = 2;
+    private static final int POST = 3;
 
     private List<Object> list;
     private Context context;
@@ -66,9 +67,13 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                 View v2 = inflater.inflate(R.layout.item_order_list, parent, false);
                 viewHolder = new OrderViewHolder(v2);
                 break;
+            case POST:
+//                View v3 = inflater.inflate(R.layout., parent, false);
+//                viewHolder = new PostViewHolder(v3);
+                break;
             case LOADING:
-                View v3 = inflater.inflate(R.layout.item_progress, parent, false);
-                viewHolder = new LoadingViewHolder(v3);
+                View v4 = inflater.inflate(R.layout.item_progress, parent, false);
+                viewHolder = new LoadingViewHolder(v4);
                 break;
         }
         return viewHolder;
@@ -90,7 +95,9 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                 User user = (User) list.get(position);
                 AccountViewHolder accountViewHolder = (AccountViewHolder) holder;
 
-                accountViewHolder.textView.setText(user.getName());
+                accountViewHolder.textViewUsername.setText("Username : " + user.getUsername());
+                accountViewHolder.textViewName.setText("Name : " + user.getName());
+                accountViewHolder.textViewEmail.setText("Email :" + user.getEmail());
                 accountViewHolder.layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -114,6 +121,8 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                         context.startActivity(intent);
                     }
                 });
+                break;
+            case POST:
                 break;
             case LOADING:
 //                Do nothing
@@ -204,13 +213,17 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
      * Main list's content ViewHolder
      */
     protected class AccountViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView;
+        private TextView textViewUsername;
+        private TextView textViewName;
+        private TextView textViewEmail;
         private LinearLayout layout;
 
         public AccountViewHolder(View itemView) {
             super(itemView);
             layout = (LinearLayout) itemView.findViewById(R.id.accountLayoutManageAccountAdapter);
-            textView = (TextView) itemView.findViewById(R.id.txtAccountUsernameManageAccountAdapter);
+            textViewUsername = (TextView) itemView.findViewById(R.id.txtAccountUsernameManageAccountAdapter);
+            textViewName = (TextView) itemView.findViewById(R.id.txtAccountNameManageAccountAdapter);
+            textViewEmail = (TextView) itemView.findViewById(R.id.txtAccountEmailManageAccountAdapter);
         }
     }
 
@@ -226,8 +239,21 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
             textViewItemDate = (TextView) itemView.findViewById(R.id.txt_item_date);
             textViewItemStatus = (TextView) itemView.findViewById(R.id.txt_item_status);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.layout_item_order_list);
+        }
+    }
 
+    protected class PostViewHolder extends RecyclerView.ViewHolder {
+//        private TextView textViewItemId;
+//        private TextView textViewItemDate;
+//        private TextView textViewItemStatus;
+//        private LinearLayout linearLayout;
 
+        public PostViewHolder(View itemView) {
+            super(itemView);
+//            textViewItemId = (TextView) itemView.findViewById(R.id.txt_item_ID);
+//            textViewItemDate = (TextView) itemView.findViewById(R.id.txt_item_date);
+//            textViewItemStatus = (TextView) itemView.findViewById(R.id.txt_item_status);
+//            linearLayout = (LinearLayout) itemView.findViewById(R.id.layout_item_order_list);
         }
     }
 
