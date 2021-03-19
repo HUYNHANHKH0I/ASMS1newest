@@ -28,8 +28,6 @@ public class AccountDetailActivity extends AppCompatActivity {
         Object account = intent.getSerializableExtra("account");
         edtUsername = (EditText)findViewById(R.id.edtUsernameAccountDetail);
         edtUsername.setText("username");
-        edtPassword = (EditText)findViewById(R.id.edtPasswordAccountDetail);
-        edtPassword.setText("password");
         edtEmail = (EditText)findViewById(R.id.edtEmailAccountDetail);
         edtEmail.setText("email");
         edtName = (EditText)findViewById(R.id.edtNameAccountDetail);

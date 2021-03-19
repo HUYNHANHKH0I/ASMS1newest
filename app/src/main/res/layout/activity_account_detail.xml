@@ -45,14 +45,6 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password"
-            android:id="@+id/edtPasswordAccountDetail"
-            android:textSize="20dp"
-            android:textColor="@color/black"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Email"
             android:id="@+id/edtEmailAccountDetail"
             android:textSize="20dp"
