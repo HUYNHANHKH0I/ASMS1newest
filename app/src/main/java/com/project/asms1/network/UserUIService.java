@@ -266,7 +266,12 @@ public class UserUIService {
 //                    }else {
                         OrderDAO.listOfOrder = result;
                         if(currentPage == 1) {
-                            current.loadFirstPage();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    current.loadFirstPage();
+                                }
+                            }, 1000);
                         }else {
                             current.loadNextPage();
                         }

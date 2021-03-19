@@ -56,11 +56,9 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
     // indicates the current page which Pagination is fetching.
     private int currentPage = PAGE_START;
 
-    private final int ROW_PER_PAGE = 5;
-    private int startIndex = 0;
+    private String searchString ;
 
     private List orderDTOList;
-    private List<Order> orderDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +67,6 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
         btnChooseDate = findViewById(R.id.btnChooseDate);
         orderRecyclerView = (RecyclerView) findViewById(R.id.listOrderOrderList);
         progressBar = (ProgressBar) findViewById(R.id.main_progress_order);
-        orderDB = new ArrayList<>();
         orderDTOList = new ArrayList();
         setAdapter();
 
@@ -93,19 +90,10 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
                 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
                 .withLocale(Locale.US);
 
-//        String startDate = "2019-02-18T05:30:38.9933333"; // Input String
-//        Date dateTime = LocalDateTime.parse(startDate);
-//        Order a = new Order("1","2","3",4, dateTime );
-//        orderDB.add(a);
 
         currentPage = 1;
-        UserUIService.getOrder(currentPage, MyConfig.orderperpage,"1",OrderListActivity.this);
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                loadFirstPage();
-//            }
-//        }, 1000);
+        searchString = "ALL";
+        UserUIService.getOrder(currentPage, MyConfig.orderperpage,searchString,OrderListActivity.this);
     }
 
     public void loadFirstPage() {
@@ -113,30 +101,15 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
         orderDTOList.clear();
         orderDTOList.addAll(OrderDAO.listOfOrder);
 
-//        //TODO : insert load data : User(id,name) for 1st page and total num of pages according to currentPage(always 1), searchValue and ROW_PER_PAGE here
-//        int count = 0;
-//        for (int i = 0; i < orderDB.size(); i++) {
-//            orderDTOList.add(orderDB.get(i));
-//            startIndex = i + 1;
-//        }
-//        totalPages = (int) Math.ceil( (double) count / ROW_PER_PAGE);
-//        //TODO : Change code above
-////        System.out.println(totalPages);
-////        System.out.println(currentPage);
         adapter.addAll(orderDTOList);
 
 
-        if (orderDTOList.size() != 0) adapter.addLoadingFooter();
+        if (orderDTOList.size() != 0)  adapter.addLoadingFooter();
         else { isLastPage = true;  }
     }
 
     public void loadNextPage() {
         orderDTOList.clear();
-//        //TODO : insert load data User(id,name) for next page according to currentPage, searchValue and ROW_PER_PAGE here
-//        for (int i = startIndex; i < orderDB.size() && orderDTOList.size() < ROW_PER_PAGE; i++) {
-//            orderDTOList.add(orderDB.get(i));
-//            startIndex = i + 1;
-//        }
         orderDTOList.addAll(OrderDAO.listOfOrder);
 
         adapter.removeLoadingFooter();
@@ -160,7 +133,7 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        UserUIService.getOrder(currentPage, MyConfig.orderperpage,"1",OrderListActivity.this);
+                        UserUIService.getOrder(currentPage, MyConfig.orderperpage,searchString,OrderListActivity.this);
                     }
                 }, 1000);
 
@@ -187,9 +160,14 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
     // hàm gọi orderlist khi chọn ngày
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        String date = dayOfMonth + "/" + (month + 1) + "/" + year;
+        String date = (month + 1) + "/" + dayOfMonth + "/" + year;
+        adapter.clear();
+        isLastPage = false;
+        progressBar.setVisibility(View.VISIBLE);
         btnChooseDate.setText(date);
-        //TODO: gọi hàm lấy list order theo ngày.
+        currentPage = 1;
+        searchString = date;
+        UserUIService.getOrder(currentPage, MyConfig.orderperpage,date,OrderListActivity.this);
     }
 
 

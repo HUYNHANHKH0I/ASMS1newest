@@ -47,5 +47,7 @@ public interface APIService {
                            @Query("name") String name);
 
     @GET("Orders/getorder")
-    Call<List<Order>> getOrder(@Query("currentPage") int currentPage,@Query("productPerPage") int productPerPage,@Query("name") String name);
+    Call<List<Order>> getOrder(@Query("currentPage") int currentPage
+            ,@Query("productPerPage") int productPerPage
+            ,@Query("date") String date);
 }
