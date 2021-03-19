@@ -61,7 +61,6 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
             case ACCOUNT:
                 View v1 = inflater.inflate(R.layout.account_list_adapter, parent, false);
                 viewHolder = new AccountViewHolder(v1);
-//                viewHolder = getViewHolder(parent, inflater);
                 break;
             case ORDER:
                 View v2 = inflater.inflate(R.layout.item_order_list, parent, false);
@@ -78,15 +77,6 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
         return viewHolder;
     }
-
-//    @NonNull
-//    private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
-//        RecyclerView.ViewHolder viewHolder;
-//        View v1 = inflater.inflate(R.layout.account_list_adapter, parent, false);
-//        viewHolder = new ViewHolder(v1);
-//        return viewHolder;
-//    }
-
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
@@ -97,7 +87,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
 
                 accountViewHolder.textViewUsername.setText("Username : " + user.getUsername());
                 accountViewHolder.textViewName.setText("Name : " + user.getName());
-                accountViewHolder.textViewEmail.setText("Email :" + user.getEmail());
+                accountViewHolder.textViewEmail.setText("Email : " + user.getEmail());
                 accountViewHolder.layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -142,6 +132,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
             return LOADING;
         } else if (mode == ACCOUNT) return ACCOUNT;
         else if (mode == ORDER) return ORDER;
+        else if (mode == POST) return POST;
         else return -1;
     }
 

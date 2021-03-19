@@ -99,6 +99,7 @@ public class ManageAccountActivity extends AppCompatActivity {
 
         if (currentPage < totalPages) adapter.addLoadingFooter();
         else { isLastPage = true;  }
+        isLoading = false;
     }
 
     private void loadNextPage() {
@@ -163,7 +164,7 @@ public class ManageAccountActivity extends AppCompatActivity {
 
     public void clickToSearchAccount(View view) {
         adapter.clear();
-        adapter.notifyDataSetChanged();
+//        adapter.notifyDataSetChanged();
         isLastPage = false;
         isLoading = false;
         totalPages = 0;

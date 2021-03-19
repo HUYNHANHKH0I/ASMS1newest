@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.AccountDetailActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/biege">
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,7 +16,8 @@
         android:focusable="true"
         android:layout_gravity="left"
         android:textSize="20dp"
-        android:onClick="clickToGoBack"/>
+        android:onClick="clickToGoBack"
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,42 +25,56 @@
         android:textSize="25dp"
         android:textStyle="bold"
         android:text="Account Details"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username"
+            android:id="@+id/edtUsernameAccountDetail"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:id="@+id/edtPasswordAccountDetail"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:id="@+id/edtEmailAccountDetail"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:id="@+id/edtNameAccountDetail"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admin"
+            android:textColor="@color/black"
+            android:id="@+id/chkIsAdminAccountDetail"
+            android:layout_marginVertical="15dp"/>
+    </LinearLayout>
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:id="@+id/edtUsernameAccountDetail"
-        android:textSize="20dp"
-        android:layout_marginTop="20dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Password"
-        android:id="@+id/edtPasswordAccountDetail"
-        android:textSize="20dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        android:id="@+id/edtEmailAccountDetail"
-        android:textSize="20dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:id="@+id/edtNameAccountDetail"
-        android:textSize="20dp"/>
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Admin"
-        android:id="@+id/chkIsAdminAccountDetail"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
