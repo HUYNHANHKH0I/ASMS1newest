@@ -6,34 +6,41 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".presentation.LoginActivity">
+    tools:context=".presentation.LoginActivity"
+    android:background="@drawable/loginlogo">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LOGIN"
-        android:textSize="30dp"
+        android:textSize="40dp"
         android:textStyle="bold"
         android:gravity="center"
+        android:layout_marginTop="165dp"
+        android:textColor="@color/oragne"
         />
     <EditText
+        android:background="@color/yellow"
         android:id="@+id/edtEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
         android:inputType="textEmailAddress"
         android:layout_marginTop="30dp"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        android:hint="Email"/>
+        android:hint="Email"
+        android:textColorHint="@color/black" />
     <EditText
+        android:background="@color/yellow"
         android:id="@+id/edtPassWord"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
         android:inputType="textPassword"
         android:layout_marginTop="15dp"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        android:hint="Password"/>
+        android:hint="Password"
+        android:textColorHint="@color/black" />
     <TextView
         android:id="@+id/txtMessage"
         android:layout_width="wrap_content"
@@ -42,13 +49,25 @@
         android:textSize="18dp"
         android:layout_margin="30dp"
         android:visibility="gone"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
+
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/btnLogin"
-        android:text="LOGIN"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:textSize="20dp"
-        android:background="@color/colorPrimary"/>
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shadow_button_layer_list"
+        android:text="Enter"
+        app:finalCornerAngle="50dp"
+        app:initialCornerAngle="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gifImageView"
+        app:spinning_bar_color="#FFFFFFFF"
+        app:spinning_bar_padding="5dp"
+        app:spinning_bar_width="5dp"/>
 
 </LinearLayout>

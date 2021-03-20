@@ -1,8 +1,10 @@
 package com.project.asms1.presentation;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.os.Handler;
 import android.util.Log;
@@ -24,6 +26,8 @@ import com.project.asms1.network.service.APIService;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
+import br.com.simplepass.loadingbutton.customViews.OnAnimationEndListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
     TextView txtMessage;
-    Button btnShow;
+    CircularProgressButton btnShow;
     private static final String TAG = LoginActivity.class.getSimpleName();
     @Override
     protected void onCreate( Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void clickToLogin() {
+        btnShow.startAnimation();
         String username = edtEmail.getText().toString();
         String password = edtPassword.getText().toString();
 
@@ -59,11 +64,21 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.isSuccessful()) {
                         User user1 = response.body();
                         if(user1 == null) {
-                            Toast.makeText(LoginActivity.this, "Login Fail", Toast.LENGTH_SHORT).show();
+                            btnShow.doneLoadingAnimation(ContextCompat.getColor(LoginActivity.this,R.color.black),
+                                    BitmapFactory.decodeResource(LoginActivity.this.getResources(), R.drawable.ic_pregnant_woman_white_48dp));
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    btnShow.revertAnimation();
+                                    btnShow.setBackgroundResource(R.drawable.shadow_button_layer_list);
+                                }
+                            }, 1000);
                             txtMessage.setText("Not Exist");
                             txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
                         }else {
-                            Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                            btnShow.doneLoadingAnimation(ContextCompat.getColor(LoginActivity.this,R.color.purple),
+                                    BitmapFactory.decodeResource(LoginActivity.this.getResources(), R.drawable.ic_done_white_48dp));
                             txtMessage.setText("Login Success");
                             txtMessage.setTextColor(getResources().getColor(R.color.colorPrimary));
                             try {
@@ -113,6 +128,16 @@ public class LoginActivity extends AppCompatActivity {
         }else {
             txtMessage.setText("Email or Password invalid");
             txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
+            btnShow.doneLoadingAnimation(ContextCompat.getColor(LoginActivity.this,R.color.black),
+                    BitmapFactory.decodeResource(LoginActivity.this.getResources(), R.drawable.ic_pregnant_woman_white_48dp));
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    btnShow.revertAnimation();
+                    btnShow.setBackgroundResource(R.drawable.shadow_button_layer_list);
+                }
+            }, 1000);
         }
     }
 
