@@ -13,9 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.asms1.R;
 import com.project.asms1.model.Order;
+import com.project.asms1.model.Post;
 import com.project.asms1.model.User;
 import com.project.asms1.presentation.AccountDetailActivity;
 import com.project.asms1.presentation.OrderDetailActivity;
+import com.project.asms1.presentation.PostDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +28,7 @@ import java.util.List;
 
 public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private int mode;
+    private int type;
 
     private static final int LOADING = 0;
     private static final int ACCOUNT = 1;
@@ -40,7 +42,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     public ScrollingPageAdapter(Context context, int mode) {
         this.context = context;
-        this.mode = mode;
+        this.type = mode;
         list = new ArrayList<>();
     }
 
@@ -67,8 +69,8 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                 viewHolder = new OrderViewHolder(v2);
                 break;
             case POST:
-//                View v3 = inflater.inflate(R.layout., parent, false);
-//                viewHolder = new PostViewHolder(v3);
+                View v3 = inflater.inflate(R.layout.postitem, parent, false);
+                viewHolder = new PostViewHolder(v3);
                 break;
             case LOADING:
                 View v4 = inflater.inflate(R.layout.item_progress, parent, false);
@@ -92,7 +94,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(context, AccountDetailActivity.class);
-                        intent.putExtra("user", user.getId());
+                        intent.putExtra("user", user);
                         context.startActivity(intent);
                     }
                 });
@@ -113,6 +115,19 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                 });
                 break;
             case POST:
+                Post post = (Post) list.get(position);
+                PostViewHolder postViewHolder = (PostViewHolder) holder;
+                postViewHolder.textViewItemId.setText(post.getID());
+                postViewHolder.textViewItemDate.setText(post.getTime()+" ");
+                postViewHolder.textViewItemStatus.setText(post.getStatus()+"");
+                postViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, PostDetailActivity.class);
+                        intent.putExtra("post", post);
+                        context.startActivity(intent);
+                    }
+                });
                 break;
             case LOADING:
 //                Do nothing
@@ -130,10 +145,10 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
     public int getItemViewType(int position) {
         if (position == list.size() - 1 && isLoadingAdded) {
             return LOADING;
-        } else if (mode == ACCOUNT) return ACCOUNT;
-        else if (mode == ORDER) return ORDER;
-        else if (mode == POST) return POST;
-        else return -1;
+        } else {
+            //return the type needed (ie: ACCOUNT)
+            return type;
+        }
     }
 
     /*
@@ -234,17 +249,17 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
     protected class PostViewHolder extends RecyclerView.ViewHolder {
-//        private TextView textViewItemId;
-//        private TextView textViewItemDate;
-//        private TextView textViewItemStatus;
-//        private LinearLayout linearLayout;
+        private TextView textViewItemId;
+        private TextView textViewItemDate;
+        private TextView textViewItemStatus;
+        private LinearLayout linearLayout;
 
         public PostViewHolder(View itemView) {
             super(itemView);
-//            textViewItemId = (TextView) itemView.findViewById(R.id.txt_item_ID);
-//            textViewItemDate = (TextView) itemView.findViewById(R.id.txt_item_date);
-//            textViewItemStatus = (TextView) itemView.findViewById(R.id.txt_item_status);
-//            linearLayout = (LinearLayout) itemView.findViewById(R.id.layout_item_order_list);
+            textViewItemId = (TextView) itemView.findViewById(R.id.txt_post_ID);
+            textViewItemDate = (TextView) itemView.findViewById(R.id.txt_post_date);
+            textViewItemStatus = (TextView) itemView.findViewById(R.id.txt_post_status);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.layout_item_post_list);
         }
     }
 

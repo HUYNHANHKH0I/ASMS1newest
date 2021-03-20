@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.CreateProductActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/biege">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +14,9 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_gravity="left"
-        android:onClick="clickToGoBack"/>
+        android:textSize="20dp"
+        android:onClick="clickToGoBack"
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -21,24 +24,38 @@
         android:text="Create a new Product"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:gravity="center"/>
-    <EditText
-        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textColor="@color/black"/>
+    <LinearLayout
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:hint="Product Name"
-        android:id="@+id/edtProductName"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Price"
-        android:id="@+id/edtProductPrice"
-        android:inputType="number"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Quantity"
-        android:id="@+id/edtProductQuantity"
-        android:inputType="number"/>
+        android:layout_gravity="center"
+        android:orientation="vertical">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Product Name"
+            android:id="@+id/edtProductName"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:id="@+id/edtProductPrice"
+            android:inputType="number"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Quantity"
+            android:id="@+id/edtProductQuantity"
+            android:inputType="number"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
     <Button
         android:layout_width="160dp"
         android:layout_height="wrap_content"

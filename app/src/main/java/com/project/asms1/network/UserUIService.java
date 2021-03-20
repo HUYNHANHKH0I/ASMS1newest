@@ -14,16 +14,22 @@ import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
 import com.project.asms1.daos.OrderDAO;
+import com.project.asms1.daos.PostDAO;
 import com.project.asms1.daos.ProductDAO;
 import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.Order;
+import com.project.asms1.model.Post;
 import com.project.asms1.model.Product;
 import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
+import com.project.asms1.model.User;
 import com.project.asms1.network.service.APIService;
+import com.project.asms1.presentation.AccountDetailActivity;
 import com.project.asms1.presentation.AdminHomeActivity;
 import com.project.asms1.presentation.LoginActivity;
+import com.project.asms1.presentation.ManageAccountActivity;
 import com.project.asms1.presentation.OrderListActivity;
+import com.project.asms1.presentation.PostListActivity;
 import com.project.asms1.presentation.SellerHomeActivity;
 import com.project.asms1.presentation.ui.store.StoreFragment;
 
@@ -151,21 +157,26 @@ public class UserUIService {
         }
     }
 
-    public static void updateUser(Activity context) {
+    public static void updateUser(Activity context,User user) {
         NetworkProvider nw = NetworkProvider.self();
         if (UserDAO.currentUser == null) {
             System.out.println("vc current null r");
         }
         System.out.println(UserDAO.currentUser);
-        nw.getService(APIService.class).Update(UserDAO.currentUser).enqueue(new Callback<Token>() {
+        nw.getService(APIService.class).Update(user).enqueue(new Callback<Token>() {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 if (response.isSuccessful()) {
                     Token result = response.body();
-                    if (result.getResult().equals(MyConfig.SUCCESS)) {
-                        System.out.println(MyConfig.SUCCESS);
+                    if(context instanceof AccountDetailActivity) {
+                        UserDAO.flag = true;
+                        ((AccountDetailActivity) context).finish();
                     }else {
-                        System.out.println("Here5");
+                        if (result.getResult().equals(MyConfig.SUCCESS)) {
+                            System.out.println(MyConfig.SUCCESS);
+                        }else {
+                            System.out.println("Here5");
+                        }
                     }
                 }else {
                     System.out.println("Fail9");
@@ -255,7 +266,6 @@ public class UserUIService {
 
     public static void getOrder(int currentPage,int orderperpage,String searchString, OrderListActivity current) {
         NetworkProvider nw = NetworkProvider.self();
-        System.out.println(ProductDAO.currentCategory);
         nw.getService(APIService.class).getOrder(currentPage,orderperpage,searchString).enqueue(new Callback<List<Order>>() {
             @Override
             public void onResponse(Call<List<Order>> call, Response<List<Order>> response) {
@@ -266,7 +276,12 @@ public class UserUIService {
 //                    }else {
                         OrderDAO.listOfOrder = result;
                         if(currentPage == 1) {
-                            current.loadFirstPage();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    current.loadFirstPage();
+                                }
+                            }, 1000);
                         }else {
                             current.loadNextPage();
                         }
@@ -277,6 +292,66 @@ public class UserUIService {
             }
             @Override
             public void onFailure(Call<List<Order>> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+
+
+    }
+
+    public static void getAccount(int currentPage,int accountperpage,String searchString, ManageAccountActivity current) {
+        NetworkProvider nw = NetworkProvider.self();
+        nw.getService(APIService.class).getAccount(currentPage,accountperpage,searchString).enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response.isSuccessful()) {
+                    List<User> result = response.body();
+                    UserDAO.listofuser = result;
+                    if(currentPage == 1) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                current.loadFirstPage();
+                            }
+                        }, 1000);
+                    }else {
+                        current.loadNextPage();
+                    }
+                }else {
+                    System.out.println("Fail get account");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+    }
+
+    public static void getPost(int currentPage,int orderperpage,String searchString, PostListActivity current) {
+        NetworkProvider nw = NetworkProvider.self();
+        nw.getService(APIService.class).getPost(currentPage,orderperpage,searchString).enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if (response.isSuccessful()) {
+                    List<Post> result = response.body();
+                    PostDAO.listofPost = result;
+                    if(currentPage == 1) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                current.loadFirstPage();
+                            }
+                        }, 1000);
+                    }else {
+                        current.loadNextPage();
+                    }
+                }else {
+                    System.out.println("Fail get order");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
             }
         });

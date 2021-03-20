@@ -14,4 +14,5 @@ public class MyConfig {
     public static int spantCount = 2;
     public static int accountperpage = 5;
     public static int orderperpage = 5;
+    public static int postperpage = 5;
 }

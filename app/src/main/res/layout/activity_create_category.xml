@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.CreateCategoryActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/biege">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,7 +14,9 @@
         android:clickable="true"
         android:focusable="true"
         android:layout_gravity="left"
-        android:onClick="clickToGoBack"/>
+        android:textSize="20dp"
+        android:onClick="clickToGoBack"
+        android:textColor="@color/black"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -21,12 +24,15 @@
         android:text="Create a new Category"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="@color/black"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Category Name"
-        android:id="@+id/edtCategoryName"/>
+        android:id="@+id/edtCategoryName"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"/>
     <Button
         android:layout_width="160dp"
         android:layout_height="wrap_content"

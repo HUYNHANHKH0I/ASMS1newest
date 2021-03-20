@@ -1,6 +1,7 @@
 package com.project.asms1.network.service;
 
 import com.project.asms1.model.Order;
+import com.project.asms1.model.Post;
 import com.project.asms1.model.Product;
 import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
@@ -47,5 +48,17 @@ public interface APIService {
                            @Query("name") String name);
 
     @GET("Orders/getorder")
-    Call<List<Order>> getOrder(@Query("currentPage") int currentPage,@Query("productPerPage") int productPerPage,@Query("name") String name);
+    Call<List<Order>> getOrder(@Query("currentPage") int currentPage
+            ,@Query("productPerPage") int productPerPage
+            ,@Query("date") String date);
+
+    @GET("Posts/getpost")
+    Call<List<Post>> getPost(@Query("currentPage") int currentPage
+            , @Query("postPerPage") int postPerPage
+            , @Query("date") String date);
+
+    @GET("Users/getaccount")
+    Call<List<User>> getAccount(@Query("currentPage") int currentPage
+            ,@Query("accountPerPage") int accountPerPage
+            ,@Query("username") String username);
 }

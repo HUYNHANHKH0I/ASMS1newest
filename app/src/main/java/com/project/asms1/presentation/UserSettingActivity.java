@@ -79,7 +79,7 @@ public class UserSettingActivity extends AppCompatActivity {
                 if (txtupdateusername.getText().toString() != null && !txtupdateusername.getText().toString().equals("")) {
                     UserDAO.currentUser.setName(txtupdateusername.getText().toString());
                 }
-                UserUIService.updateUser(UserSettingActivity.this);
+                UserUIService.updateUser(UserSettingActivity.this,UserDAO.currentUser);
                 showCustomDialog();
             }
         });

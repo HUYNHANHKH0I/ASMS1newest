@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.project.asms1.R;
 import com.project.asms1.presentation.OrderListActivity;
+import com.project.asms1.presentation.PostListActivity;
 
 public class HomeFragment extends Fragment {
 
@@ -37,6 +38,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), OrderListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btn_Post = root.findViewById(R.id.btn_Post);
+        btn_Post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PostListActivity.class);
                 startActivity(intent);
             }
         });

@@ -5,50 +5,50 @@
     android:layout_marginBottom="40dp"
     android:orientation="vertical"
     android:layout_gravity="center">
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="90dp"
+        android:background="@color/lightpink"
+        android:orientation="horizontal"
+        android:id="@+id/accountLayoutManageAccountAdapter"
+        android:layout_gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ic_person_white_24dp"/>
+
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="90dp"
-            android:background="@color/lightpink"
-            android:orientation="horizontal"
-            android:id="@+id/accountLayoutManageAccountAdapter"
-            android:layout_gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/ic_person_white_24dp"/>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="90dp"
-                    android:orientation="vertical"
-                    android:layout_gravity="center_horizontal">
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Username"
-                            android:id="@+id/txtAccountUsernameManageAccountAdapter"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="20dp"
-                            android:textColor="@color/black"/>
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Name"
-                            android:id="@+id/txtAccountNameManageAccountAdapter"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="20dp"
-                            android:textColor="@color/black"/>
-                        <TextView
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:text="Email"
-                            android:id="@+id/txtAccountEmailManageAccountAdapter"
-                            android:textSize="20dp"
-                            android:layout_marginLeft="20dp"
-                            android:textColor="@color/black"/>
-                </LinearLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                android:id="@+id/txtAccountUsernameManageAccountAdapter"
+                android:textSize="15dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:id="@+id/txtAccountNameManageAccountAdapter"
+                android:textSize="15dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="15dp"
+                android:id="@+id/txtAccountEmailManageAccountAdapter"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

@@ -1,5 +1,8 @@
 package com.project.asms1.model;
 
+import android.app.Activity;
+import android.content.Context;
+
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -8,11 +11,14 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
 
     @SerializedName("id")
     @Expose
     private String id;
+    @SerializedName("status")
+    @Expose
+    private int status;
     @SerializedName("username")
     @Expose
     private String username;
@@ -49,6 +55,14 @@ public class User {
     @SerializedName("update")
     @Expose
     private Date update;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public Date getCreate() {
         return create;
@@ -129,9 +143,6 @@ public class User {
     @Override
     public String toString() {
         return new Gson().toJson(this);
-    }
-
-    public User() {
     }
 
     public User(String password, String username,int productperpage ) {
