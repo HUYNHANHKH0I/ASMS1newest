@@ -14,9 +14,11 @@ import com.project.asms1.R;
 import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
 import com.project.asms1.daos.OrderDAO;
+import com.project.asms1.daos.PostDAO;
 import com.project.asms1.daos.ProductDAO;
 import com.project.asms1.daos.UserDAO;
 import com.project.asms1.model.Order;
+import com.project.asms1.model.Post;
 import com.project.asms1.model.Product;
 import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
@@ -320,6 +322,35 @@ public class UserUIService {
             }
             @Override
             public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+            }
+        });
+    }
+
+    public static void getPost(int currentPage,int orderperpage,String searchString, PostListActivity current) {
+        NetworkProvider nw = NetworkProvider.self();
+        nw.getService(APIService.class).getOrder(currentPage,orderperpage,searchString).enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                if (response.isSuccessful()) {
+                    List<Post> result = response.body();
+                    PostDAO.listofPost = result;
+                    if(currentPage == 1) {
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                current.loadFirstPage();
+                            }
+                        }, 1000);
+                    }else {
+                        current.loadNextPage();
+                    }
+                }else {
+                    System.out.println("Fail get order");
+                }
+            }
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
             }
         });
