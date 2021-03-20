@@ -104,7 +104,15 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                 OrderViewHolder orderViewHolder = (OrderViewHolder) holder;
                 orderViewHolder.textViewItemId.setText(order.getID());
                 orderViewHolder.textViewItemDate.setText(order.getOrderDate()+" ");
-                orderViewHolder.textViewItemStatus.setText(order.getStatus()+"");
+
+                String orderStatus = "Inactive";
+                if (order.getStatus() == 1) {
+                    orderStatus = "Active";
+                }
+
+
+
+                orderViewHolder.textViewItemStatus.setText(orderStatus);
                 orderViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -119,7 +127,28 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                 PostViewHolder postViewHolder = (PostViewHolder) holder;
                 postViewHolder.textViewItemId.setText(post.getID());
                 postViewHolder.textViewItemDate.setText(post.getTime()+" ");
-                postViewHolder.textViewItemStatus.setText(post.getStatus()+"");
+
+                String postStatus = "Inactive";
+                if (post.getStatus() == 1) {
+                    postStatus = "Active";
+                }
+                String content ="";
+                if (post.getContent() != null) {
+                    String[] s = post.getContent().split(" ");
+
+                    int stopPoint = 5;
+                    if (post.getContent().length() < 5) {
+                        stopPoint = post.getContent().length();
+                    }
+                    for (int i = 0; i < stopPoint; i++) {
+                        content += s[i] + " ";
+                    }
+                    content += "...";
+                }
+
+
+                postViewHolder.textViewItemStatus.setText(postStatus);
+                postViewHolder.textViewItemContent.setText(content);
                 postViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -252,6 +281,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
         private TextView textViewItemId;
         private TextView textViewItemDate;
         private TextView textViewItemStatus;
+        private TextView textViewItemContent;
         private LinearLayout linearLayout;
 
         public PostViewHolder(View itemView) {
@@ -259,6 +289,7 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
             textViewItemId = (TextView) itemView.findViewById(R.id.txt_post_ID);
             textViewItemDate = (TextView) itemView.findViewById(R.id.txt_post_date);
             textViewItemStatus = (TextView) itemView.findViewById(R.id.txt_post_status);
+            textViewItemContent = (TextView) itemView.findViewById(R.id.txt_post_content);
             linearLayout = (LinearLayout) itemView.findViewById(R.id.layout_item_post_list);
         }
     }

@@ -34,6 +34,7 @@ import java.util.Locale;
 
 public class OrderListActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private Button btnChooseDate;
+    private ListView listView;
     private ScrollingPageAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager;
@@ -48,9 +49,6 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
 
     // If current page is the last page (Pagination will stop after this page load)
     private boolean isLastPage = false;
-
-    // total no. of pages to load. Initial load is page 1.
-    private int totalPages;
 
     // indicates the current page which Pagination is fetching.
     private int currentPage = PAGE_START;
@@ -100,6 +98,7 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
         orderDTOList.clear();
         orderDTOList.addAll(OrderDAO.listOfOrder);
 
+
         adapter.addAll(orderDTOList);
 
 
@@ -139,10 +138,10 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
 
             }
 
-            @Override
-            public int getTotalPageCount() {
-                return totalPages;
-            }
+//            @Override
+//            public int getTotalPageCount() {
+//                return totalPages;
+//            }
 
             @Override
             public boolean isLastPage() {
@@ -161,7 +160,6 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String date = (month + 1) + "/" + dayOfMonth + "/" + year;
         adapter.clear();
-        adapter.notifyDataSetChanged();
         isLastPage = false;
         progressBar.setVisibility(View.VISIBLE);
         btnChooseDate.setText(date);
@@ -171,4 +169,7 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
     }
 
 
+    public void clickToGoBack(View view) {
+        finish();
+    }
 }

@@ -13,6 +13,6 @@ public class MyConfig {
     public static int productperpage = 4;
     public static int spantCount = 2;
     public static int accountperpage = 5;
-    public static int orderperpage = 5;
+    public static int orderperpage = 6;
     public static int postperpage = 5;
 }

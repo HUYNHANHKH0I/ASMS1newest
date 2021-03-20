@@ -8,6 +8,17 @@
     android:background="@color/biege"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_gravity="left"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:onClick="clickToGoBack"/>
+
     <Button
         android:id="@+id/btnChoosePostDate"
         android:layout_width="match_parent"

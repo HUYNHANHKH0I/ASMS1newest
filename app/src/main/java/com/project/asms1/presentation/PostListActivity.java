@@ -18,6 +18,7 @@ import com.project.asms1.Utils.PagingScrollListener;
 import com.project.asms1.adapter.ScrollingPageAdapter;
 import com.project.asms1.config.MyConfig;
 import com.project.asms1.daos.PostDAO;
+import com.project.asms1.model.Post;
 import com.project.asms1.network.UserUIService;
 
 import java.time.format.DateTimeFormatter;
@@ -95,9 +96,7 @@ public class PostListActivity extends AppCompatActivity implements DatePickerDia
         progressBar.setVisibility(View.GONE);
         postDTOList.clear();
         postDTOList.addAll(PostDAO.listofPost);
-
         adapter.addAll(postDTOList);
-
 
         if (postDTOList.size() != 0)  adapter.addLoadingFooter();
         else { isLastPage = true;  }
@@ -133,10 +132,10 @@ public class PostListActivity extends AppCompatActivity implements DatePickerDia
                 }, 1000);
             }
 
-            @Override
-            public int getTotalPageCount() {
-                return totalPages;
-            }
+//            @Override
+//            public int getTotalPageCount() {
+//                return totalPages;
+//            }
 
             @Override
             public boolean isLastPage() {
@@ -162,5 +161,9 @@ public class PostListActivity extends AppCompatActivity implements DatePickerDia
         currentPage = 1;
         searchString = date;
         UserUIService.getPost(currentPage, MyConfig.postperpage,date,PostListActivity.this);
+    }
+
+    public void clickToGoBack(View view) {
+        finish();
     }
 }

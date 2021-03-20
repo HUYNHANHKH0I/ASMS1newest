@@ -107,10 +107,10 @@ public class ManageAccountActivity extends AppCompatActivity {
 
             }
 
-            @Override
-            public int getTotalPageCount() {
-                return totalPages;
-            }
+//            @Override
+//            public int getTotalPageCount() {
+//                return totalPages;
+//            }
 
             @Override
             public boolean isLastPage() {
