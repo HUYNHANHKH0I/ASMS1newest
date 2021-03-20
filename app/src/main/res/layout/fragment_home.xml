@@ -1,20 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/biege"
     android:visibility="visible"
+    android:orientation="vertical"
     tools:context=".presentation.ui.home.HomeFragment">
 
     <ImageButton
         android:id="@+id/btn_Order"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="@drawable/ic_btn_createaccount"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="100dp"
+        android:background="@drawable/btnorder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="40dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Orders"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"/>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="370dp"
+        android:layout_marginVertical="50dp"
+        android:layout_gravity="center"
+        android:layout_height="6dp"
+        android:background="@color/black" />
+
+    <ImageButton
+        android:id="@+id/btn_Post"
+        android:layout_marginLeft="100dp"
+        android:layout_marginVertical="0dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/btnpost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="40dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Posts"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"/>
+</LinearLayout>

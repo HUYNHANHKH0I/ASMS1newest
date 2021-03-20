@@ -17,10 +17,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".presentation.PostDetailActivity"></activity>
+
         <uses-library
             android:name="com.google.android.wearable"
             android:required="false" />
-
         <!--
                Set to true if your app is Standalone, that is, it does not require the handheld
                app to run.
@@ -31,12 +32,13 @@
 
         <activity
             android:name=".presentation.SellerHomeActivity"
-            android:label="@string/title_activity_seller_home"/>
+            android:label="@string/title_activity_seller_home" />
         <activity
             android:name=".presentation.UserSettingActivity"
             android:label="@string/title_activity_user_setting" />
         <activity android:name=".presentation.LoadingScreenActivity" />
-        <activity android:name=".presentation.OrderListActivity"/>
+        <activity android:name=".presentation.OrderListActivity" />
+        <activity android:name=".presentation.PostListActivity" />
         <activity android:name=".presentation.CreateProductActivity" />
         <activity android:name=".presentation.CreateCategoryActivity" />
         <activity android:name=".presentation.LoginActivity" />
