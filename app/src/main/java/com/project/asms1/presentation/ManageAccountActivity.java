@@ -55,6 +55,7 @@ public class ManageAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_account);
+        System.out.println("here again1");
 
         initialData();
     }
@@ -123,8 +124,26 @@ public class ManageAccountActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (UserDAO.flag) {
+            loadingDataBack();
+        }
+    }
+
     public void clickToGoBack(View view) {
         finish();
+    }
+
+    public void loadingDataBack() {
+        adapter.clear();
+        adapter.notifyDataSetChanged();
+        isLastPage = false;
+        isLoading = false;
+        String search = "ALL";
+        currentPage = 1;
+        UserUIService.getAccount(currentPage, MyConfig.accountperpage,search,ManageAccountActivity.this);
     }
 
     public void clickToSearchAccount(View view) {
@@ -138,15 +157,12 @@ public class ManageAccountActivity extends AppCompatActivity {
     }
     public void initialData() {
         accountList = new ArrayList();
-
         accountRecyclerView = (RecyclerView) findViewById(R.id.listAccountManageAccount);
         progressBar = (ProgressBar) findViewById(R.id.main_progress_account);
         edtSearchAccount = (EditText) findViewById(R.id.edtSearchAccountManageAccount);
         txtEmptyMessage = (TextView) findViewById(R.id.txtEmptyMessageManageAccount);
         searchValue = "";
         setAdapter();
-
-
         currentPage = 1;
         searchString = "ALL";
         UserUIService.getAccount(currentPage, MyConfig.accountperpage,searchString,ManageAccountActivity.this);

@@ -22,6 +22,7 @@ import com.project.asms1.model.Store;
 import com.project.asms1.model.Token;
 import com.project.asms1.model.User;
 import com.project.asms1.network.service.APIService;
+import com.project.asms1.presentation.AccountDetailActivity;
 import com.project.asms1.presentation.AdminHomeActivity;
 import com.project.asms1.presentation.LoginActivity;
 import com.project.asms1.presentation.ManageAccountActivity;
@@ -153,21 +154,26 @@ public class UserUIService {
         }
     }
 
-    public static void updateUser(Activity context) {
+    public static void updateUser(Activity context,User user) {
         NetworkProvider nw = NetworkProvider.self();
         if (UserDAO.currentUser == null) {
             System.out.println("vc current null r");
         }
         System.out.println(UserDAO.currentUser);
-        nw.getService(APIService.class).Update(UserDAO.currentUser).enqueue(new Callback<Token>() {
+        nw.getService(APIService.class).Update(user).enqueue(new Callback<Token>() {
             @Override
             public void onResponse(Call<Token> call, Response<Token> response) {
                 if (response.isSuccessful()) {
                     Token result = response.body();
-                    if (result.getResult().equals(MyConfig.SUCCESS)) {
-                        System.out.println(MyConfig.SUCCESS);
+                    if(context instanceof AccountDetailActivity) {
+                        UserDAO.flag = true;
+                        ((AccountDetailActivity) context).finish();
                     }else {
-                        System.out.println("Here5");
+                        if (result.getResult().equals(MyConfig.SUCCESS)) {
+                            System.out.println(MyConfig.SUCCESS);
+                        }else {
+                            System.out.println("Here5");
+                        }
                     }
                 }else {
                     System.out.println("Fail9");
