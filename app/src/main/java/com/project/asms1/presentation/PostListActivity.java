@@ -99,7 +99,7 @@ public class PostListActivity extends AppCompatActivity implements DatePickerDia
         adapter.addAll(postDTOList);
 
 
-        if (postDTOList.size() < 0)  adapter.addLoadingFooter();
+        if (postDTOList.size() != 0)  adapter.addLoadingFooter();
         else { isLastPage = true;  }
     }
 
