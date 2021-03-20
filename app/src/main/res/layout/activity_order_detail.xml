@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/biege"
-    tools:context=".presentation.OrderDetailActivity"
-    >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".presentation.OrderDetailActivity">
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/darkchoco"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="clickToGoBack"
+            android:textColor="@color/black"
+            android:text="@string/back_button"
+            android:textSize="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,11 +35,11 @@
             <TextView
                 android:layout_width="127dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:fontFamily="@font/roboto_medium"
                 android:text="ID"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white"
-                android:layout_marginLeft="5dp"/>
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/txt_order_detail_ID"
@@ -52,12 +61,11 @@
             <TextView
                 android:layout_width="127dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
                 android:fontFamily="@font/roboto"
                 android:text="Order Date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/white"
-                android:layout_marginLeft="5dp"
-                />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/txt_order_detail_OrderDate"
@@ -72,38 +80,57 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Customer_layout"
+        android:layout_below="@+id/linearLayout2"
+
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/darkchoco"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/Customer_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="0dp"
             android:text="Product :"
-            android:layout_marginLeft="5dp"/>
+            android:textColor="@color/white"
+            android:id="@+id/txtview_product"/>
 
         <View
             android:id="@+id/divider2"
             android:layout_width="400dp"
             android:layout_height="1.5dp"
+            android:layout_gravity="center"
             android:background="?android:attr/listDivider"
-            android:layout_gravity="center"/>
+            android:layout_below="@+id/txtview_product"
+            android:layout_marginTop="10dp"/>
+
 
         <ListView
             android:id="@+id/order_detail_product_list"
             android:layout_width="match_parent"
-            android:layout_height="520dp" />
-
-
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/total_layout"
+            android:layout_below="@id/divider2" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="0dp"
+            android:orientation="horizontal"
+            android:id="@+id/total_layout">
 
             <TextView
                 android:layout_width="150dp"
@@ -113,74 +140,77 @@
                 android:text="Total"
                 android:textColor="@color/white" />
 
+            <TextView
+                android:id="@+id/txt_order_detail_total_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginEnd="10dp"
+                android:text="Total"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/white" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/Customer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/darkchoco"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:text="Total"
-            android:textColor="@color/white"
-            android:textAlignment="viewEnd"
-            android:id="@+id/txt_order_detail_total_price"
-            android:layout_marginEnd="10dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@color/darkchoco"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Customer Info"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/white"
-            android:layout_marginLeft="5dp"/>
+            android:textColor="@color/white" />
 
         <View
             android:id="@+id/divider4"
             android:layout_width="400dp"
             android:layout_height="1.5dp"
-            android:background="?android:attr/listDivider"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:background="?android:attr/listDivider" />
 
         <TextView
+            android:id="@+id/txt_order_detail_customer_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/roboto_thin"
             android:text="Customer Name"
-            android:textColor="@color/white"
-            android:id="@+id/txt_order_detail_customer_name"/>
+            android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/txt_order_detail_customer_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/roboto_thin"
             android:text="Mobile Phone"
-            android:textColor="@color/white"
-            android:id="@+id/txt_order_detail_customer_phone"/>
+            android:textColor="@color/white" />
 
         <TextView
+            android:id="@+id/txt_order_detail_customer_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/roboto_thin"
             android:text="Address"
-            android:textColor="@color/white"
-            android:id="@+id/txt_order_detail_customer_address"/>
+            android:textColor="@color/white" />
+
         <TextView
+            android:id="@+id/txt_order_detail_customer_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:fontFamily="@font/roboto_thin"
             android:text="Email"
-            android:textColor="@color/white"
-            android:id="@+id/txt_order_detail_customer_email"/>
+            android:textColor="@color/white" />
     </LinearLayout>
-</LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</RelativeLayout>

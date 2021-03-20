@@ -7,24 +7,19 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.project.asms1.R;
 import com.project.asms1.Utils.PagingScrollListener;
 import com.project.asms1.adapter.ScrollingPageAdapter;
 import com.project.asms1.config.MyConfig;
-import com.project.asms1.daos.OrderDAO;
-import com.project.asms1.model.Order;
+import com.project.asms1.daos.PostDAO;
 import com.project.asms1.network.UserUIService;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
@@ -32,13 +27,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class OrderListActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class PostListActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private Button btnChooseDate;
-    private ListView listView;
     private ScrollingPageAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager;
-    private RecyclerView orderRecyclerView;
+    private RecyclerView postRecyclerView;
     private ProgressBar progressBar;
 
     // Index from which pagination should start (1 is 1st page in our case)
@@ -58,16 +52,17 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
 
     private String searchString ;
 
-    private List orderDTOList;
+    private List postDTOList;
+    private ArrayList postDTODB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_list);
-        btnChooseDate = findViewById(R.id.btnChooseDate);
-        orderRecyclerView = (RecyclerView) findViewById(R.id.listOrderOrderList);
-        progressBar = (ProgressBar) findViewById(R.id.main_progress_order);
-        orderDTOList = new ArrayList();
+        setContentView(R.layout.activity_post_list);
+        btnChooseDate = findViewById(R.id.btnChoosePostDate);
+        postRecyclerView = (RecyclerView) findViewById(R.id.listPostPostList);
+        progressBar = (ProgressBar) findViewById(R.id.main_progress_post);
+        postDTOList = new ArrayList();
         setAdapter();
 
         //set up button chọn ngày
@@ -80,12 +75,12 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
         btnChooseDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment dialogFragment = new DatePickerFragment();
+                DialogFragment dialogFragment = new PostDatePickerFragment();
                 dialogFragment.show(getFragmentManager(), "DatePicker");
             }
         });
 
-        //TODO: gọi hàm lấy toàn bộ list order
+        //TODO: gọi hàm lấy toàn bộ list post
         DateTimeFormatter formatter
                 = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
                 .withLocale(Locale.US);
@@ -93,37 +88,35 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
 
         currentPage = 1;
         searchString = "ALL";
-        UserUIService.getOrder(currentPage, MyConfig.orderperpage,searchString,OrderListActivity.this);
+        UserUIService.getPost(currentPage, MyConfig.postperpage,searchString, PostListActivity.this);
     }
 
     public void loadFirstPage() {
         progressBar.setVisibility(View.GONE);
-        orderDTOList.clear();
-        orderDTOList.addAll(OrderDAO.listOfOrder);
+        postDTOList.clear();
+        postDTOList.addAll(PostDAO.listofPost);
+        adapter.addAll(postDTOList);
 
-        adapter.addAll(orderDTOList);
-
-
-        if (orderDTOList.size() != 0)  adapter.addLoadingFooter();
+        if (postDTOList.size() != 0)  adapter.addLoadingFooter();
         else { isLastPage = true;  }
     }
 
     public void loadNextPage() {
-        orderDTOList.clear();
-        orderDTOList.addAll(OrderDAO.listOfOrder);
+        postDTOList.clear();
+        postDTOList.addAll(PostDAO.listofPost);
 
         adapter.removeLoadingFooter();
-        adapter.addAll(orderDTOList);
-        if (orderDTOList.size() != 0) adapter.addLoadingFooter();
+        adapter.addAll(postDTOList);
+        if (postDTOList.size() != 0) adapter.addLoadingFooter();
         else isLastPage = true;
         isLoading = false;
     }
     private void setAdapter() {
-        adapter = new ScrollingPageAdapter(this, 2);
+        adapter = new ScrollingPageAdapter(this, 3);
         linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        orderRecyclerView.setLayoutManager(linearLayoutManager);
-        orderRecyclerView.setAdapter(adapter);
-        orderRecyclerView.addOnScrollListener(new PagingScrollListener(linearLayoutManager) {
+        postRecyclerView.setLayoutManager(linearLayoutManager);
+        postRecyclerView.setAdapter(adapter);
+        postRecyclerView.addOnScrollListener(new PagingScrollListener(linearLayoutManager) {
 
             @Override
             protected void loadMoreItems() {
@@ -133,11 +126,9 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        UserUIService.getOrder(currentPage, MyConfig.orderperpage,searchString,OrderListActivity.this);
+                        UserUIService.getPost(currentPage, MyConfig.postperpage,searchString, PostListActivity.this);
                     }
                 }, 1000);
-
-
             }
 
             @Override
@@ -157,7 +148,7 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
         });
     }
 
-    // hàm gọi orderlist khi chọn ngày
+    // hàm gọi postlist khi chọn ngày
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         String date = (month + 1) + "/" + dayOfMonth + "/" + year;
@@ -168,12 +159,10 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
         btnChooseDate.setText(date);
         currentPage = 1;
         searchString = date;
-        UserUIService.getOrder(currentPage, MyConfig.orderperpage,date,OrderListActivity.this);
+        UserUIService.getPost(currentPage, MyConfig.postperpage,date, PostListActivity.this);
     }
 
     public void clickToGoBack(View view) {
         finish();
     }
-
-
 }

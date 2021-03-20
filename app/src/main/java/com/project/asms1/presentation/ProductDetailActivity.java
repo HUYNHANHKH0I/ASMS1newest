@@ -3,6 +3,7 @@ package com.project.asms1.presentation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,17 +18,18 @@ public class ProductDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        TextView viewName = (TextView) findViewById(R.id.txtProductDetailNameProduct);
-        TextView viewPrice = (TextView) findViewById(R.id.txtProductDetailPrice);
-        TextView viewCategory = (TextView) findViewById(R.id.txtProductDetailCategory);
-        TextView viewQuantity = (TextView) findViewById(R.id.txtProductDetailQuantity);
+        EditText viewName = (EditText) findViewById(R.id.txtProductDetailNameProduct);
+        EditText viewPrice = (EditText) findViewById(R.id.txtProductDetailPrice);
+        EditText viewCategory = (EditText) findViewById(R.id.txtProductDetailCategory);
+        EditText viewQuantity = (EditText) findViewById(R.id.txtProductDetailQuantity);
 
         Intent intent = getIntent();
         Product product = (Product) intent.getSerializableExtra("product");
 
         viewName.setText(product.getName());
         viewPrice.setText(String.valueOf(product.getPrice()));
-        viewCategory.setText(product.getCategoryID());
+        System.out.println(product.getCategoryName());
+        viewCategory.setText(product.getCategoryName());
         viewQuantity.setText(String.valueOf(product.getQuantity()));
 
     }

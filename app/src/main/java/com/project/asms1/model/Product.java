@@ -29,6 +29,15 @@ public class Product implements Serializable{
     @SerializedName("categoryID")
     @Expose
     private String categoryID;
+    @SerializedName("categoryName")
+    @Expose
+    private String categoryName;
+
+    public String getCategoryName() { return categoryName; }
+
+//    public void setCategoryName(String categoryName) {
+//        this.categoryName = categoryName;
+//    }
 
     public String getId() {
         return id;
@@ -42,9 +51,9 @@ public class Product implements Serializable{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public float getPrice() {
         return price;

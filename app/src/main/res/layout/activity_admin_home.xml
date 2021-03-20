@@ -32,7 +32,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/ic_btn_createaccount"
+        android:src="@drawable/adduserlogo"
         android:layout_gravity="center"
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="2dp"
@@ -59,7 +59,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/ic_btn_manageaccount"
+        android:src="@drawable/manageuserlogo"
         android:layout_gravity="center"
         app:civ_border_color="#FFFFFF"
         app:civ_border_width="2dp"

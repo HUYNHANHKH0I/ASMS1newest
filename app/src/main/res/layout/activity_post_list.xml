@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.OrderListActivity"
+    tools:context=".presentation.PostListActivity"
     android:background="@color/biege"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,32 +18,27 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         android:onClick="clickToGoBack"/>
-    <LinearLayout
+
+    <Button
+        android:id="@+id/btnChoosePostDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        tools:layout_editor_absoluteX="31dp"
+        tools:layout_editor_absoluteY="16dp" />
 
-        <Button
-            android:id="@+id/btnChooseDate"
-            android:layout_width="322dp"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="X"/>
-    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/listOrderOrderList"
+            android:id="@+id/listPostPostList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"/>
         <ProgressBar
-            android:id="@+id/main_progress_order"
+            android:id="@+id/main_progress_post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"/>
@@ -50,4 +46,3 @@
 
 
 </LinearLayout>
-

@@ -2,6 +2,7 @@ package com.project.asms1.presentation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -53,5 +54,9 @@ public class OrderDetailActivity extends AppCompatActivity {
         adapter = new ListOrderDetailAdapter();
         adapter.setOrderDetailProductList(order.getOrderdetaillist());
         listView.setAdapter(adapter);
+    }
+
+    public void clickToGoBack(View view) {
+        finish();
     }
 }

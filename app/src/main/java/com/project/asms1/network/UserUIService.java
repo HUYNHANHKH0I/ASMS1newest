@@ -29,6 +29,7 @@ import com.project.asms1.presentation.AdminHomeActivity;
 import com.project.asms1.presentation.LoginActivity;
 import com.project.asms1.presentation.ManageAccountActivity;
 import com.project.asms1.presentation.OrderListActivity;
+import com.project.asms1.presentation.PostListActivity;
 import com.project.asms1.presentation.SellerHomeActivity;
 import com.project.asms1.presentation.ui.store.StoreFragment;
 
@@ -329,7 +330,7 @@ public class UserUIService {
 
     public static void getPost(int currentPage,int orderperpage,String searchString, PostListActivity current) {
         NetworkProvider nw = NetworkProvider.self();
-        nw.getService(APIService.class).getOrder(currentPage,orderperpage,searchString).enqueue(new Callback<List<Post>>() {
+        nw.getService(APIService.class).getPost(currentPage,orderperpage,searchString).enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if (response.isSuccessful()) {
