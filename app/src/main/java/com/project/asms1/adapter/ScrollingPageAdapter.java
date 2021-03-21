@@ -137,8 +137,8 @@ public class ScrollingPageAdapter extends RecyclerView.Adapter<RecyclerView.View
                     String[] s = post.getContent().split(" ");
 
                     int stopPoint = 5;
-                    if (post.getContent().length() < 5) {
-                        stopPoint = post.getContent().length();
+                    if (s.length < 5) {
+                        stopPoint = s.length;
                     }
                     for (int i = 0; i < stopPoint; i++) {
                         content += s[i] + " ";

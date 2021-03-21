@@ -42,6 +42,11 @@ public class AccountDetailActivity extends AppCompatActivity {
         edtName.setText(account.getName());
         btnChangeStatus =  (Button) findViewById(R.id.btnChangeStatusAccountDetail);
         chkIsAdmin = (CheckBox) findViewById(R.id.chkIsAdminAccountDetail);
+        if(account.getRole() == 1) {
+            chkIsAdmin.setChecked(true);
+        }else {
+            chkIsAdmin.setChecked(false);
+        }
         btnEditAccount = (Button) findViewById(R.id.btnEditAccountAccountDetail);
         status = account.getStatus() == 1 ? true : false;
         flag = 0;
@@ -58,6 +63,7 @@ public class AccountDetailActivity extends AppCompatActivity {
              account.setUsername(edtUsername.getText().toString());
              account.setName(edtName.getText().toString());
              account.setEmail(edtEmail.getText().toString());
+             account.setRole(chkIsAdmin.isChecked() ? 1 : 2);
              UserUIService.updateUser(AccountDetailActivity.this,account);
         } else {
             edtUsername.setFocusable(true);
