@@ -55,8 +55,6 @@ public class ManageAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_account);
-        System.out.println("here again1");
-
         initialData();
     }
 
@@ -128,6 +126,7 @@ public class ManageAccountActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (UserDAO.flag) {
+            UserDAO.flag = false;
             loadingDataBack();
         }
     }

@@ -20,8 +20,9 @@ public class AdminHomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home);
-        System.out.println(UserDAO.currentUser.getUsername());
-        ((TextView)findViewById(R.id.txtWelcome)).setText("Welcome, " + UserDAO.currentUser.getName());
+        if(UserDAO.currentUser != null) {
+            ((TextView)findViewById(R.id.txtWelcome)).setText("Welcome, " + UserDAO.currentUser.getName());
+        }
     }
 
     public void clickToCreateAccount(View view) {

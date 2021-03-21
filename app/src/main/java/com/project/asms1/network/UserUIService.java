@@ -126,15 +126,24 @@ public class UserUIService {
                                     }
                                 }, 1000);
                             }
+                        }
+                        else if(result.getResult().equals(MyConfig.deactive)) {
+                            btn.doneLoadingAnimation(ContextCompat.getColor(context,R.color.black),
+                                    BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_pregnant_woman_white_48dp));
+                            Intent intent = new Intent(context,LoginActivity.class);
+                            intent.putExtra("message",MyConfig.deactivemessage);
+                            context.startActivity(intent);
                         }else {
-                            System.out.println("Here3");
                             btn.doneLoadingAnimation(ContextCompat.getColor(context,R.color.black),
                                     BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_pregnant_woman_white_48dp));
                             Intent intent = new Intent(context,LoginActivity.class);
                             context.startActivity(intent);
                         }
                     }else {
-                        System.out.println("Fail4");
+                        btn.doneLoadingAnimation(ContextCompat.getColor(context,R.color.black),
+                                BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_pregnant_woman_white_48dp));
+                        Intent intent = new Intent(context,LoginActivity.class);
+                        context.startActivity(intent);
                     }
                 }
                 @Override
@@ -170,7 +179,7 @@ public class UserUIService {
                     Token result = response.body();
                     if(context instanceof AccountDetailActivity) {
                         UserDAO.flag = true;
-                        ((AccountDetailActivity) context).finish();
+                        ((AccountDetailActivity) context).onBackPressed();
                     }else {
                         if (result.getResult().equals(MyConfig.SUCCESS)) {
                             System.out.println(MyConfig.SUCCESS);

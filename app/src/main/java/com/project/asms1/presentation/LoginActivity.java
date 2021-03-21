@@ -19,6 +19,7 @@ import com.project.asms1.Utils.SecurityLogic;
 import com.project.asms1.config.MyConfig;
 import com.project.asms1.daos.ProductDAO;
 import com.project.asms1.daos.UserDAO;
+import com.project.asms1.model.Post;
 import com.project.asms1.model.User;
 import com.project.asms1.network.NetworkProvider;
 import com.project.asms1.network.service.APIService;
@@ -74,43 +75,58 @@ public class LoginActivity extends AppCompatActivity {
                                     btnShow.setBackgroundResource(R.drawable.shadow_button_layer_list);
                                 }
                             }, 1000);
-                            txtMessage.setText("Not Exist");
+                            txtMessage.setText(MyConfig.usernotexist);
                             txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
                         }else {
-                            btnShow.doneLoadingAnimation(ContextCompat.getColor(LoginActivity.this,R.color.purple),
-                                    BitmapFactory.decodeResource(LoginActivity.this.getResources(), R.drawable.ic_done_white_48dp));
-                            txtMessage.setText("Login Success");
-                            txtMessage.setTextColor(getResources().getColor(R.color.colorPrimary));
-                            try {
-                                SecurityLogic.getPreferenceInstance(LoginActivity.this);
-                                SecurityLogic.storeTokens(user1.getToken());
-                                UserDAO.currentUser = user1;
-                                if (UserDAO.currentUser.getRole() == 1) {
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
-                                            LoginActivity.this.startActivity(intent);
-                                        }
-                                    }, 1000);
-                                }else {
-                                    ProductDAO.listOfProduct = user1.getProductslist();
-                                    ProductDAO.numberOfPage = user1.getNumberOfPage();
-                                    ProductDAO.listOfCategory = user1.getCategorylist();
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
-                                            LoginActivity.this.startActivity(intent);
-                                        }
-                                    }, 1000);
+                            if (user1.getMessage().equals(MyConfig.deactive)) {
+                                btnShow.doneLoadingAnimation(ContextCompat.getColor(LoginActivity.this,R.color.black),
+                                        BitmapFactory.decodeResource(LoginActivity.this.getResources(), R.drawable.ic_pregnant_woman_white_48dp));
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        btnShow.revertAnimation();
+                                        btnShow.setBackgroundResource(R.drawable.shadow_button_layer_list);
+                                    }
+                                }, 1000);
+                                txtMessage.setText(MyConfig.deactivemessage);
+                                txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
+                            }else {
+                                btnShow.doneLoadingAnimation(ContextCompat.getColor(LoginActivity.this,R.color.purple),
+                                        BitmapFactory.decodeResource(LoginActivity.this.getResources(), R.drawable.ic_done_white_48dp));
+                                txtMessage.setText(MyConfig.loginsuccess);
+                                txtMessage.setTextColor(getResources().getColor(R.color.colorPrimary));
+                                try {
+                                    SecurityLogic.getPreferenceInstance(LoginActivity.this);
+                                    SecurityLogic.storeTokens(user1.getToken());
+                                    UserDAO.currentUser = user1;
+                                    if (UserDAO.currentUser.getRole() == 1) {
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class);
+                                                LoginActivity.this.startActivity(intent);
+                                            }
+                                        }, 1000);
+                                    }else {
+                                        ProductDAO.listOfProduct = user1.getProductslist();
+                                        ProductDAO.numberOfPage = user1.getNumberOfPage();
+                                        ProductDAO.listOfCategory = user1.getCategorylist();
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                Intent intent = new Intent(LoginActivity.this, SellerHomeActivity.class);
+                                                LoginActivity.this.startActivity(intent);
+                                            }
+                                        }, 1000);
+                                    }
+                                } catch (GeneralSecurityException e) {
+                                    e.printStackTrace();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (GeneralSecurityException e) {
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                e.printStackTrace();
                             }
                         }
                     } else {
@@ -126,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         }else {
-            txtMessage.setText("Email or Password invalid");
+            txtMessage.setText(MyConfig.invalidemail);
             txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
             btnShow.doneLoadingAnimation(ContextCompat.getColor(LoginActivity.this,R.color.black),
                     BitmapFactory.decodeResource(LoginActivity.this.getResources(), R.drawable.ic_pregnant_woman_white_48dp));
@@ -146,6 +162,12 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtPassWord);
         txtMessage = findViewById(R.id.txtMessage);
         btnShow = findViewById(R.id.btnLogin);
+        Intent intent = getIntent();
+        String message = (String) intent.getSerializableExtra("message");
+        if(message != null) {
+            txtMessage.setText(MyConfig.deactivemessage);
+            txtMessage.setTextColor(getResources().getColor(R.color.colorAccent));
+        }
         btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

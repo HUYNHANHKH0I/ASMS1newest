@@ -55,6 +55,13 @@ public class User implements Serializable {
     @SerializedName("update")
     @Expose
     private Date update;
+    @SerializedName("message")
+    @Expose
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
 
     public int getStatus() {
         return status;
