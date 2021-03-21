@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.asms1.R;
+import com.project.asms1.databinding.ActivityProductDetailBinding;
 import com.project.asms1.model.Product;
 
 public class ProductDetailActivity extends AppCompatActivity {
