@@ -15,7 +15,7 @@ public class MyConfig {
     public static int accountperpage = 5;
     public static int orderperpage = 5;
     public static int postperpage = 5;
-    public static String usernotexist = "USER'S ACCOUNT IS NOT EXIST!";
+    public static String usernotexist = "USER'S ACCOUNT OR PASSWORD IS NOT CORRECT!";
     public static String loginsuccess = "LOGIN SUCCESSFULLY!";
     public static String invalidemail = "EMAIL OR PASSWORD IS INVALID!";
     public static String deactive = "DEACTIVE";

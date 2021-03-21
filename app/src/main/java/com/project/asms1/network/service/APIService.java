@@ -38,6 +38,9 @@ public interface APIService {
     @POST("Users/updateuser")
     Call<Token> Update(@Body User user);
 
+    @POST("Users/adduser")
+    Call<User> addUser(@Body User user);
+
     @GET("Products/page")
     Call<Store> changePage(@Query("currentPage") int currentPage,
                            @Query("productPerPage") int productPerPage,

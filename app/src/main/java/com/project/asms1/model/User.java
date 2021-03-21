@@ -157,4 +157,12 @@ public class User implements Serializable {
         this.username = username;
         this.productperpage = productperpage;
     }
+
+    public User(String password, String username,String name, String email, int roleid ) {
+        this.password = password;
+        this.username = username;
+        this.email = email;
+        this.name = name;
+        this.role = roleid;
+    }
 }

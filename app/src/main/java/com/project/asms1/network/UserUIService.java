@@ -26,6 +26,7 @@ import com.project.asms1.model.User;
 import com.project.asms1.network.service.APIService;
 import com.project.asms1.presentation.AccountDetailActivity;
 import com.project.asms1.presentation.AdminHomeActivity;
+import com.project.asms1.presentation.CreateAccountActivity;
 import com.project.asms1.presentation.LoginActivity;
 import com.project.asms1.presentation.ManageAccountActivity;
 import com.project.asms1.presentation.OrderListActivity;
@@ -180,12 +181,6 @@ public class UserUIService {
                     if(context instanceof AccountDetailActivity) {
                         UserDAO.flag = true;
                         ((AccountDetailActivity) context).onBackPressed();
-                    }else {
-                        if (result.getResult().equals(MyConfig.SUCCESS)) {
-                            System.out.println(MyConfig.SUCCESS);
-                        }else {
-                            System.out.println("Here5");
-                        }
                     }
                 }else {
                     System.out.println("Fail9");
@@ -339,32 +334,55 @@ public class UserUIService {
 
     public static void getPost(int currentPage,int orderperpage,String searchString, PostListActivity current) {
         NetworkProvider nw = NetworkProvider.self();
-        nw.getService(APIService.class).getPost(currentPage,orderperpage,searchString).enqueue(new Callback<List<Post>>() {
+        nw.getService(APIService.class).getPost(currentPage, orderperpage, searchString).enqueue(new Callback<List<Post>>() {
             @Override
             public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if (response.isSuccessful()) {
                     List<Post> result = response.body();
                     PostDAO.listofPost = result;
-                    if(currentPage == 1) {
+                    if (currentPage == 1) {
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 current.loadFirstPage();
                             }
                         }, 1000);
-                    }else {
+                    } else {
                         current.loadNextPage();
                     }
-                }else {
+                } else {
                     System.out.println("Fail get order");
                 }
             }
+
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
                 Log.e(TAG, t.getMessage());
             }
         });
-
-
     }
+
+        public static void addUser (User user, CreateAccountActivity current){
+            NetworkProvider nw = NetworkProvider.self();
+            nw.getService(APIService.class).addUser(user).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    if (response.isSuccessful()) {
+                        User result = response.body();
+                        if (result.getMessage().equals(MyConfig.SUCCESS)) {
+                            current.showCustomDialog();
+                        }else {
+                            Toast.makeText(current,"Fail to create user",Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        System.out.println("Fail add user");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    Log.e(TAG, t.getMessage());
+                }
+            });
+        }
 }
