@@ -23,7 +23,7 @@
             android:clickable="true"
             android:focusable="true"
             android:onClick="clickToGoBack"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:text="@string/back_button"
             android:textSize="20dp" />
 

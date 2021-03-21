@@ -33,13 +33,14 @@ import java.util.List;
 import java.util.Locale;
 
 public class OrderListActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    private Button btnChooseDate;
+    private Button btnChooseDate,cancelfilter;
     private ListView listView;
     private ScrollingPageAdapter adapter;
 
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView orderRecyclerView;
     private ProgressBar progressBar;
+    private boolean flag = false;
 
     // Index from which pagination should start (1 is 1st page in our case)
     private static final int PAGE_START = 1;
@@ -64,33 +65,15 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_list);
-        btnChooseDate = findViewById(R.id.btnChooseDate);
-        orderRecyclerView = (RecyclerView) findViewById(R.id.listOrderOrderList);
-        progressBar = (ProgressBar) findViewById(R.id.main_progress_order);
-        orderDTOList = new ArrayList();
-        setAdapter();
+        initData();
+    }
 
-        //set up button chọn ngày
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH) + 1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        String date = day + "/" + month + "/" + year;
-        btnChooseDate.setText(date);
-        btnChooseDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment dialogFragment = new DatePickerFragment();
-                dialogFragment.show(getFragmentManager(), "DatePicker");
-            }
-        });
-
-        //TODO: gọi hàm lấy toàn bộ list order
-        DateTimeFormatter formatter
-                = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
-                .withLocale(Locale.US);
-
-
+    public void getAll() {
+        flag = false;
+        adapter.clear();
+        adapter.notifyDataSetChanged();
+        isLastPage = false;
+        progressBar.setVisibility(View.VISIBLE);
         currentPage = 1;
         searchString = "ALL";
         UserUIService.getOrder(currentPage, MyConfig.orderperpage,searchString,OrderListActivity.this);
@@ -160,6 +143,7 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
     // hàm gọi orderlist khi chọn ngày
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        flag = true;
         String date = (month + 1) + "/" + dayOfMonth + "/" + year;
         adapter.clear();
         adapter.notifyDataSetChanged();
@@ -173,6 +157,47 @@ public class OrderListActivity extends AppCompatActivity implements DatePickerDi
 
     public void clickToGoBack(View view) {
         finish();
+    }
+
+    public void initData() {
+        btnChooseDate = findViewById(R.id.btnChooseDate);
+        orderRecyclerView = (RecyclerView) findViewById(R.id.listOrderOrderList);
+        progressBar = (ProgressBar) findViewById(R.id.main_progress_order);
+        cancelfilter = findViewById(R.id.cancefilterorder);
+        cancelfilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag) {
+                    getAll();
+                }
+
+            }
+        });
+        orderDTOList = new ArrayList();
+        setAdapter();
+
+        //set up button chọn ngày
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        String date = day + "/" + month + "/" + year;
+        btnChooseDate.setText(date);
+        btnChooseDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment dialogFragment = new DatePickerFragment();
+                dialogFragment.show(getFragmentManager(), "DatePicker");
+            }
+        });
+
+        DateTimeFormatter formatter
+                = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)
+                .withLocale(Locale.US);
+
+        currentPage = 1;
+        searchString = "ALL";
+        UserUIService.getOrder(currentPage, MyConfig.orderperpage,searchString,OrderListActivity.this);
     }
 
 
